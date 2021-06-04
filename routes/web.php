@@ -20,9 +20,18 @@ use App\Models\Compte;
 |
 */
 
+// Route::get('/',function()  //si on nous demande la page d'accueil / on va executer une fonction ......
+// {
+//     return view('base');
+// })->name('Accueil');
+
 Route::get('/',function()  //si on nous demande la page d'accueil / on va executer une fonction ......
 {
-    return view('base');
+    if(session()->has('user'))
+    {
+        return view('base');
+    }
+    return view('/login');
 })->name('Accueil');
 
 
@@ -55,11 +64,20 @@ Route::get('/ajouterMembreMandat/{id}',[MandatController::class,"ajouterMembre"]
 
 Route::get('/login',function()
     {
-        return view('Auth.login');
+        return view('login');
     }
 )->name('Login');
 
 Route::post('/login',[AuthController::class,"authentifier"])->name('Authentifier');
+
+Route::get('/logout',function()
+{
+    if(session()->has('user'))
+    {
+        session()->pull('user');
+    }
+    return redirect(route('Authentifier'));
+})->name('LogOut');
 
 
 

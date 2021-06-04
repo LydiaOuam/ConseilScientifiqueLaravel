@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 
 class AuthController extends Controller
@@ -21,7 +22,41 @@ class AuthController extends Controller
             if($user->etat != 0)
             {
                 if($user->password == $request->password)
-                echo "Welcome!";
+                {
+                    if($user->hasRole('administarteur'))
+                    {
+                        $data = $request->input();
+                        $request->session()->put('user',$data['login']);
+                        return redirect(route('Accueil'));
+                    }
+                    elseif($user->hasRole('etudiant-doctorant'))
+                    {
+    
+                        echo 'Session etudiant';
+                    }
+                    elseif($user->hasRole('enseignant-chercheur'))
+                    {
+    
+                        echo 'Session enseignant-chercheur';
+                    }
+                    elseif($user->hasRole('chefProjetDeRecherche'))
+                    {
+    
+                        echo 'Session etudiant';
+                    }
+                    elseif($user->hasRole('responsableDeFormation'))
+                    {
+    
+                        echo 'Session etudiant';
+                    }
+                    elseif($user->hasRole('directeurDeThese'))
+                    {
+    
+                        echo 'Session directeurDeThese';
+                    }
+                }
+                else echo 'Password incorrecte';
+               
             }
             
         }

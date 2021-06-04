@@ -60,7 +60,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <span class="icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
-              <span class="title">Lydia Ouamrane</span>
+              <span class="title">{{session('user')}}</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>
@@ -76,7 +76,7 @@
                 </a>
               </li><!--MODIFIER ET SUPPRIMER-->
               <li>
-                <a class="dropdown-item"  href="#">
+                <a class="dropdown-item"  href="{{route('LogOut')}}">
                   <span class="icon"><i class="fa fa-power-off" aria-hidden="true"></i></span> 
                   <span class="title">Déconnexion </span>
                 </a>

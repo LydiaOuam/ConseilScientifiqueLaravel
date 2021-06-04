@@ -59,8 +59,10 @@
         <div class="Porfil" style="margin-left:680px;">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
-              <span class="title">{{session('user')}}</span>
+           <img src="{{asset('/images/'.session('user')->photo)}}" 
+            class="img-responsive img-rounded" style="max-height: 50px; max-width: 50px; border-radius: 45%;">
+            
+              <span class="title">{{session('user')->fname }}{{session('user')->name }}</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>

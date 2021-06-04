@@ -66,7 +66,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>
-                <a  class="dropdown-item" >
+                <a href="{{route('Profile',[session('user')->id])}}" class="dropdown-item" >
                     <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span> 
                     <span class="title">Mon profile</span>
                 </a>

@@ -16,7 +16,10 @@ class ListController extends Controller
         if(isset($_GET['search']))
         {
             $search_text = $_GET['search'];
-            $comptes = DB::table('users')->where('login','LIKE','%'.$search_text.'%')->paginate(5);
+            $comptes = DB::table('users')
+            ->where('login','LIKE','%'.$search_text.'%')
+            ->where('login','<>',session('user')->login)
+            ->paginate(5);
             return view('/listCompte',['comptes'=>$comptes]); 
             /**
              * Remarque: ici -> ['comptes'=>$comptes]); 
@@ -25,7 +28,7 @@ class ListController extends Controller
              */
         }
         else{
-            $listCpt =  User::paginate(5);
+            $listCpt =  User::where('login','<>',session('user')->login)->paginate(5);
             return view('/listCompte',['comptes'=>$listCpt]);
         }
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\HTTP\Controllers\ComptesController;
 use App\HTTP\Controllers\ListController;
 use App\HTTP\Controllers\MandatController;
+use App\HTTP\Controllers\AuthController;
 use App\Models\Compte;
 
 
@@ -51,6 +52,17 @@ Route::post('/createMandat',[MandatController::class,"savedate"])->name('saveDat
 Route::get('/listMembre',[MandatController::class,"showMember"])->name('AfficherMember');
 
 Route::get('/ajouterMembreMandat/{id}',[MandatController::class,"ajouterMembre"])->name('AjouterMember');
+
+Route::get('/login',function()
+    {
+        return view('Auth.login');
+    }
+)->name('Login');
+
+Route::post('/login',[AuthController::class,"authentifier"])->name('Authentifier');
+
+
+
 
 
 

@@ -47,7 +47,7 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+            <span><i class="fa fa-bookmark-o" aria-hidden="true"></i></span>
             <span>Mandat</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -56,12 +56,20 @@
               <li><a class="dropdown-item"  href="#">Classer un mandat expiré</a></li>
             </ul>
           </li>
-        <div class="Porfil" style="margin-left:680px;">
+          <a class="nav-link" href="#">
+            <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+            <span>Contact</span>
+          </a>
+
+        <div class="Profil" style="margin-left:500px;">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           @if(session('user')->photo != null )
            <img src="{{asset('/images/'.session('user')->photo)}}" 
-            class="img-responsive img-rounded" style="max-height: 50px; max-width: 50px; border-radius: 45%;">
-            
+            class="img-responsive img-rounded" style="max-height: 40px; max-width: 40px; border-radius: 45%;">
+           @else
+           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+           @endif
               <span class="title">{{session('user')->fname }}{{session('user')->name }}</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -86,6 +94,7 @@
             </ul>
           </li>
         </div>
+
       </ul>
   </div>
 </nav>

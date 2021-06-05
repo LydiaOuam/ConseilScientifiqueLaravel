@@ -5,6 +5,7 @@ use App\HTTP\Controllers\ComptesController;
 use App\HTTP\Controllers\ListController;
 use App\HTTP\Controllers\MandatController;
 use App\HTTP\Controllers\AuthController;
+use App\HTTP\Controllers\ContactController;
 use App\Models\Compte;
 use App\HTTP\Controllers\MessagerieController;
 
@@ -82,13 +83,26 @@ Route::get('/logout',function()
     return redirect(route('Authentifier'));
 })->name('LogOut');
 
-Route::get('/contact',function()
-{
-    return view('/contact');
-})->name('Contact');
+// Route::get('/contact',function()
+// {
+//     return view('/contact');
+// })->name('Contact');
 
 
 Route::post('/contact',[MessagerieController::class,"message"])->name('Envoyer');
+
+
+Route::get('/contact',[MessagerieController::class,"showMessages"])->name('Contact');
+
+
+Route::get('/contenu',function()
+{
+    return view('/contenu');
+})->name('Contenu');
+
+Route::get('/contenu',[ContactController::class,"showMessages"])->name('Contenu');
+
+
 
 
 

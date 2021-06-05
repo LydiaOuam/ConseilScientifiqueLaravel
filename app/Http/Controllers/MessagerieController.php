@@ -14,9 +14,7 @@ class MessagerieController extends Controller
 
     public function message(Request $request)
     {
-
-  
-        // dd($request->all());
+// dd($request->all());
         $request->validate([
             'email'=>'required|email',
             'titre'=>'required',
@@ -31,11 +29,18 @@ class MessagerieController extends Controller
       $message->save();
 
       return redirect('/contact')->with('success','Message envoyé');
+ 
+    }
 
-      
-        
+    
+
+    public function showMessages()
+    {
+
+        $message = Message::where('destinataire',session('user')->login)->get();
+        return view('/contact',['messages'=>$message]);
     }
 
 
-}
 
+}

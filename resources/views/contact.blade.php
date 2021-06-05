@@ -1,46 +1,6 @@
-@extends('base')
-    @section('titre')
-    Message
-    @endsection
+@extends('globale')
 
-    @section('contenu')
- <!------------------------------AJOUTER UN COMPTE--------------------------->
- @section('action')
-        {{route('Contact')}}
-    @endsection
-
-   
-<nav style="float:left;width:30%;">
-  <ul style="overflow:hidden; overflow-y:scroll;height:200px;margin-top:30px;">
-  <li>ahhhhhhhhhhhhhhhh</li>
-  <li>akkkkkkkkkkkkkkkkkkkk</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-  </ul>
-  </nav>
-
-
+@section('contentpro')
 <form  method="POST" action="{{route('Envoyer')}}"  style="float:left;width:60%;margin-left:10px;margin-top:30px;">
  @csrf
   <div class="mb-3">

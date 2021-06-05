@@ -18,7 +18,7 @@ class ComptesController extends Controller
     *Avec la methode de Laravel validate()
     */
     {
-        dd($req);
+    
 
         if($req->isMethod("post"))  
         {

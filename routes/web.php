@@ -97,6 +97,8 @@ Route::get('/contact',[MessagerieController::class,"showMessages"])->name('Conta
 
 Route::get('/detailMessage/{id}',[ContactController::class,"afficherMessage"])->name('DetailMessage');
 
+Route::get('/repondre/{id}',[ContactController::class,"repondre"])->name('Repondre');
+
 
 
 

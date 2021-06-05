@@ -44,7 +44,7 @@
      <p  style="padding-left:10px;"> {{$content->contenu}}</p>
     </div>
     </div>
-    <button type="Submit" class="btn btn-primary" style="margin-top:10px;">Repondre</button>
+    <a href="{{route('Repondre',[$content->id])}}" class="btn btn-primary" style="margin-top:10px;">Repondre</a>
 </div>
 
 

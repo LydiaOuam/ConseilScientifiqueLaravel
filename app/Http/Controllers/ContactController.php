@@ -22,6 +22,12 @@ class ContactController extends Controller
         return view('/contenu',compact('content','messages'));
     }
 
+    public function repondre($id)
+    {
+        $content = Message::find($id);
+        return view('reply',compact('content'));
+    }
+
 
 
 

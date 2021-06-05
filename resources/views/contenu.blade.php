@@ -6,7 +6,6 @@
     @endsection
 
     @section('contenu')
- <!------------------------------AJOUTER UN COMPTE--------------------------->
  @section('action')
         {{route('Contact')}}
     @endsection
@@ -25,22 +24,28 @@
     @endif
       <small>{{$message->created_at}}</small>
     </div>
-    <p class="mb-1">{{substr($message->contenu,0,30)}}...</p>
+    <p class="mb-1">{{substr($message->contenu,0,30)}}</p>
    
   </a>
   @endforeach
 </div>
 </nav>
 
-
-<div class="list-group" >
-  <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{$message->titre}}</h5>
-      <small>3 days ago</small>
+<div style="float:left;width:60%;margin-left:10px;margin-top:30px;">
+<div style="border-style: inset;">
+  <div class="mb-3">
+    <h3 style="padding-left:10px;">Objet:{{$content->titre}}</h3>
+  </div>
+  <div>
+    <small  style="padding-left:10px;"> de : {{$content->expéditeur}}</small>
+  </div>
+  <small  style="padding-left:10px;"> à : {{$content->destinataire}}</samll>
+  <div style="margin-top:20px;">
+     <p  style="padding-left:10px;"> {{$content->contenu}}</p>
     </div>
-    <p class="mb-1">Some placeholder content in a paragraph.</p>
-    <small>And some small print.</small>
-  </a>
+    </div>
+    <button type="Submit" class="btn btn-primary" style="margin-top:10px;">Repondre</button>
+</div>
+
 
   @endsection

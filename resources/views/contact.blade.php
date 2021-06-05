@@ -24,7 +24,7 @@
     @endif
       <small>{{$message->created_at}}</small>
     </div>
-    <p class="mb-1">{{substr($message->contenu,0,30)}}...</p>
+    <p class="mb-1">{{substr($message->contenu,0,30)}}</p>
    
   </a>
   @endforeach

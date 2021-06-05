@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use Illuminate\Support\Facades\DB;
+
 
 
 class ContactController extends Controller
@@ -14,8 +16,10 @@ class ContactController extends Controller
     {
 
         $messages = Message::where('destinataire',session('user')->login)->get();
-        $message = Message::find($id);
-        return view('/contenu',compact('message','messages'));
+        $content = Message::find($id);
+        DB::update('update messages set vu = 1 where id = ?',[$id]);
+        // dd($content);
+        return view('/contenu',compact('content','messages'));
     }
 
 

@@ -95,12 +95,9 @@ Route::post('/contact',[MessagerieController::class,"message"])->name('Envoyer')
 Route::get('/contact',[MessagerieController::class,"showMessages"])->name('Contact');
 
 
-Route::get('/contenu',function()
-{
-    return view('/contenu');
-})->name('Contenu');
+Route::get('/detailMessage/{id}',[ContactController::class,"afficherMessage"])->name('DetailMessage');
 
-Route::get('/contenu',[ContactController::class,"showMessages"])->name('Contenu');
+
 
 
 

@@ -14,7 +14,7 @@
 <div class="list-group" style="overflow:hidden; overflow-y:scroll;height:200px;margin-top:30px;">
 @foreach($messages as $message)
 
-  <a href="#" class="list-group-item list-group-item-action" aria-current="true" >
+  <a href="{{route('DetailMessage',[$message->id])}}" class="list-group-item list-group-item-action" aria-current="true" >
     <div class="d-flex w-100 justify-content-between">
     @if($message->vu == 0)
       <h5 class="mb-1">{{$message->titre}}</h5>

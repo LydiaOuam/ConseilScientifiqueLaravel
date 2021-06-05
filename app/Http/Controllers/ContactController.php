@@ -8,11 +8,17 @@ use App\Models\Message;
 
 class ContactController extends Controller
 {
-    public function showMessages()
+
+    //c est pour afficher tous les messages
+    public function afficherMessage($id)
     {
 
-        $message = Message::where('destinataire',session('user')->login)->get();
-        return view('/contenu',['messages'=>$message]);
+        $messages = Message::where('destinataire',session('user')->login)->get();
+        $message = Message::find($id);
+        return view('/contenu',compact('message','messages'));
     }
+
+
+
 
 }

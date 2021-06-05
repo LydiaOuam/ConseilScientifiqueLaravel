@@ -12,6 +12,7 @@ class AuthController extends Controller
 {
     public function authentifier(Request $request)
     {
+        
        $request->validate([
             'login'=>'required|email',
            'password'=>'required'

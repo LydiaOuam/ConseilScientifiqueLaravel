@@ -82,10 +82,13 @@ Route::get('/logout',function()
     return redirect(route('Authentifier'));
 })->name('LogOut');
 
-Route::get('/contact',[MessagerieController::class,"create"])->name('Contact');
+Route::get('/contact',function()
+{
+    return view('/contact');
+})->name('Contact');
 
 
-Route::post('/contact',[MessagerieController::class,"store"])->name('Envoyer');
+Route::post('/contact',[MessagerieController::class,"message"])->name('Envoyer');
 
 
 

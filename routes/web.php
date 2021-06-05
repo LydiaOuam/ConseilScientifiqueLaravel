@@ -80,6 +80,12 @@ Route::get('/logout',function()
 })->name('LogOut');
 
 
+Route::get('/contact',function()
+{
+    return view('/contact');
+})->name('Contact');
+
+
 
 
 

@@ -104,7 +104,7 @@ Route::get('/modale',function()
     return view('/modale');
 });
 
-Route::get('/roleUser',[ComptesController::class,"showRoleUser"])->name('ShowRoleUser');
+// Route::get('/roleUser',[ComptesController::class,"showRoleUser"])->name('ShowRoleUser');
 
 
 

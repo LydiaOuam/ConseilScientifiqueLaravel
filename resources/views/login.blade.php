@@ -24,6 +24,9 @@
     <input type="password" class="form-control" name="password">
   </div>
   <button type="submit" class="btn btn-success">Se connecter</button>
+</div>
 </form>
+<!-- Button trigger modal -->
+
 
 </html>

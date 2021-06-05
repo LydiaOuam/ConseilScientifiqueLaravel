@@ -37,7 +37,7 @@ class MessagerieController extends Controller
     public function showMessages()
     {
 
-        $message = Message::where('destinataire',session('user')->login)->get();
+        $message = Message::where('destinataire',session('user')->login)->orderBy('id', 'desc')->get();
         return view('/contact',['messages'=>$message]);
     }
 

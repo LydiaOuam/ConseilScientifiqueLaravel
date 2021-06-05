@@ -56,7 +56,8 @@
               <li><a class="dropdown-item"  href="#">Classer un mandat expiré</a></li>
             </ul>
           </li>
-          <a class="nav-link" href="#">
+          
+          <a class="nav-link" href="{{route('Contact')}}">
             <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
             <span>Contact</span>
           </a>
@@ -70,7 +71,7 @@
            @else
            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
            @endif
-              <span class="title">{{session('user')->fname }}{{session('user')->name }}</span>
+              <span class="title">{{session('user')->fname }} {{session('user')->name }}</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>

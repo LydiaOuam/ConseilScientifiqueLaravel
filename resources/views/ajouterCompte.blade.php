@@ -32,10 +32,7 @@
             <label for="password" class="form-label">Mot de passe:</label>
             <input type="text" class="form-control" id="password" name="password">
             </div>
-            <!-- <div class="mb-3">
-            <label for="passwordConfirm" class="form-label">Confirmation du mot de passe</label>
-            <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
-            </div> -->
+           
     </fieldset>
     <fieldset  style="padding:0 20px 20px 30px;
     margin-bottom:20px;

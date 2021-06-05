@@ -18,8 +18,11 @@ class ComptesController extends Controller
     *Avec la methode de Laravel validate()
     */
     {
+
         if($req->isMethod("post"))  
         {
+
+            
             $this->validate($req,[
                 'login' => 'required|unique:users',
                 'password' => 'required'

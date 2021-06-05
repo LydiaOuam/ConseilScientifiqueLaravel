@@ -147,7 +147,7 @@
 
      </fieldset>
      <button  type="submit" class="btn btn-success">Valider les modifications</button>
-     <td><a href="{{route('Comptes')}}"  class="btn btn-primary">Annuler</a></td>
+     <a href="{{route('Comptes')}}"  class="btn btn-primary">Annuler</a>
  
 </form>
 

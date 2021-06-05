@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('titre')
-    Message | Repondre
+    Message | Répondre
     @endsection
 
     @section('contenu')
@@ -24,7 +24,8 @@
       <textarea class="form-control" rows="6" name="contenu" ></textarea>
     </div>
     <div class="d-grid gap-2">
-      <button type="Submit" class="btn btn-primary" style="margin-top:10px;">Repondre</button>
+      <button type="Submit" class="btn btn-success" style="margin-top:10px;">Répondre</button>
+      <a href="{{route('Contact')}}"  class="btn btn-primary">Annuler</a>
     </div>
 
 </form>

@@ -47,7 +47,7 @@
         @endforeach
     </fieldset>
     <button type="submit" class="btn btn-success " style="margin-left:30px;width:200px">Ajouter</button>
-    <button type="button" class="btn btn-secondary" style="margin-left:180px;width:200px">Annuler</button>
+
     
 </form>
 

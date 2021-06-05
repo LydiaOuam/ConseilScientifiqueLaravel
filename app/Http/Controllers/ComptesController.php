@@ -62,5 +62,12 @@ class ComptesController extends Controller
         return  view('/ajouterCompte',['roles'=>$role]);//une vue on lui passe un tableau
     }
 
+    public function showRoleUser()
+    {
+
+        $user_roles = DB::table('role_user')->where('user_id',session('user')->id)->pluck('role_id')->toArray();
+        $roles = Role::all();
+        return  view('/base',compact('user_roles','roles'));//une vue on lui passe un tableau
+    }
 
 }

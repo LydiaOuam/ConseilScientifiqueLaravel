@@ -81,10 +81,14 @@
                 </a>
               </li>
               <li>
-                <a class="dropdown-item"  href="#">
+                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"  href="#" >
                   <span class="icon"><i class="fa fa-exchange" aria-hidden="true"></i></span> 
                   <span class="title">Changer rôle</span></a>
+                  <div class="modal" tabindex="-1">
                 </a>
+                 
+
+               
               </li><!--MODIFIER ET SUPPRIMER-->
               <li>
                 <a class="dropdown-item"  href="{{route('LogOut')}}">
@@ -99,6 +103,49 @@
       </ul>
   </div>
 </nav>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Changer rôle</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          
+          <div class="list-group">
+            @foreach($roles as $role)                
+            @if(in_array($role->id,$user_roles))
+              <a href="/modale" class="list-group-item list-group-item-action" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">{{$role->display_name}}</h6>
+              </div>
+              </a>
+            @endif
+            @endforeach
+          </div>
+          <!-- ---------------------
+            @foreach($roles as $role)                
+            @if(in_array($role->id,$user_roles))
+            <a>
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{$role->display_name}}</h5>
+        
+                </div>
+                
+              </a>
+            @endif
+          @endforeach
+          
+          ----------------------- -->
+        
+        </div>
+      </div>
+    </div>
+</div>
     <!--------------------------------------- Remarque : Noublie pas de changer les incons------------->
       
 </header>

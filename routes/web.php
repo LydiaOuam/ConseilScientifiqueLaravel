@@ -99,6 +99,13 @@ Route::get('/detailMessage/{id}',[ContactController::class,"afficherMessage"])->
 
 Route::get('/repondre/{id}',[ContactController::class,"repondre"])->name('Repondre');
 
+Route::get('/modale',function()
+{
+    return view('/modale');
+});
+
+Route::get('/roleUser',[ComptesController::class,"showRoleUser"])->name('ShowRoleUser');
+
 
 
 

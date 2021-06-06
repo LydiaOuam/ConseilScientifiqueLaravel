@@ -107,6 +107,14 @@ Route::get('/session',function()
 });
 
 
+Route::get('/accueil',function()
+{
+    return view('/DSession.accueil');
+});
+
+
+
+
 
 
 

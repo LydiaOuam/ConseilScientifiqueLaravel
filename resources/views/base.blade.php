@@ -18,7 +18,7 @@
 
 -->
 <header">
-<nav class="navbar navbar-dark navbar-expand-lg" style="background-color:rgb(24, 24, 70); color:white;">
+<nav class="navbar navbar-dark navbar-expand-lg" style="background-color:rgb(17, 17, 124); color:white;">
   <div  class="navbar-brand" style=" margin-top: 5px;"> 
         <span><h2>USTHB</h2></span>
   </div>

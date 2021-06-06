@@ -113,6 +113,14 @@ Route::get('/accueil',function()
 });
 
 
+Route::get('/planifier',function()
+{
+    return view('/DSession.planifier');
+});
+
+
+
+
 
 
 

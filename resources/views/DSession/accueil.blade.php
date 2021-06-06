@@ -42,15 +42,11 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li> <a class="dropdown-item" href="#">
               <span> Planifier une session</span>
-              <span><i class="fa fa-caret-right" aria-hidden="true"></i></span>
                </a>
-                    <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Fixer la date d'une session</a></li>
-                      <li><a class="dropdown-item" href="#">Modifier la date d'une session</a></li>
-                    </ul>
+                   
               </li>
               <li><a class="dropdown-item" href="{{route('Comptes')}}">
-              <span>Gérer le deroulement d'une session</span>
+              <span>Gérer le déroulement d'une session</span>
               <span><i class="fa fa-caret-right" aria-hidden="true"></i></span>
               </a>
                      <ul class="submenu dropdown-menu">
@@ -58,14 +54,15 @@
                       <li><a class="dropdown-item" href="#">Fermer une session</a></li>
                       <li><a class="dropdown-item" href="#">Reporter une session</a></li>
                       <li><a class="dropdown-item" href="#">Verrouiler une session</a></li>
-                      <li><a class="dropdown-item" href="#">Deverouiller une session</a></li>
+                      <li><a class="dropdown-item" href="#">Déverrouiller une session</a></li>
                       </ul>
               </li>
-              
-             
+
+               
+              <li><a class="dropdown-item" href="#">Modifier la date d'une session</a></li>
               <li><a class="dropdown-item " href="{{route('Comptes')}}">Fixer l'ordre du jour</a></li>
-              <li><a class="dropdown-item" href="{{route('Comptes')}}">Fixer les delais de depot des dossiers </a></li>
-              <li><a class="dropdown-item" href="{{route('Comptes')}}">Genere un extrait de PV </a></li>
+              <li><a class="dropdown-item" href="{{route('Comptes')}}">Fixer les délai de dépôt des dossiers </a></li>
+              <li><a class="dropdown-item" href="{{route('Comptes')}}">Générer un extrait de PV </a></li>
 
 
             </ul>
@@ -73,7 +70,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link" href="#">
             <span><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
-            <span>Traiter des requetes</span>
+            <span>Traitement des requêtes</span>
             </a>
           </li>
           

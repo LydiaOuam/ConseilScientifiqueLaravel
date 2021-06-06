@@ -1,5 +1,9 @@
 @extends('DSession.accueil')
 
+  @section('titre')
+        Traitement des requêtes
+    @endsection
+
 @section('scontent')
 <div style=" margin-left:30px;margin-right:30px;margin-top:50px;">
     <div class="accordion" id="accordionPanelsStayOpenExample">

@@ -131,9 +131,7 @@
             <input type="text" class="form-control" placeholder="Mot de passe *"  name="password" value="{{$compte->password}}" >
             </div>
             <legend>Rôles</legend>
-        
-
-                    @foreach($roles as $role)                
+       @foreach($roles as $role)                
                         @if(in_array($role->id,$user_roles))
                             <input type="checkbox" name="choix[]" value="{{$role->id}}" checked>
                             <label  id="role">{{$role->display_name}}</label>

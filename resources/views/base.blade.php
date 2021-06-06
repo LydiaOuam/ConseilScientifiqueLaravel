@@ -84,11 +84,8 @@
                 <a href="{{'modale'}}" class="dropdown-item">
                   <span class="icon"><i class="fa fa-exchange" aria-hidden="true"></i></span> 
                   <span class="title">Changer rôle</span></a>
-                  
-                </a>
-                 
 
-               
+                </a>    
               </li><!--MODIFIER ET SUPPRIMER-->
               <li>
                 <a class="dropdown-item"  href="{{route('LogOut')}}">
@@ -112,6 +109,8 @@
       </div>
     </div>
 </div>
+
+
     <!--------------------------------------- Remarque : Noublie pas de changer les incons------------->
       
 </header>

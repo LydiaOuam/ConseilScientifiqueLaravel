@@ -38,6 +38,8 @@ Route::get('/',function()  //si on nous demande la page d'accueil / on va execut
     return view('/login');
 })->name('Accueil');
 
+Route::get('/modale',[ComptesController::class,"showRoleUser"])->name('ShowRoleUser');
+
 
 Route::get('/createMandat',function()
 {
@@ -99,12 +101,11 @@ Route::get('/detailMessage/{id}',[ContactController::class,"afficherMessage"])->
 
 Route::get('/repondre/{id}',[ContactController::class,"repondre"])->name('Repondre');
 
-Route::get('/modale',function()
-{
-    return view('/modale');
-});
+// Route::get('/modale',function()
+// {
+//     return view('/modale');
+// });
 
-// Route::get('/roleUser',[ComptesController::class,"showRoleUser"])->name('ShowRoleUser');
 
 
 

@@ -26,10 +26,8 @@ class AuthController extends Controller
                 {
                     if($user->hasRole('administarteur'))
                     {
-                        // $data = $request->input();
+                      
                         $request->session()->put('user',$user);
-                        // dd($user);
-                    //    dd(session('user'));
                         return redirect(route('Accueil'));
                     }
                     elseif($user->hasRole('etudiant-doctorant'))

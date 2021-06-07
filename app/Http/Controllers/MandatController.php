@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Mandat;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Models\MandatMember;
+use App\Models\MandatMembrer;
 
 class MandatController extends Controller
 {
@@ -29,45 +29,61 @@ class MandatController extends Controller
             $mandat->etat = 1;
             $mandat->save();
             return redirect(route('AfficherMember'))->with('success','Mandat créé, ajoutez des membes');
-        
-  
     }
+
+    public function ajouterMembre($id)
+    {
+        
+       $mandats =  Mandat::all();
+       $last_mandats_object = collect($mandats)->last(); 
+
+       $membre = DB::table('mandat_membrers')
+                 ->select('idMandat','idMembre')
+                 ->where('idMandat', '=', $last_mandats_object->idMandat)
+                 ->where('idMembre', '=', $id)
+                 ->get();
+
+        if(count($membre) > 0)
+        {
+            return redirect (route('AfficherMember'))->with('error','Membre déja existant');
+        }
+        else{
+            
+       $mandat_mem = new MandatMembrer();
+       $mandat_mem->idMandat = $last_mandats_object->idMandat;
+       $mandat_mem->idMembre = $id;
+       $mandat_mem->save();
+       return redirect (route('AfficherMember'))->with('success','Membre ajouté');
+        }
+
+     
+    }
+
+
     public function showMember()
      { 
          if(isset($_GET['search']))  //cette partie est construite pour l'utilisation de search
              {
                  $search_text = $_GET['search'];
-                 $comptes = DB::table('users as u')->select(['u.id','u.fname','u.name'])
-                    ->whereRaw("u.id in(select user_id from role_user where role_id in
-                    (select id from roles where name != 'etudiant-doctorant') and fname like '$search_text')")
-                    ->paginate(5);
+
+                 $comptes = DB::table('users as u')
+                 ->select('u.id','u.fname','u.name')
+                 ->where('fonction', '<>', 'Etudiant-doctorant')
+                 ->where('fname', 'LIKE', "%.$search_text.%")
+                 ->paginate(5);
 
                  return view('Mandat.listMembre',['comptes'=>$comptes]);
              }
              else{
                 
-
-               $comptes = DB::table('users as u')->select(['u.id','u.fname','u.name'])
-                    ->whereRaw("u.id in(select user_id from role_user where role_id in
-                    (select id from roles where name != 'etudiant-doctorant'))")
-                    ->paginate(5);
+                $comptes = DB::table('users as u')
+                ->select('u.id','u.fname','u.name')
+                ->where('fonction', '<>', 'Etudiant-doctorant')
+                ->paginate(1);
                  return view('Mandat.listMembre',['comptes'=>$comptes]);
              }
      
         }
 
-        public function ajouterMembre($id)
-        {
-           $mandats =  Mandat::where('etat',1)->first(); //1 siginifie mandat en cours on peut utiliser get ou first=>retire le premier element et elle sort 
-           $tuples_mand_meb = DB::table('mandat_membrers')
-                                ->where('idMembre','=',$id)
-                                ->where('idMandat','=',$mandats->idMandat)
-                                ->get();
-           dd($tuples_mand_meb);
-           $mandat_mem = new MandatMember();
-           $mandat_mem->idMandat = $mandats->idMandat;
-           $mandat_mem->idMembre = $id;
-           $mandat_mem->save();
-           return redirect (route('AfficherMember'))->with('success','Membre ajouté');
-        }
+
 }

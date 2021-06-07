@@ -66,7 +66,7 @@ Route::post('/createMandat',[MandatController::class,"savedate"])->name('saveDat
 
 Route::get('/listMembre',[MandatController::class,"showMember"])->name('AfficherMember');
 
-Route::get('/ajouterMembreMandat/{id}',[MandatController::class,"ajouterMembre"])->name('AjouterMember');
+Route::get('/ajouterMembreMandat/{id}',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMandat');
 
 Route::get('/login',function()
     {

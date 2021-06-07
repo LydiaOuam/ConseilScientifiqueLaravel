@@ -26,12 +26,14 @@ class ComptesController extends Controller
             
             $this->validate($req,[
                 'login' => 'required|unique:users',
-                'password' => 'required'
+                'password' => 'required',
+                'fonction'=>'required'
             ]);
 
             $compte = new User();
             $compte->login = $req->input('login'); 
             $compte->password = $req->input('password');
+            $compte->fonction=$req->fonction;
             
             //recuperer les id des roles et du nouvel user en utilisant la superglobale POST
 

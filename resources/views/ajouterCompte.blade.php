@@ -32,6 +32,13 @@
             <label for="password" class="form-label">Mot de passe:</label>
             <input type="text" class="form-control" id="password" name="password" value="{{old('password')}}" >
             </div>
+            <label for="fonction">La fonction:</label>
+                <select name="fonction" class="form-select form-select-sm" >
+                    <option value="Etudiant-doctorant">Etudiant-doctorant</option>
+                    <option value="Enseignant-chercheur">Enseignant-chercheur</option>
+                    <option  value="Enseignant">Enseignant</option>
+                    <option value="Chercheur">Chercheur</option>
+                </select>
            
     </fieldset>
     <fieldset  style="padding:0 20px 20px 30px;

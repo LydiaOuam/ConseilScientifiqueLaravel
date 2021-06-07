@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Compte;
+use App\Models\User;
 use App\Models\Mandat;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -37,12 +37,21 @@ class MandatController extends Controller
          if(isset($_GET['search']))  //cette partie est construite pour l'utilisation de search
              {
                  $search_text = $_GET['search'];
-                 $comptes = DB::table('comptes')->where('fname','LIKE','%'.$search_text.'%')->paginate(5);
+                 $comptes = DB::table('users as u')->select(['u.id','u.fname','u.name'])
+                    ->whereRaw("u.id in(select user_id from role_user where role_id in
+                    (select id from roles where name != 'etudiant-doctorant') and fname like '$search_text')")
+                    ->paginate(5);
+
                  return view('Mandat.listMembre',['comptes'=>$comptes]);
              }
              else{
-                 $listCpt =  Compte::paginate(5);
-                 return view('Mandat.listMembre',['comptes'=>$listCpt]);
+                
+
+               $comptes = DB::table('users as u')->select(['u.id','u.fname','u.name'])
+                    ->whereRaw("u.id in(select user_id from role_user where role_id in
+                    (select id from roles where name != 'etudiant-doctorant'))")
+                    ->paginate(5);
+                 return view('Mandat.listMembre',['comptes'=>$comptes]);
              }
      
         }
@@ -50,7 +59,7 @@ class MandatController extends Controller
         public function ajouterMembre($id)
         {
            $mandats =  Mandat::where('etat',1)->first(); //1 siginifie mandat en cours on peut utiliser get ou first=>retire le premier element et elle sort 
-           $tuples_mand_meb = DB::table('mandat_members')
+           $tuples_mand_meb = DB::table('mandat_membrers')
                                 ->where('idMembre','=',$id)
                                 ->where('idMandat','=',$mandats->idMandat)
                                 ->get();

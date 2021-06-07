@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('titre')
-    Ajouter un compte
+Gérer les comptes
     @endsection
 
     @section('contenu')

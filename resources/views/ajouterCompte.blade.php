@@ -24,13 +24,13 @@
     margin-top: 10px;">
         <legend>Informations d'authentification:</legend>
             <div class="mb-3">
-            <label for="email" class="form-label">Nom d'utilisateur:</label>
-            <input type="email" class="form-control" id="email" name="login" aria-describedby="emailHelp">
+            <label for="email" class="form-label" >Nom d'utilisateur:</label>
+            <input type="email" class="form-control" id="email" name="login" aria-describedby="emailHelp"  value="{{old('login')}}"> 
 
             </div>
             <div class="mb-3">
             <label for="password" class="form-label">Mot de passe:</label>
-            <input type="text" class="form-control" id="password" name="password">
+            <input type="text" class="form-control" id="password" name="password" value="{{old('password')}}" >
             </div>
            
     </fieldset>

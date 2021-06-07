@@ -9,7 +9,7 @@
     @section('action')
         {{route('AfficherMember')}}
     @endsection
-    <h2>Ajouter des membres</h2>
+    <h4 style="margin-top:40px;margin-left:20px;">Ajouter des membres</h4>
         <table class="table table-hovered" style="margin-top:50px; border: 1px solid #bdc3c7;">
         <thead>
             <tr>

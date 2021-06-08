@@ -80,7 +80,7 @@
                     <option value="Médéa">Médéa</option>
                     <option value="Mostaganem">Mostaganem</option>
                 </datalist>
-                </select>
+                
             </div>
 
 

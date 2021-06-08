@@ -17,7 +17,7 @@
  @csrf
   <div class="mb-3">
     <label for="login" class="form-label">Login</label>
-    <input type="email" class="form-control"name="login">
+    <input type="email" class="form-control" name="login">
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Mot de passe</label>

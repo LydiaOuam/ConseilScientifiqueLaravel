@@ -66,7 +66,7 @@ Route::post('/createMandat',[MandatController::class,"savedate"])->name('saveDat
 
 Route::get('/listMembre',[MandatController::class,"showMember"])->name('AfficherMember');
 
-Route::get('/ajouterMembreMandat/{id}',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMandat');
+Route::post('/ajouterMembreMandat',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMandat');
 
 Route::get('/login',function()
     {
@@ -118,7 +118,9 @@ Route::get('/planifier',function()
     return view('/DSession.planifier');
 });
 
+Route::get('classerMandat',[MandatController::class,"infMandat"])->name('classer');
 
+Route::get('classerM',[MandatController::class,"classerM"])->name('ClasseM');
 
 
 

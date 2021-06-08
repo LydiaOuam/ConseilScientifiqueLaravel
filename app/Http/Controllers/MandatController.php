@@ -31,30 +31,31 @@ class MandatController extends Controller
             return redirect(route('AfficherMember'))->with('success','Mandat créé, ajoutez des membes');
     }
 
-    public function ajouterMembre($id)
+    public function ajouterMembre(Request $req)
     {
-        
-       $mandats =  Mandat::all();
-       $last_mandats_object = collect($mandats)->last(); 
+       
+    //    $mandats =  Mandat::all();
+    //    $last_mandats_object = collect($mandats)->last(); 
 
-       $membre = DB::table('mandat_membrers')
-                 ->select('idMandat','idMembre')
-                 ->where('idMandat', '=', $last_mandats_object->idMandat)
-                 ->where('idMembre', '=', $id)
-                 ->get();
+    //    $membre = DB::table('mandat_membrers')
+    //              ->select('idMandat','idMembre')
+    //              ->where('idMandat', '=', $last_mandats_object->idMandat)
+    //              ->where('idMembre', '=', $req->id)
+    //              ->get();
+                 dd($req);
 
-        if(count($membre) > 0)
-        {
-            return redirect (route('AfficherMember'))->with('error','Membre déja existant');
-        }
-        else{
+    //     if(count($membre) > 0)
+    //     {
+    //         return redirect (route('AfficherMember'))->with('error','Membre déja existant');
+    //     }
+    //     else{
             
-       $mandat_mem = new MandatMembrer();
-       $mandat_mem->idMandat = $last_mandats_object->idMandat;
-       $mandat_mem->idMembre = $id;
-       $mandat_mem->save();
-       return redirect (route('AfficherMember'))->with('success','Membre ajouté');
-        }
+    //    $mandat_mem = new MandatMembrer();
+    //    $mandat_mem->idMandat = $last_mandats_object->idMandat;
+    //    $mandat_mem->idMembre = $id;
+    //    $mandat_mem->save();
+    //    return redirect (route('AfficherMember'))->with('success','Membre ajouté');
+    //     }
 
      
     }
@@ -70,7 +71,7 @@ class MandatController extends Controller
                  ->select('u.id','u.fname','u.name')
                  ->where('fonction', '<>', 'Etudiant-doctorant')
                  ->where('fname', 'LIKE', "%.$search_text.%")
-                 ->paginate(5);
+                 ->get();
 
                  return view('Mandat.listMembre',['comptes'=>$comptes]);
              }
@@ -79,11 +80,34 @@ class MandatController extends Controller
                 $comptes = DB::table('users as u')
                 ->select('u.id','u.fname','u.name')
                 ->where('fonction', '<>', 'Etudiant-doctorant')
-                ->paginate(1);
+                ->get();
                  return view('Mandat.listMembre',['comptes'=>$comptes]);
              }
      
         }
+
+    public function infMandat()
+    {
+        $mandat =DB::table('mandats')
+                    ->orderBy('created_at', 'desc')
+                    ->skip(1)->take(1)->get();
+                 
+
+        return view('Mandat.classerMandat',compact('mandat'));
+ 
+    }
+
+    public function classerM()
+    {
+        $mandat =DB::table('mandats')
+                    ->orderBy('created_at', 'desc')
+                    ->skip(1)->take(1)->first();
+
+         DB::update('update mandats set etat = 0 where idMandat = ?',
+                    [$mandat->idMandat]);
+
+
+    }
 
 
 }

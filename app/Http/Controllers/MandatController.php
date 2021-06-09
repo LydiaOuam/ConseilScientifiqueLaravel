@@ -33,7 +33,6 @@ class MandatController extends Controller
 
     public function ajouterMembre(Request $req)
     {
-       
        $mandats =  Mandat::all();
        $last_mandats_object = collect($mandats)->last(); 
 
@@ -60,36 +59,6 @@ class MandatController extends Controller
      
     }
 
-
-    public function showMember($idDept)
-     { 
-        // dd($idDept);
-        $departement = Departement::where('idDept',$idDept)->get();
-        // dd($departement);
-         if(isset($_GET['search']))  //cette partie est construite pour l'utilisation de search
-             {
-                 $search_text = $_GET['search'];
-
-                 $comptes = DB::table('users as u')
-                 ->select('u.id','u.fname','u.name')
-                 ->where('fonction', '<>', 'Etudiant-doctorant')
-                 ->where('fname', 'LIKE', "%.$search_text.%")
-                 ->where('idDept', '=', "$departement")
-                 ->get();
-
-                 return view('Mandat.listMembre',compact('comptes'));
-             }
-             else{
-                
-                $comptes = DB::table('users as u')
-                ->select('u.id','u.fname','u.name')
-                ->where('fonction', '<>', 'Etudiant-doctorant')
-                ->where('idDept', '=', "$departement")
-                ->get();
-                 return view('Mandat.listMembre',compact('comptes'));
-             }
-     
-        }
 
     public function infMandat()
     {

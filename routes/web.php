@@ -65,7 +65,7 @@ Route::post('/createMandat',[MandatController::class,"savedate"])->name('saveDat
 
 Route::get('/listMembreDep/{idDept}',[MandatController::class,"showdepar"])->name('AfficherMember');
 
-Route::post('/listMembreDep',[MandatController::class,"ajoutermembre"])->name('AjouterMembre');
+Route::post('/listMembreDep',[MandatController::class,"ajouter"])->name('AjouterMembre');
 
 
 

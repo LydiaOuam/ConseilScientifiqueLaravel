@@ -24,9 +24,12 @@ class AuthController extends Controller
             {
                 if($user->password == $request->password)
                 {
-                    if($user->hasRole('administarteur'))
+                    // dd($user->hasRole('administrateur'));
+                   
+                   
+                    
+                    if($user->hasRole('administrateur'))
                     {
-                      
                         $request->session()->put('user',$user);
                         return redirect(route('Accueil'));
                     }

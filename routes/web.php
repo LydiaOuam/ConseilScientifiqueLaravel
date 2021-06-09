@@ -72,7 +72,7 @@ Route::post('/listMembreDep',[MandatController::class,"ajouter"])->name('Ajouter
 // Route::get('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
 
 
-// Route::post('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
+// Route::post('/ajouterMembreMan',[MandatController::class,"ajouter"])->name('AjouterMembreMan');
 
 Route::get('/login',function()
     {

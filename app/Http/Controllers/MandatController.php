@@ -84,7 +84,7 @@ class MandatController extends Controller
 
          DB::update('update mandats set etat = 0 where idMandat = ?',
                     [$mandat->idMandat]);
-
+        return redirect (route('classer'))->with('success','Mandat classé');
 
     }
 

@@ -33,7 +33,7 @@
  @csrf
 
  <div class="mb-3">
-                <label for="placeBirth" class="form-label">Lieu de naissance <em>*</em></label>
+                <label for="placeBirth" class="form-label">Ajouter un membre:</label>
                
                  <input list="mem" name="mem" class="form-control">
                
@@ -49,8 +49,13 @@
       <button type="Submit" class="btn btn-primary" style="margin-top:10px;">Ajouter</button>
     </div>
 
+
+
 </form>
 
 
+<footer class="d-grid gap-2">
+      <a href="{{route('classer')}}" class="btn btn-success" style="margin-top:10px;">Suivant</a>
+    </footer>
 
 @endsection

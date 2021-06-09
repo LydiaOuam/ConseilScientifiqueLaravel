@@ -48,7 +48,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a  class="dropdown-item" href="{{route('Créer')}}">Créer un mandat</a></li><!--Creation et definiton des membres-->
-              <li><a class="dropdown-item"  href="#">Modifier les membres du mandat</a></li><!--MODIFIER ET SUPPRIMER-->
+              <!-- <li><a class="dropdown-item"  href="#">Modifier les membres du mandat</a></li>MODIFIER ET SUPPRIMER -->
             </ul>
           </li>
           

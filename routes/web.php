@@ -66,7 +66,10 @@ Route::post('/createMandat',[MandatController::class,"savedate"])->name('saveDat
 
 Route::get('/listMembre',[MandatController::class,"showMember"])->name('AfficherMember');
 
-Route::post('/ajouterMembreMandat',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMandat');
+Route::get('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
+
+
+Route::post('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
 
 Route::get('/login',function()
     {
@@ -121,6 +124,11 @@ Route::get('/planifier',function()
 Route::get('classerMandat',[MandatController::class,"infMandat"])->name('classer');
 
 Route::get('classerM',[MandatController::class,"classerM"])->name('ClasseM');
+
+Route::view('/livesearch','livesearch');
+
+
+
 
 
 

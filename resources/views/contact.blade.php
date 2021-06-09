@@ -34,8 +34,9 @@
 <form  method="POST" action="{{route('Envoyer')}}"  style="float:left;width:60%;margin-left:10px;margin-top:30px;">
  @csrf
   <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control"name="email" value="{{old('email')}}">
+    <label for="email" class="form-label">Destinataire:</label>
+    <input type="email" class="form-control typeahead" name="email" value="{{old('email')}}" > 
+    
   </div>
   <div class="mb-3">
     <label for="titre" class="form-label">Titre</label>
@@ -50,6 +51,10 @@
 
 </form>
 
+
 @endsection
+
+
+
 
 

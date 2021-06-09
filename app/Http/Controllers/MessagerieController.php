@@ -16,7 +16,7 @@ class MessagerieController extends Controller
     {
 // dd($request->all());
         $request->validate([
-            'email'=>'required|email',
+            'email'=>'required',
             'titre'=>'required',
             'contenu'=>'required'
        ]);
@@ -40,6 +40,8 @@ class MessagerieController extends Controller
         $message = Message::where('destinataire',session('user')->login)->orderBy('id', 'desc')->get();
         return view('/contact',['messages'=>$message]);
     }
+
+
 
 
 

@@ -31,29 +31,34 @@ class MandatController extends Controller
             return redirect(route('showDept'))->with('success','Mandat créé, ajoutez des membes');
     }
 
-    public function ajouterMembre(Request $req)
+    public function ajouter(Request $req)
     {
+        // dd($req->all());
        $mandats =  Mandat::all();
        $last_mandats_object = collect($mandats)->last(); 
+
+       $compte = DB::table('users')
+                    ->where('id','=',$req->mem)->first();
+                    // dd($compte->idDept);
 
        $membre = DB::table('mandat_membrers')
                  ->select('idMandat','idMembre')
                  ->where('idMandat', '=', $last_mandats_object->idMandat)
-                 ->where('idMembre', '=', $req->membre)
+                 ->where('idMembre', '=', $req->mem)
                  ->get();
                 //  dd($req->all());
 
         if(count($membre) > 0)
         {
-            return redirect (route('AjouterMembre'))->with('error','Membre déja existant');
+            return redirect (route('AfficherMember',[$compte->idDept]))->with('error','Membre déja existant');
         }
         else{
             
        $mandat_mem = new MandatMembrer();
        $mandat_mem->idMandat = $last_mandats_object->idMandat;
-       $mandat_mem->idMembre =$req->membre;
+       $mandat_mem->idMembre =$req->mem;
        $mandat_mem->save();
-       return redirect (route('AjouterMembre'))->with('success','Membre ajouté');
+       return redirect (route('AfficherMember',[$compte->idDept]))->with('success','Membre ajouté');
         }
 
      
@@ -106,8 +111,10 @@ class MandatController extends Controller
         $comptes = DB::table('users as u')
         ->select('u.id','u.fname','u.name')
         ->where('fonction', '<>', 'Etudiant-doctorant')
-        ->where('idDept', '=', "$idDept")
+        ->where('idDept', '=',$idDept)
         ->get();
+        // dd($dep);
+        // dd($comptes->all());
         
         
         return view('Mandat.membreperDep',compact('dep','comptes'));

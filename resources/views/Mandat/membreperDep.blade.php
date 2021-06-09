@@ -7,7 +7,7 @@
     @section('contenu')
  <!------------------------------AJOUTER UN COMPTE--------------------------->
  @section('action')
-        {{route('Contact')}}
+        {{route('showDept')}}
     @endsection
 
    
@@ -29,23 +29,28 @@
 </div>
 </nav>
 
+<form  method="POST" action="{{route('AjouterMembre')}}"  style="float:left;width:60%;margin-left:10px;margin-top:30px;">
+ @csrf
 
-
-<form methode="POST" action="{{route('AjouterMembre')}}"  style="float:left;width:30%;">
-  @csrf
-      <div class="mb-3" style="margin-top:20px;">
-           
-                <input list="membre" name="membre" class="form-control" style="width:500px;margin-left:20px;">
-                <datalist id="membre">
-                @foreach($comptes as $compte) 
+ <div class="mb-3">
+                <label for="placeBirth" class="form-label">Lieu de naissance <em>*</em></label>
+               
+                 <input list="mem" name="mem" class="form-control">
+               
+                <datalist id="mem">
+                @foreach($comptes as $compte)
                     <option value="{{$compte->id}}">{{$compte->name}} {{$compte->fname}}</option>
-                    @endforeach 
-                </datalist>
-                
-            </div>
-             
-    <button class="btn btn-primary" type="submit" style="margin-left:30px;" >Ajouter</button>
+                    @endforeach
+                  </datalist>
+
+          </div>
+  
+    <div class="d-grid gap-2">
+      <button type="Submit" class="btn btn-primary" style="margin-top:10px;">Ajouter</button>
+    </div>
+
 </form>
+
 
 
 @endsection

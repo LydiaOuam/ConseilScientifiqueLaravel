@@ -61,18 +61,18 @@ Route::get('/ajouterCompte',[ComptesController::class,"showRole"])->name('Affich
 
 Route::post('/createMandat',[MandatController::class,"savedate"])->name('saveDates');
 
-// Route::get('/listMembreDep/{idDept}',[MandatController::class,"showMember"])->name('AfficherMember');
+// Route::get('/depar',[MandatController::class,"showdepar"])->name('afficherdepar');
 
-Route::get('/listMembreDep/{idDept}',function()
-{
-    return view('Mandat.listMembre');
-})->name('AfficherMember');
+Route::get('/listMembreDep/{idDept}',[MandatController::class,"showdepar"])->name('AfficherMember');
 
-
-Route::get('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
+Route::post('/listMembreDep',[MandatController::class,"ajoutermembre"])->name('AjouterMembre');
 
 
-Route::post('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
+
+// Route::get('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
+
+
+// Route::post('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
 
 Route::get('/login',function()
     {

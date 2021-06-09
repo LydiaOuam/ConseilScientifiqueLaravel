@@ -46,7 +46,7 @@ class MandatController extends Controller
 
         if(count($membre) > 0)
         {
-            return redirect (route('AfficherMember'))->with('error','Membre déja existant');
+            return redirect (route('AjouterMembre'))->with('error','Membre déja existant');
         }
         else{
             
@@ -54,7 +54,7 @@ class MandatController extends Controller
        $mandat_mem->idMandat = $last_mandats_object->idMandat;
        $mandat_mem->idMembre =$req->membre;
        $mandat_mem->save();
-       return redirect (route('AfficherMember'))->with('success','Membre ajouté');
+       return redirect (route('AjouterMembre'))->with('success','Membre ajouté');
         }
 
      
@@ -128,6 +128,20 @@ class MandatController extends Controller
     {
         $dep = Departement::all();
         return view('Mandat.departement',compact('dep'));
+    }
+
+    public function showdepar($idDept)
+    {
+        // dd($idDept);
+        $dep = Departement::all();
+        $comptes = DB::table('users as u')
+        ->select('u.id','u.fname','u.name')
+        ->where('fonction', '<>', 'Etudiant-doctorant')
+        ->where('idDept', '=', "$idDept")
+        ->get();
+        
+        
+        return view('Mandat.membreperDep',compact('dep','comptes'));
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Departement;
 use Illuminate\Support\Facades\DB;
 use App\Models\UtilisateurRole;
 
@@ -18,8 +19,7 @@ class ComptesController extends Controller
     *Avec la methode de Laravel validate()
     */
     {
-    
-
+ 
         if($req->isMethod("post"))  
         {
 
@@ -34,6 +34,8 @@ class ComptesController extends Controller
             $compte->login = $req->input('login'); 
             $compte->password = $req->input('password');
             $compte->fonction=$req->fonction;
+            $compte->idDept =$req->departement;
+
             
             //recuperer les id des roles et du nouvel user en utilisant la superglobale POST
 
@@ -59,9 +61,9 @@ class ComptesController extends Controller
     }
     public function showRole()
     {
-
-        $role = Role::all();
-        return  view('/ajouterCompte',['roles'=>$role]);//une vue on lui passe un tableau
+        $dep = Departement::all();
+        $roles = Role::all();
+        return  view('/ajouterCompte',compact('dep','roles'));//une vue on lui passe un tableau
     }
 
     public function showRoleUser()
@@ -71,5 +73,13 @@ class ComptesController extends Controller
         $roles = Role::all();
         return  view('/modale',compact('roles','user_roles'));//une vue on lui passe un tableau
     }
+
+    // public function showDept()
+    // {
+    //     $dep = Departement::all();
+    //     // dd($dep);
+
+    //     return  view('/ajouterCompte',compact('dep'));
+    // }
 
 }

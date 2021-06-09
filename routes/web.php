@@ -122,6 +122,10 @@ Route::get('classerMandat',[MandatController::class,"infMandat"])->name('classer
 
 Route::get('classerM',[MandatController::class,"classerM"])->name('ClasseM');
 
+// Route::get('showDept',[ComptesController::class,"showDept"])->name('showDept');
+
+
+
 
 
 

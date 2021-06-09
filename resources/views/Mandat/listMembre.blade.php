@@ -14,8 +14,13 @@
 
 
   <h4 style="margin-top:40px;margin-left:20px;">Ajouter des membres</h4>
-  <form methode="POST" action="{{route('AjouterMembreMan')}}" >
+
+
+  <form methode="POST" action="{{route('AjouterMembreMan',[$departement->idDept])}}" >
   @csrf
+  
+
+
             <div class="mb-3" style="margin-top:20px;">
            
                 <input list="membre" name="membre" class="form-control" style="width:500px;margin-left:20px;">

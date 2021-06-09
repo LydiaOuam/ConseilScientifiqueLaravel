@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Mandat;
+use App\Models\Departement;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\MandatMembrer;
@@ -15,10 +16,7 @@ class MandatController extends Controller
 
     public function savedate(Request $req)
     {
-            // $date = date($req->date_deb);
-            // $date->addYears(3);
-            // dd($date);
-            // $available_date=Carbon::createFromFormat('d-m-y',$date)->addYears(3);
+        //    dd($req->all());
             $req->validate([
                 'date_deb' => 'required|unique:mandats,dateDeb',
                 'date_fin' => 'required|unique:mandats,dateFin|after:date_deb',
@@ -27,8 +25,10 @@ class MandatController extends Controller
             $mandat->dateDeb=$req->date_deb;
             $mandat->dateFin=$req->date_fin;
             $mandat->etat = 1;
+            $mandat->presidentCSF=$req->membre;
+
             $mandat->save();
-            return redirect(route('AfficherMember'))->with('success','Mandat créé, ajoutez des membes');
+            return redirect(route('showDept'))->with('success','Mandat créé, ajoutez des membes');
     }
 
     public function ajouterMembre(Request $req)
@@ -61,8 +61,11 @@ class MandatController extends Controller
     }
 
 
-    public function showMember()
+    public function showMember($idDept)
      { 
+        // dd($idDept);
+        $departement = Departement::where('idDept',$idDept)->get();
+        // dd($departement);
          if(isset($_GET['search']))  //cette partie est construite pour l'utilisation de search
              {
                  $search_text = $_GET['search'];
@@ -71,17 +74,19 @@ class MandatController extends Controller
                  ->select('u.id','u.fname','u.name')
                  ->where('fonction', '<>', 'Etudiant-doctorant')
                  ->where('fname', 'LIKE', "%.$search_text.%")
+                 ->where('idDept', '=', "$departement")
                  ->get();
 
-                 return view('Mandat.listMembre',['comptes'=>$comptes]);
+                 return view('Mandat.listMembre',compact('comptes'));
              }
              else{
                 
                 $comptes = DB::table('users as u')
                 ->select('u.id','u.fname','u.name')
                 ->where('fonction', '<>', 'Etudiant-doctorant')
+                ->where('idDept', '=', "$departement")
                 ->get();
-                 return view('Mandat.listMembre',['comptes'=>$comptes]);
+                 return view('Mandat.listMembre',compact('comptes'));
              }
      
         }
@@ -115,8 +120,14 @@ class MandatController extends Controller
         ->select('u.id','u.fname','u.name')
         ->where('fonction', '<>', 'Etudiant-doctorant')
         ->get();
+        // dd($comptes);
          return view('createMandat',['comptes'=>$comptes]);
     }
 
+    public function showDept()
+    {
+        $dep = Departement::all();
+        return view('Mandat.departement',compact('dep'));
+    }
 
 }

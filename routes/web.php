@@ -61,7 +61,13 @@ Route::get('/ajouterCompte',[ComptesController::class,"showRole"])->name('Affich
 
 Route::post('/createMandat',[MandatController::class,"savedate"])->name('saveDates');
 
-Route::get('/listMembre',[MandatController::class,"showMember"])->name('AfficherMember');
+// Route::get('/listMembreDep/{idDept}',[MandatController::class,"showMember"])->name('AfficherMember');
+
+Route::get('/listMembreDep/{idDept}',function()
+{
+    return view('Mandat.listMembre');
+})->name('AfficherMember');
+
 
 Route::get('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
 
@@ -99,6 +105,8 @@ Route::get('/contact',[MessagerieController::class,"showMessages"])->name('Conta
 
 Route::get('/detailMessage/{id}',[ContactController::class,"afficherMessage"])->name('DetailMessage');
 
+
+
 Route::get('/repondre/{id}',[ContactController::class,"repondre"])->name('Repondre');
 
 Route::get('/session',function()
@@ -122,7 +130,7 @@ Route::get('classerMandat',[MandatController::class,"infMandat"])->name('classer
 
 Route::get('classerM',[MandatController::class,"classerM"])->name('ClasseM');
 
-// Route::get('showDept',[ComptesController::class,"showDept"])->name('showDept');
+Route::get('departement',[MandatController::class,"showDept"])->name('showDept');
 
 
 

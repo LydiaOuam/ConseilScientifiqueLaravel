@@ -34,7 +34,7 @@
     border:1px solid lightgray;
     margin-top: 10px;">
 
-<legend>Ajouter le president:</legend>
+<legend>Ajouter le président:</legend>
                      <div class="mb-3" style="margin-top:20px;">
                 
                         <input list="membre" name="membre" class="form-control" style="width:500px;margin-left:20px;">

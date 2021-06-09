@@ -28,7 +28,29 @@
             <input type="date" name="date_fin" class= "form-control" >
             </div>
     </fieldset>
+
+    <fieldset style="padding:0 20px 20px 30px;
+    margin-bottom:20px;
+    border:1px solid lightgray;
+    margin-top: 10px;">
+
+<legend>Ajouter le president:</legend>
+                     <div class="mb-3" style="margin-top:20px;">
+                
+                        <input list="membre" name="membre" class="form-control" style="width:500px;margin-left:20px;">
+                        <datalist id="membre">
+                        @foreach($comptes as $compte) 
+                            <option value="{{$compte->id}}">{{$compte->name}} {{$compte->fname}}</option>
+                            @endforeach 
+                        </datalist>
+                        
+                    </div>
+        
+    </fieldset>
     <button type="submit" class="btn btn-success" style="width:800px;margin-left:30px;" >Suivant</button>
+
+    <div class="mb-3" style="margin-top:20px;">
+
 
 
 

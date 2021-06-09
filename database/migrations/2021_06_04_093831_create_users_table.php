@@ -30,7 +30,12 @@ class CreateUsersTable extends Migration
             $table->enum('TeachGrade',['Maître assistant A','Maître assistant B','Maître de conférence A','Maître de conférence B','Professeur'])->nullable();
             $table->enum('searchGrade',['Attaché de recherche','Chargé de recherche','Maître de recherche A','Maître de recherche B','Directeur de recherche'])->nullable();
             $table->boolean('etat')->default(1);
+            $table->boolean('supprim')->default(1); // 1 : n'est pas supprime
             $table->string('photo')->nullable();
+            $table->unsignedBigInteger('idDept'); 
+            $table->foreign('idDept')
+                  ->references('idDept')->on('departements')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

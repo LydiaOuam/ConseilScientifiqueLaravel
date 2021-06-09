@@ -17,11 +17,11 @@ class CreateMandatMembrersTable extends Migration
             $table->unsignedBigInteger('idMandat'); 
             $table->foreign('idMandat')
                   ->references('idMandat')->on('mandats')
-                  ->onDelete('cascade');;
+                  ->onDelete('cascade');
             $table->unsignedBigInteger('idMembre'); 
             $table->foreign('idMembre')
                   ->references('id')->on('users')
-                  ->onDelete('cascade');;
+                  ->onDelete('cascade');
             $table->primary(['idMandat', 'idMembre']);
             $table->timestamps();
         });

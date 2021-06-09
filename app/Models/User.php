@@ -23,6 +23,7 @@ class User extends Model
         'TeachGrade',  
         'searchGrade',
         'etat',
+        'supprim',
         'fonction',
         'genre'
     ];

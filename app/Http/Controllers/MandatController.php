@@ -109,5 +109,14 @@ class MandatController extends Controller
 
     }
 
+    public function showPresident()
+    {
+        $comptes = DB::table('users as u')
+        ->select('u.id','u.fname','u.name')
+        ->where('fonction', '<>', 'Etudiant-doctorant')
+        ->get();
+         return view('createMandat',['comptes'=>$comptes]);
+    }
+
 
 }

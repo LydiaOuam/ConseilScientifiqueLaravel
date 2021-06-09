@@ -19,6 +19,7 @@ class ListController extends Controller
             $comptes = DB::table('users')
             ->where('login','LIKE','%'.$search_text.'%')
             ->where('login','<>',session('user')->login)
+            ->where('supprim','!=',0)
             ->paginate(5);
             return view('/listCompte',['comptes'=>$comptes]); 
             /**
@@ -28,7 +29,9 @@ class ListController extends Controller
              */
         }
         else{
-            $listCpt =  User::where('login','<>',session('user')->login)->paginate(5);
+            $listCpt =  User::where('login','<>',session('user')->login)
+                                ->where('supprim','!=',0)
+                                ->paginate(5);
             return view('/listCompte',['comptes'=>$listCpt]);
         }
 
@@ -104,8 +107,8 @@ public function updatee(Request $request,$id)
 
     public function supprimer($id)
     {
-       $data = User::find($id);
-       $data->delete();
+        $compte = User :: find($id);
+        DB::update('update users set supprim = 0 where id = ?',[$id]);
        return redirect(route('Comptes'))->with('success','Compte supprimé');
     }
 

@@ -41,10 +41,7 @@ Route::get('/',function()  //si on nous demande la page d'accueil / on va execut
 Route::get('/modale',[ComptesController::class,"showRoleUser"])->name('ShowRoleUser');
 
 
-Route::get('/createMandat',function()
-{
-    return view('createMandat');
-})->name('Créer');
+Route::get('/createMandat',[MandatController::class,"showPresident"])->name('Créer');
 
 Route::post('/ajouterCompte',[ComptesController::class,"myForm"])->name('Ajouter');
 
@@ -125,7 +122,8 @@ Route::get('classerMandat',[MandatController::class,"infMandat"])->name('classer
 
 Route::get('classerM',[MandatController::class,"classerM"])->name('ClasseM');
 
-Route::view('/livesearch','livesearch');
+
+
 
 
 

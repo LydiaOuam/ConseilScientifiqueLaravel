@@ -8,6 +8,8 @@ use App\HTTP\Controllers\AuthController;
 use App\HTTP\Controllers\ContactController;
 use App\Models\Compte;
 use App\HTTP\Controllers\MessagerieController;
+use App\HTTP\Controllers\RequeteController;
+
 
 
 
@@ -141,10 +143,18 @@ Route::get('espaceEt',function()
     return view('/Requetes.accreq');
 })->name('espaceEtudiant');
 
-Route::get('choisirType',function()
+Route::get('choisirType',[RequeteController::class,"shoReq"])->name('ReqChoix');
+
+Route::post('choisirType',[RequeteController::class,"choixReq"])->name('ReqChoix');
+
+Route::get('soutenance',function()
 {
-    return view('Requetes.choisirReq');
-})->name('ReqChoix');
+    return view('Requetes.soutenance');
+});
+
+
+
+
 
 
 

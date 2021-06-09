@@ -27,7 +27,14 @@
   </a>
   @endforeach
 </div>
+
+<div class="d-grid gap-2">
+      <a href="{{route('classer')}}" class="btn btn-success" style="margin-top:100px;">Suivant</a>
+    </div>
 </nav>
+
+
+
 
 <form  method="POST" action="{{route('AjouterMembre')}}"  style="float:left;width:60%;margin-left:10px;margin-top:30px;">
  @csrf
@@ -53,9 +60,5 @@
 
 </form>
 
-
-<footer class="d-grid gap-2">
-      <a href="{{route('classer')}}" class="btn btn-success" style="margin-top:10px;">Suivant</a>
-    </footer>
 
 @endsection

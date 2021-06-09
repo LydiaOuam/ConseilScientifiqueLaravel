@@ -32,7 +32,7 @@
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link" href="{{route('ReqChoix')}}">
             <span><i class="fa fa-folder" aria-hidden="true"></i></span>
             <span>Soumettre une requête</span>
             </a>

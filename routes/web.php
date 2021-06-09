@@ -136,6 +136,17 @@ Route::get('classerM',[MandatController::class,"classerM"])->name('ClasseM');
 Route::get('departement',[MandatController::class,"showDept"])->name('showDept');
 
 
+Route::get('espaceEt',function()
+{
+    return view('/Requetes.accreq');
+})->name('espaceEtudiant');
+
+Route::get('choisirType',function()
+{
+    return view('Requetes.choisirReq');
+})->name('ReqChoix');
+
+
 
 
 

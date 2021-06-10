@@ -142,7 +142,12 @@ Route::get('choisirType',[RequeteController::class,"shoReq"])->name('ReqChoix');
 
 Route::post('choisirType',[RequeteController::class,"choixReq"])->name('ChoixReq');
 
-Route::get('soutenance',[RequeteController::class,"choixReq"])->name('soutenance');
+// Route::get('/soutenance',function(){
+//     
+// })->name('Soutenance');
+
+Route::get('/soutenance',[RequeteController::class,"saveRequete"])->name('SaveSoutenance');
+
 
 Route::get('/sejourS',[RequeteController::class,"choixReq"])->name('sejour');
 
@@ -166,15 +171,15 @@ Route::get('/habilitation',[RequeteController::class,"choixReq"])->name('habilit
 
 Route::get('/annsabb',[RequeteController::class,"choixReq"])->name('annsabb');
 
-Route::get('/rapportRech',[RequeteController::class,"choixReq"]))->name('rapportRech');
+Route::get('/rapportRech',[RequeteController::class,"choixReq"])->name('rapportRech');
 
 Route::get('/offreFormat',[RequeteController::class,"choixReq"])->name('offreFormat');
 
-Route::get('/rapportSynthe',[RequeteController::class,"choixReq"]})->name('rapportSynthe');
+Route::get('/rapportSynthe',[RequeteController::class,"choixReq"])->name('rapportSynthe');
 
 Route::get('/modifierCahier',[RequeteController::class,"choixReq"])->name('modifierCahier');
 
-Route::get('/polycopie',,[RequeteController::class,"choixReq"])->name('polycopie');
+Route::get('/polycopie',[RequeteController::class,"choixReq"])->name('polycopie');
 
 Route::get('/rapportExpertise',[RequeteController::class,"choixReq"])->name('rapportExpertise');
 

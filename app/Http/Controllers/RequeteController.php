@@ -20,6 +20,7 @@ class RequeteController extends Controller
       
     }
 
+
     public function choixReq(Request $req)
     {
         // dd($req->typereq);
@@ -99,4 +100,17 @@ class RequeteController extends Controller
         }
         
     }
+        
+    public function saveRequete(Request $request)
+    {
+        $tab = array($request->typedoc,$request->nomPren,$request->direct,$request->annee,$request->dep,$request->intit);
+        $info =  implode(" ",$tab);
+    //     $data = $request->all();
+    //     // dd($data);
+    // //    $info =  implode(" ",$data);
+     print_r($info);
+
+        // return redirect(route('soutenance'));
+    }
+
 }

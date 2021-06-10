@@ -146,9 +146,7 @@ Route::get('soutenance',[RequeteController::class,"choixReq"])->name('soutenance
 
 Route::get('/sejourS',[RequeteController::class,"choixReq"])->name('sejour');
 
-
 Route::get('/changerTheme',[RequeteController::class,"choixReq"])->name('changerTheme');
-
 
 Route::get('/changerDirecte',[RequeteController::class,"choixReq"])->name('changerDirecte');
 
@@ -168,20 +166,13 @@ Route::get('/habilitation',[RequeteController::class,"choixReq"])->name('habilit
 
 Route::get('/annsabb',[RequeteController::class,"choixReq"])->name('annsabb');
 
-
 Route::get('/rapportRech',[RequeteController::class,"choixReq"]))->name('rapportRech');
 
 Route::get('/offreFormat',[RequeteController::class,"choixReq"])->name('offreFormat');
 
-Route::get('/rapportSynthe',function()
-{
-    return view('Requetes.rapportSynthe');
-})->name('rapportSynthe');
+Route::get('/rapportSynthe',[RequeteController::class,"choixReq"]})->name('rapportSynthe');
 
-Route::get('/modifierCahier',function()
-{
-    return view('Requetes.mofiCahieCh');
-})->name('modifierCahier');
+Route::get('/modifierCahier',[RequeteController::class,"choixReq"])->name('modifierCahier');
 
 Route::get('/polycopie',,[RequeteController::class,"choixReq"])->name('polycopie');
 

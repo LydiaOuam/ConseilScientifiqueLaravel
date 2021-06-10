@@ -9,8 +9,14 @@ class RequeteController extends Controller
 {
     public function shoReq()
     {
-        $points = Point::all();
+        $points = Point::where('id','<=',10)->get();
         return view('Requetes.choisirReq',compact('points'));
+      
+    }
+    public function showReqEC()
+    {
+        $points = Point::where('id','<=',23)->get();
+        return view('Requetes.espacEC',compact('points'));
       
     }
 

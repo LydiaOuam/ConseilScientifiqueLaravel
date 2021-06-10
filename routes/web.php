@@ -194,6 +194,13 @@ Route::get('/rajouter',function()
     return view('Requetes.rajouter');
 })->name('rajouter');
 
+Route::get('/espaceEnseChe',[RequeteController::class,"showReqEC"])->name('espaceEC');
+
+Route::get('/habilitation',function()
+{
+    return view('Requetes.habilitation');
+})->name('habilitation');
+
 
 
 

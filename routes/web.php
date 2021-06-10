@@ -31,7 +31,7 @@ use App\HTTP\Controllers\RequeteController;
 //     return view('base');
 // })->name('Accueil');
 
-Route::get('/',function()  //si on nous demande la page d'accueil / on va executer une fonction ......
+Route::get('/',function()
 {
     if(session()->has('user'))
     {
@@ -72,12 +72,6 @@ Route::get('/listMembreDep/{idDept}',[MandatController::class,"showdepar"])->nam
 
 Route::post('/departement',[MandatController::class,"ajouter"])->name('AjouterMembre');
 
-
-
-// Route::get('/ajouterMembreMan',[MandatController::class,"ajouterMembre"])->name('AjouterMembreMan');
-
-
-// Route::post('/ajouterMembreMan',[MandatController::class,"ajouter"])->name('AjouterMembreMan');
 
 Route::get('/login',function()
     {
@@ -137,6 +131,7 @@ Route::get('classerM',[MandatController::class,"classerM"])->name('ClasseM');
 
 Route::get('departement',[MandatController::class,"showDept"])->name('showDept');
 
+// --------------------------------------------------------------------------------------------------
 
 Route::get('espaceEt',function()
 {
@@ -145,77 +140,38 @@ Route::get('espaceEt',function()
 
 Route::get('choisirType',[RequeteController::class,"shoReq"])->name('ReqChoix');
 
-Route::post('choisirType',[RequeteController::class,"choixReq"])->name('ReqChoix');
+Route::post('choisirType',[RequeteController::class,"choixReq"])->name('ChoixReq');
 
-Route::get('soutenance',function()
-{
-    return view('Requetes.soutenance');
-})->name('soutenance');
+Route::get('soutenance',[RequeteController::class,"choixReq"])->name('soutenance');
 
-Route::get('/sejourS',function()
-{
-    return view('Requetes.sejourScient');
-})->name('sejour');
+Route::get('/sejourS',[RequeteController::class,"choixReq"])->name('sejour');
 
 
-Route::get('/changerTheme',function()
-{
-    return view('Requetes.changeTheme');
-})->name('changerTheme');
+Route::get('/changerTheme',[RequeteController::class,"choixReq"])->name('changerTheme');
 
 
-Route::get('/changerDirecte',function()
-{
-    return view('Requetes.changerDirecte');
-})->name('changerDirecte');
+Route::get('/changerDirecte',[RequeteController::class,"choixReq"])->name('changerDirecte');
 
-Route::get('/inscrire',function()
-{
-    return view('Requetes.inscrire');
-})->name('inscrire');
+Route::get('/inscrire',[RequeteController::class,"choixReq"])->name('inscrire');
 
-Route::get('/reinscrire',function()
-{
-    return view('Requetes.reinscription');
-})->name('reinscrire');
+Route::get('/reinscrire',[RequeteController::class,"choixReq"])->name('reinscrire');
 
-Route::get('/abondon',function()
-{
-    return view('Requetes.abondon');
-})->name('abondon');
+Route::get('/abondon',[RequeteController::class,"choixReq"])->name('abondon');
 
-Route::get('/geler',function()
-{
-    return view('Requetes.geler');
-})->name('geler');
+Route::get('/geler',[RequeteController::class,"choixReq"])->name('geler');
 
-Route::get('/rajouter',function()
-{
-    return view('Requetes.rajouter');
-})->name('rajouter');
+Route::get('/rajouter',[RequeteController::class,"choixReq"])->name('rajouter');
 
 Route::get('/espaceEnseChe',[RequeteController::class,"showReqEC"])->name('espaceEC');
 
-Route::get('/habilitation',function()
-{
-    return view('Requetes.habilitation');
-})->name('habilitation');
+Route::get('/habilitation',[RequeteController::class,"choixReq"])->name('habilitation');
 
-Route::get('/annsabb',function()
-{
-    return view('Requetes.annesabb');
-})->name('annsabb');
+Route::get('/annsabb',[RequeteController::class,"choixReq"])->name('annsabb');
 
 
-Route::get('/rapportRech',function()
-{
-    return view('Requetes.rapportRech');
-})->name('rapportRech');
+Route::get('/rapportRech',[RequeteController::class,"choixReq"]))->name('rapportRech');
 
-Route::get('/offreFormat',function()
-{
-    return view('Requetes.offreFormat');
-})->name('offreFormat');
+Route::get('/offreFormat',[RequeteController::class,"choixReq"])->name('offreFormat');
 
 Route::get('/rapportSynthe',function()
 {
@@ -227,15 +183,9 @@ Route::get('/modifierCahier',function()
     return view('Requetes.mofiCahieCh');
 })->name('modifierCahier');
 
-Route::get('/polycopie',function()
-{
-    return view('Requetes.polycopie');
-})->name('polycopie');
+Route::get('/polycopie',,[RequeteController::class,"choixReq"])->name('polycopie');
 
-Route::get('/rapportExpertise',function()
-{
-    return view('Requetes.rapportExpertise');
-})->name('rapportExpertise');
+Route::get('/rapportExpertise',[RequeteController::class,"choixReq"])->name('rapportExpertise');
 
 
 

@@ -201,6 +201,48 @@ Route::get('/habilitation',function()
     return view('Requetes.habilitation');
 })->name('habilitation');
 
+Route::get('/annsabb',function()
+{
+    return view('Requetes.annesabb');
+})->name('annsabb');
+
+
+Route::get('/rapportRech',function()
+{
+    return view('Requetes.rapportRech');
+})->name('rapportRech');
+
+Route::get('/offreFormat',function()
+{
+    return view('Requetes.offreFormat');
+})->name('offreFormat');
+
+Route::get('/rapportSynthe',function()
+{
+    return view('Requetes.rapportSynthe');
+})->name('rapportSynthe');
+
+Route::get('/modifierCahier',function()
+{
+    return view('Requetes.mofiCahieCh');
+})->name('modifierCahier');
+
+Route::get('/polycopie',function()
+{
+    return view('Requetes.polycopie');
+})->name('polycopie');
+
+Route::get('/rapportExpertise',function()
+{
+    return view('Requetes.rapportExpertise');
+})->name('rapportExpertise');
+
+
+
+
+
+
+
 
 
 

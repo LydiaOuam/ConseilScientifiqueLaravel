@@ -66,6 +66,14 @@
         <textarea class="form-control" aria-label="With textarea"></textarea>
         </div>
 
+        <h6>Les Revues:</h6>
+
+        <div class="input-group input-group-sm mb-3" >
+        <span  style="margin-right:20px;">Description: </span>
+        <textarea class="form-control" aria-label="With textarea"></textarea>
+        </div>
+
+
 
 
         

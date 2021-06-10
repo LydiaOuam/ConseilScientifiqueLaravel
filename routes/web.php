@@ -189,6 +189,11 @@ Route::get('/geler',function()
     return view('Requetes.geler');
 })->name('geler');
 
+Route::get('/rajouter',function()
+{
+    return view('Requetes.rajouter');
+})->name('rajouter');
+
 
 
 

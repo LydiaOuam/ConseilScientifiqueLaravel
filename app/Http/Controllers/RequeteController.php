@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Point;
+use App\Models\Requete;
+use DateTime;
+use Illuminate\Support\Facades\DB;
+use App\Models\Item;
+
 
 class RequeteController extends Controller
 {
@@ -103,14 +108,61 @@ class RequeteController extends Controller
         
     public function saveRequete(Request $request)
     {
+        // dd($request->all());
         $tab = array($request->typedoc,$request->nomPren,$request->direct,$request->annee,$request->dep,$request->intit);
         $info =  implode(" ",$tab);
-    //     $data = $request->all();
-    //     // dd($data);
-    // //    $info =  implode(" ",$data);
+
+        $requete = new Requete();
+        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->type = 4;
+        $requete->observation = $info;
+        $requete->save();
+
+        $data = DB::table('requetes')->select('idRequete')
+                                    ->orderBy('idRequete','desc')
+                                    ->first();
+        if($request->hasFile('rapport'))
+        { 
+            foreach($request->rapport as $rapp)
+            {
+                move('upload',$rapp);
+                   
+                $item = new Item();
+                $item->idRequete = $data->idRequete;
+                $item->fichier = $rapp;
+                $item->save();
+            }
+
+        }
+        
+       
+        foreach($request->brevet as $rapp)
+        {
+            $item = new Item();
+            $item->idRequete = $data->idRequete;
+            $item->fichier = $rapp;
+            $item->save();
+        }
+        foreach($request->communication as $rapp)
+        {
+            $item = new Item();
+            $item->idRequete = $data->idRequete;
+            $item->fichier = $rapp;
+            $item->save();
+        }
+        foreach($request->publication as $rapp)
+        {
+            $item = new Item();
+            $item->idRequete = $data->idRequete;
+            $item->fichier = $rapp;
+            $item->save();
+        }
+       
+
+ 
      print_r($info);
 
-        // return redirect(route('soutenance'));
+    
     }
 
 }

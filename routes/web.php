@@ -169,6 +169,26 @@ Route::get('/changerDirecte',function()
     return view('Requetes.changerDirecte');
 })->name('changerDirecte');
 
+Route::get('/inscrire',function()
+{
+    return view('Requetes.inscrire');
+})->name('inscrire');
+
+Route::get('/reinscrire',function()
+{
+    return view('Requetes.reinscription');
+})->name('reinscrire');
+
+Route::get('/abondon',function()
+{
+    return view('Requetes.abondon');
+})->name('abondon');
+
+Route::get('/geler',function()
+{
+    return view('Requetes.geler');
+})->name('geler');
+
 
 
 

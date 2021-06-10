@@ -150,7 +150,24 @@ Route::post('choisirType',[RequeteController::class,"choixReq"])->name('ReqChoix
 Route::get('soutenance',function()
 {
     return view('Requetes.soutenance');
-});
+})->name('soutenance');
+
+Route::get('/sejourS',function()
+{
+    return view('Requetes.sejourScient');
+})->name('sejour');
+
+
+Route::get('/changerTheme',function()
+{
+    return view('Requetes.changeTheme');
+})->name('changerTheme');
+
+
+Route::get('/changerDirecte',function()
+{
+    return view('Requetes.changerDirecte');
+})->name('changerDirecte');
 
 
 

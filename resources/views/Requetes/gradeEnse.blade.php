@@ -8,27 +8,22 @@
         <h6>Soumettre une nouvelle offre de formation: </h6>
 
         <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Designation: </span>
+        <span  style="margin-right:20px;">Grade actuel: </span>
         <textarea class="form-control" aria-label="With textarea"></textarea>
         </div>
 
         <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Master ou licence: </span>
+        <span  style="margin-right:20px;">Promotion: </span>
         <textarea class="form-control" aria-label="With textarea"></textarea>
         </div>
 
-        <h6>Le cahier de charge:</h6>
+        <h6>Fichier:</h6>
         
        
         <div class="input-group mb-3">
           <input type="file" class="form-control" id="inputGroupFile01">
         </div>
 
-
-        <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Observation: </span>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        </div>
 
         <button type="submit" class="btn btn-success" style="margin-left:50px;">Soumettre</button>
         <button type="reset" class="btn btn-secondary" style="margin-left:100px;">Annuler</button>

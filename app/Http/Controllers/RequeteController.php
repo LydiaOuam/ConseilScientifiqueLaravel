@@ -37,7 +37,7 @@ class RequeteController extends Controller
                 return redirect(route('Abondon'));
                 break;
             case "2":
-                return view('Requetes.sejourScient');
+                return redirect(route('SejSc'));
                 break;
             case "3":
                 return view('Requetes.changeTheme');
@@ -220,6 +220,29 @@ class RequeteController extends Controller
             'Directeur'=>'required',
         ]);
         $tab = array($request->Nom,$request->Intitulé,$request->Département,$request->Directeur,$request->Observation);
+        $info =  implode(" ",$tab);
+
+        $requete = new Requete();
+        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->type = 1;
+        $requete->observation = $info;
+        $requete->save();
+        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+    }
+
+    public function saveSejour(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'Nom' => 'required',
+            'Pays' => 'required',
+            'Etablissement'=>'required',
+            'Début'=>'required',
+            'Fin'=>'required',
+            'Responsable'=>'required',
+        ]);
+
+        $tab = array($request->Nom,$request->Pays,$request->Etablissement,$request->Début,$request->Fin,$request->Responsable);
         $info =  implode(" ",$tab);
 
         $requete = new Requete();

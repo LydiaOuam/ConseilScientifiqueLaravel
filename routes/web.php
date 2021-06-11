@@ -157,8 +157,12 @@ Route::get('/abondon',function()
 
 Route::post('/abondon',[RequeteController::class,"saveAbondon"])->name('saveAbondon');
 
+Route::get('/sejourS',function()
+{
+    return view('Requetes.sejourScient');
+})->name('SejSc');
 
-Route::get('/sejourS',[RequeteController::class,"choixReq"])->name('sejour');
+Route::post('/sejourS',[RequeteController::class,"saveSejour"])->name('SaveSej');
 
 Route::get('/changerTheme',[RequeteController::class,"choixReq"])->name('changerTheme');
 

@@ -61,7 +61,7 @@ class RequeteController extends Controller
                 return redirect(route('Reinscrire'));
                 break;
             case "11":
-                //return view('Requetes.rajouter');
+                return redirect(route('promAcad'));
                 break;
             case "12":
                // return view('Requetes.rajouter');
@@ -385,6 +385,27 @@ class RequeteController extends Controller
            $requete->observation = $info;
            $requete->save();
            return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+       }
+
+       /** promotion academique*/
+
+       public function savePromAcad(Request $request)
+       {
+            // dd($request->all());
+           $request->validate([
+               'GradeActuel' => 'required',
+               'Grade' => 'required',
+           ]);
+   
+           $tab = array($request->GradeActuel,$request->Grade);
+           $info =  implode(" ",$tab);
+   
+           $requete = new Requete();
+           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->type = 11;
+           $requete->observation = $info;
+           $requete->save();
+           return redirect(route('espaceEC'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
        }
 
 

@@ -210,6 +210,12 @@ Route::get('/reinscrire',function()
 
 Route::post('/reinscrire',[RequeteController::class,"saveReinscription"])->name('saveReinscrip');
 
+Route::get('/promtionAcad',function()
+{
+    return view('Requetes.gradeEnse');
+})->name('promAcad');
+
+Route::post('/promtionAcad',[RequeteController::class,"savePromAcad"])->name('SaveProm');
 
 
 Route::get('/espaceEnseChe',[RequeteController::class,"showReqEC"])->name('espaceEC');

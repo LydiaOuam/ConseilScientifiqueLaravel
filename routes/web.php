@@ -263,6 +263,14 @@ Route::get('/offreFormat',function()
 
 Route::post('/offreFormat',[RequeteController::class,"saveRappForm"])->name('SaveOffreFormat');
 
+Route::get('/titularisation',function()
+{
+    return view('Requetes.titularisation');
+})->name('Gtitu');
+
+Route::post('/titularisation',[RequeteController::class,"saveTitu"])->name('SaveTitula');
+
+
 Route::get('/rapportSynthe',[RequeteController::class,"choixReq"])->name('rapportSynthe');
 
 Route::get('/modifierCahier',[RequeteController::class,"choixReq"])->name('modifierCahier');

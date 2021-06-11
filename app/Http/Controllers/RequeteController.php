@@ -82,10 +82,10 @@ class RequeteController extends Controller
                 return redirect(route('offreFormat'));
                 break;
             case "18":
-               // return view('Requetes.offreFormat');
+                return redirect(route('Gtitu')); 
                 break;
             case "19":
-                //return view('Requetes.offreFormat');
+                // return view('Requetes.offreFormat');
                 break;
             case "20":
                 return view('Requetes.rapportExpertise');
@@ -674,6 +674,44 @@ class RequeteController extends Controller
               ->first();
 
               if($file = $request->cahier)
+              {
+                  $name = $file->getClientOriginalName();
+                 if($file->move('upload',$name)){
+                  $item = new Item();
+                  $item->idRequete = $data->idRequete;
+                  $item->fichier = $name;
+                  $item->save();
+                 }
+              }
+  
+ 
+  
+              return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+          }
+
+          /**Titularisation */
+          public function saveTitu(Request $request)
+          {
+            //   dd($request->all());
+              $request->validate([
+                  'nom' => 'required',
+                  'demande' => 'required',
+              ]);
+  
+              $tab = array($request->nom,$request->observation);
+              $info =  implode(" ",$tab);
+  
+              $requete = new Requete();
+              $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+              $requete->type = 18;
+              $requete->observation = $info;
+              $requete->save();
+
+              $data = DB::table('requetes')->select('idRequete')
+              ->orderBy('idRequete','desc')
+              ->first();
+
+              if($file = $request->demande)
               {
                   $name = $file->getClientOriginalName();
                  if($file->move('upload',$name)){

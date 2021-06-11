@@ -54,12 +54,6 @@
         </div>
 
 
-            <div  class="mb-3">
-                    <label for="photo" class="form-label">Ajouter une photo</label>
-                    <input class="form-control" type="file" id="photo" name="photo[]" multiple>
-            </div> 
-
-               
      <button  type="submit" class="btn btn-success">Envoyer</button>
     
  

@@ -227,7 +227,12 @@ Route::post('/promtionRech',[RequeteController::class,"savePromRech"])->name('Sa
 
 Route::get('/espaceEnseChe',[RequeteController::class,"showReqEC"])->name('espaceEC');
 
-Route::get('/habilitation',[RequeteController::class,"choixReq"])->name('habilitation');
+Route::get('/habilitation',function()
+{
+    return view('Requetes.habilitation');
+})->name('Habilitation');
+
+Route::post('/habilitation',[RequeteController::class,"saveHabilitation"])->name('SaveHabilitation');
 
 Route::get('/annsabb',[RequeteController::class,"choixReq"])->name('annsabb');
 

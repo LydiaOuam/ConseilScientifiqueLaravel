@@ -67,7 +67,7 @@ class RequeteController extends Controller
                 return redirect(route('promRech'));
                 break;
             case "13":
-                return view('Requetes.habilitation');
+                return redirect(route('Habilitation'));
                 break;
             case "14":
                 return view('Requetes.polycopie');
@@ -409,7 +409,7 @@ class RequeteController extends Controller
        }
 
        
-       /** promotion academique*/
+       /** promotion recherche*/
 
        public function savePromRech(Request $request)
        {
@@ -425,6 +425,28 @@ class RequeteController extends Controller
            $requete = new Requete();
            $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
            $requete->type = 12;
+           $requete->observation = $info;
+           $requete->save();
+           return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+       }
+
+         
+       /** Habilitation*/
+
+       public function saveHabilitation(Request $request)
+       {
+            dd($request->all());
+           $request->validate([
+               'GradeActuel' => 'required',
+               'Grade' => 'required',
+           ]);
+   
+           $tab = array($request->GradeActuel,$request->Grade);
+           $info =  implode(" ",$tab);
+   
+           $requete = new Requete();
+           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->type = 13;
            $requete->observation = $info;
            $requete->save();
            return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');

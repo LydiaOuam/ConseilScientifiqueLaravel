@@ -32,7 +32,7 @@
 
       <div class="input-group input-group-sm mb-3" >
       <span  style="margin-right:20px;">Observation eventuelles: </span>
-      <textarea class="form-control" name="Observation"></textarea>
+      <textarea class="form-control" placeholder="Vous pouvez expliquer pourquoi vous voulez abandonner" name="Observation"></textarea>
       </div>
 
 

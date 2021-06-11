@@ -206,14 +206,28 @@ class RequeteController extends Controller
             }
         }
   
-     print_r($info);
+    return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
 
     
     }
 
     public function saveAbondon(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'Nom' => 'required',
+            'Intitulé' => 'required',
+            'Département'=>'required',
+            'Directeur'=>'required',
+        ]);
+        $tab = array($request->Nom,$request->Intitulé,$request->Département,$request->Directeur,$request->Observation);
+        $info =  implode(" ",$tab);
+
+        $requete = new Requete();
+        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->type = 1;
+        $requete->observation = $info;
+        $requete->save();
+        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
     }
 
 }

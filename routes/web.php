@@ -255,7 +255,13 @@ Route::get('/rapportRech',function()
 
 Route::post('/rapportRech',[RequeteController::class,"saveRappRech"])->name('saveRappRech');
 
-Route::get('/offreFormat',[RequeteController::class,"choixReq"])->name('offreFormat');
+Route::get('/offreFormat',function()
+{
+    return view('Requetes.offreFormat');
+})->name('offreFormat');
+
+
+Route::post('/offreFormat',[RequeteController::class,"saveRappForm"])->name('SaveOffreFormat');
 
 Route::get('/rapportSynthe',[RequeteController::class,"choixReq"])->name('rapportSynthe');
 

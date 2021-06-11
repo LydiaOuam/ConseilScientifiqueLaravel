@@ -79,7 +79,7 @@ class RequeteController extends Controller
                 return redirect(route('GrapportRech'));
                 break;
             case "17":
-                return view('Requetes.offreFormat');
+                return redirect(route('offreFormat'));
                 break;
             case "18":
                // return view('Requetes.offreFormat');
@@ -648,6 +648,47 @@ class RequeteController extends Controller
   
               return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
           }
+
+          
+          /**Offre de formation */
+          public function saveRappForm(Request $request)
+          {
+            //   dd($request->all());
+              $request->validate([
+                  'désignation' => 'required',
+                  'Niveau' => 'required',
+                  'cahier' => 'required',
+              ]);
+  
+              $tab = array($request->nom,$request->Niveau,$request->observation);
+              $info =  implode(" ",$tab);
+  
+              $requete = new Requete();
+              $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+              $requete->type = 17;
+              $requete->observation = $info;
+              $requete->save();
+
+              $data = DB::table('requetes')->select('idRequete')
+              ->orderBy('idRequete','desc')
+              ->first();
+
+              if($file = $request->cahier)
+              {
+                  $name = $file->getClientOriginalName();
+                 if($file->move('upload',$name)){
+                  $item = new Item();
+                  $item->idRequete = $data->idRequete;
+                  $item->fichier = $name;
+                  $item->save();
+                 }
+              }
+  
+ 
+  
+              return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+          }
+
 
 
 }

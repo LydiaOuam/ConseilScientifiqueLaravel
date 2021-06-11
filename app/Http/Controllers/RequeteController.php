@@ -46,7 +46,7 @@ class RequeteController extends Controller
                  return redirect(route('Soutenance'));
                 break;
             case "5":
-                return view('Requetes.changerDirecte');
+                return redirect(route('changerDire'));
                 break;
             case "7":
                 return view('Requetes.inscrire');
@@ -272,5 +272,26 @@ class RequeteController extends Controller
         $requete->save();
         return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
     }
+
+    public function saveChangerDir(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'NomDirecteurActuel' => 'required',
+            'NomDirecteur' => 'required',
+            'Motif'=>'required',
+        ]);
+
+        $tab = array($request->NomDirecteurActuel,$request->NomDirecteur,$request->Motif);
+        $info =  implode(" ",$tab);
+
+        $requete = new Requete();
+        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->type = 1;
+        $requete->observation = $info;
+        $requete->save();
+        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+    }
+
 
 }

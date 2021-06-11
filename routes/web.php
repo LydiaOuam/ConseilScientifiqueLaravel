@@ -172,7 +172,13 @@ Route::get('/changerTheme',function()
 Route::post('/changerTheme',[RequeteController::class,"saveChanger"])->name('SaveChan');
 
 
-Route::get('/changerDirecte',[RequeteController::class,"choixReq"])->name('changerDirecte');
+Route::get('/changerDirecte',function()
+{
+    return view('Requetes.changerDirecte');
+})->name('changerDire');
+
+Route::post('/changerDirecte',[RequeteController::class,"saveChangerDir"])->name('saveChanerDir');
+
 
 Route::get('/inscrire',[RequeteController::class,"choixReq"])->name('inscrire');
 

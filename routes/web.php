@@ -232,6 +232,9 @@ Route::get('/habilitation',function()
     return view('Requetes.habilitation');
 })->name('Habilitation');
 
+Route::post('/habilitation',[RequeteController::class,"saveHabilitation"])->name('SaveHabilitation');
+
+
 Route::get('/polycopie',function()
 {
     return view('Requetes.polycopie');
@@ -245,11 +248,12 @@ Route::get('/annsabb',function(){
 
 Route::post('/annsabb',[RequeteController::class,"saveAnnee"])->name('saveAnneeSab');
 
+Route::get('/rapportRech',function()
+{
+    return view('Requetes.rapportRech');
+})->name('GrapportRech');
 
-Route::post('/habilitation',[RequeteController::class,"saveHabilitation"])->name('SaveHabilitation');
-
-
-Route::get('/rapportRech',[RequeteController::class,"choixReq"])->name('rapportRech');
+Route::post('/rapportRech',[RequeteController::class,"saveRappRech"])->name('saveRappRech');
 
 Route::get('/offreFormat',[RequeteController::class,"choixReq"])->name('offreFormat');
 

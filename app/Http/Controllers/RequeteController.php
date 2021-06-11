@@ -76,7 +76,7 @@ class RequeteController extends Controller
                 return redirect(route('anneesabb'));
                 break;
             case "16":
-               //return view('Requetes.polycopie');
+                return redirect(route('GrapportRech'));
                 break;
             case "17":
                 return view('Requetes.offreFormat');
@@ -553,10 +553,11 @@ class RequeteController extends Controller
         {
             // dd($request->all());
             $request->validate([
+                'nom' => 'required',
                 'polycopié' => 'required',
             ]);
-
-            $tab = array($request->observation);
+           
+            $tab = array($request->nom,$request->observation);
             $info =  implode(" ",$tab);
 
             $requete = new Requete();
@@ -609,6 +610,44 @@ class RequeteController extends Controller
  
              return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
          }
+
+          /**Rapport recherche */
+          public function saveRappRech(Request $request)
+          {
+             //  dd($request->all());
+              $request->validate([
+                  'nom' => 'required',
+                  'rapport' => 'required',
+              ]);
+  
+              $tab = array($request->nom,$request->observation);
+              $info =  implode(" ",$tab);
+  
+              $requete = new Requete();
+              $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+              $requete->type = 16;
+              $requete->observation = $info;
+              $requete->save();
+
+              $data = DB::table('requetes')->select('idRequete')
+              ->orderBy('idRequete','desc')
+              ->first();
+
+              if($file = $request->rapport)
+              {
+                  $name = $file->getClientOriginalName();
+                 if($file->move('upload',$name)){
+                  $item = new Item();
+                  $item->idRequete = $data->idRequete;
+                  $item->fichier = $name;
+                  $item->save();
+                 }
+              }
+  
+ 
+  
+              return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+          }
 
 
 }

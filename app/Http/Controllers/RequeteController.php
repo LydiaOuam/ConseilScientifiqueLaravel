@@ -435,13 +435,14 @@ class RequeteController extends Controller
 
        public function saveHabilitation(Request $request)
        {
-            dd($request->all());
+            // dd($request->all());
            $request->validate([
-               'GradeActuel' => 'required',
-               'Grade' => 'required',
+               'nom' => 'required',
+               'département' => 'required',
+               'cv'=>'required',
            ]);
    
-           $tab = array($request->GradeActuel,$request->Grade);
+           $tab = array($request->nom,$request->département,$request->observation);
            $info =  implode(" ",$tab);
    
            $requete = new Requete();
@@ -449,6 +450,104 @@ class RequeteController extends Controller
            $requete->type = 13;
            $requete->observation = $info;
            $requete->save();
+
+           $data = DB::table('requetes')->select('idRequete')
+           ->orderBy('idRequete','desc')
+           ->first();
+           
+
+            if($request->hasFile('brevet')){
+                $files = $request->brevet;
+                foreach($files as $rapp)
+                {
+                    $name = $rapp->getClientOriginalName();
+                if( $rapp->move('upload',$name))
+                {
+                    $item = new Item();
+                    $item->idRequete = $data->idRequete;
+                    $item->fichier = $name;
+                    $item->save();
+                }
+                }
+            }
+
+            if($request->hasFile('communication')){
+                $files = $request->communication;
+                foreach($files as $rapp)
+                {
+                    $name = $rapp->getClientOriginalName();
+                if( $rapp->move('upload',$name))
+                {
+                    $item = new Item();
+                    $item->idRequete = $data->idRequete;
+                    $item->fichier = $name;
+                    $item->save();
+                }
+                }
+            }
+
+            if($request->hasFile('publication')){
+                $files = $request->publication;
+                foreach($files as $rapp)
+                {
+                    $name = $rapp->getClientOriginalName();
+                if( $rapp->move('upload',$name))
+                {
+                    $item = new Item();
+                    $item->idRequete = $data->idRequete;
+                    $item->fichier = $name;
+                    $item->save();
+                }
+                }
+            }
+
+            if($request->hasFile('animation')){
+                $files = $request->animation;
+                foreach($files as $rapp)
+                {
+                    $name = $rapp->getClientOriginalName();
+                if( $rapp->move('upload',$name))
+                {
+                    $item = new Item();
+                    $item->idRequete = $data->idRequete;
+                    $item->fichier = $name;
+                    $item->save();
+                }
+                }
+            }
+
+            if($request->hasFile('responsabilités')){
+                $files = $request->responsabilités;
+                foreach($files as $rapp)
+                {
+                    $name = $rapp->getClientOriginalName();
+                if( $rapp->move('upload',$name))
+                {
+                    $item = new Item();
+                    $item->idRequete = $data->idRequete;
+                    $item->fichier = $name;
+                    $item->save();
+                }
+                }
+            }
+
+            if($request->hasFile('revues')){
+                $files = $request->revues;
+                foreach($files as $rapp)
+                {
+                    $name = $rapp->getClientOriginalName();
+                if( $rapp->move('upload',$name))
+                {
+                    $item = new Item();
+                    $item->idRequete = $data->idRequete;
+                    $item->fichier = $name;
+                    $item->save();
+                }
+                }
+            }
+
+
+
            return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
        }
 

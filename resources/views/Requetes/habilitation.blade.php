@@ -19,7 +19,7 @@
         </div>
 
         <div class="mb-3">
-        <label for="cv" class="form-label"><h6>Curriculum vitae::</h6></label>
+        <label for="cv" class="form-label"><h6>Curriculum vitae:</h6></label>
           <input type="file" class="form-control" name="cv">
         </div>
 
@@ -29,7 +29,6 @@
         </div>
 
 
-        
         <div class="mb-3">
         <label for="communication" class="form-label"><h6>Les Communications:</h6></label>
           <input type="file" class="form-control" name="communication[]" multiple>
@@ -57,8 +56,10 @@
 
   
         <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Observation éventuelles: </span>
-        <textarea class="form-control" aria-label="With textarea" name="observation"></textarea>
+        <span  style="margin-right:20px;height:100px;">Observation éventuelles: </span>
+        <textarea class="form-control" aria-label="With textarea" placeholder="Vous pouvez ici :
+        Saisir les données d'un polycopié validé par le CSF
+        Et/Ou ajouter des remarques ..." name="observation"></textarea>
         </div>
       
         <button type="submit" class="btn btn-success" style="margin-left:50px;">Soumettre</button>

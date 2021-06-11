@@ -64,7 +64,7 @@ class RequeteController extends Controller
                 return redirect(route('promAcad'));
                 break;
             case "12":
-               // return view('Requetes.rajouter');
+                return redirect(route('promRech'));
                 break;
             case "13":
                 return view('Requetes.habilitation');
@@ -206,7 +206,7 @@ class RequeteController extends Controller
             }
         }
   
-    return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+    return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
 
     
     }
@@ -227,7 +227,7 @@ class RequeteController extends Controller
         $requete->type = 1;
         $requete->observation = $info;
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
     }
     /** Sejour scientifique */
     public function saveSejour(Request $request)
@@ -250,7 +250,7 @@ class RequeteController extends Controller
         $requete->type = 2;
         $requete->observation = $info;
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
     }
         /**Changement du theme */
     public function saveChanger(Request $request)
@@ -270,7 +270,7 @@ class RequeteController extends Controller
         $requete->type = 3;
         $requete->observation = $info;
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
     }
     /**Changement du directeur */
     public function saveChangerDir(Request $request)
@@ -290,7 +290,7 @@ class RequeteController extends Controller
         $requete->type = 5;
         $requete->observation = $info;
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
     }
     /**s'inscrire */
     
@@ -316,7 +316,7 @@ class RequeteController extends Controller
         $requete->type = 7;
         $requete->observation = $info;
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
     }
     /**Geler inscription */
     public function saveGeler(Request $request)
@@ -336,7 +336,7 @@ class RequeteController extends Controller
         $requete->type = 8;
         $requete->observation = $info;
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
     }
 
        /**AJOUTER UN CO DIRECTER */
@@ -357,7 +357,7 @@ class RequeteController extends Controller
            $requete->type = 9;
            $requete->observation = $info;
            $requete->save();
-           return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+           return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
        }
 
        /**Reinscription */
@@ -384,7 +384,7 @@ class RequeteController extends Controller
            $requete->type = 10;
            $requete->observation = $info;
            $requete->save();
-           return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+           return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
        }
 
        /** promotion academique*/
@@ -405,9 +405,30 @@ class RequeteController extends Controller
            $requete->type = 11;
            $requete->observation = $info;
            $requete->save();
-           return redirect(route('espaceEC'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+           return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
        }
 
+       
+       /** promotion academique*/
+
+       public function savePromRech(Request $request)
+       {
+            // dd($request->all());
+           $request->validate([
+               'GradeActuel' => 'required',
+               'Grade' => 'required',
+           ]);
+   
+           $tab = array($request->GradeActuel,$request->Grade);
+           $info =  implode(" ",$tab);
+   
+           $requete = new Requete();
+           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->type = 12;
+           $requete->observation = $info;
+           $requete->save();
+           return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+       }
 
 
 }

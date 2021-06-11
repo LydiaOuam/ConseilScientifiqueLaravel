@@ -217,6 +217,13 @@ Route::get('/promtionAcad',function()
 
 Route::post('/promtionAcad',[RequeteController::class,"savePromAcad"])->name('SaveProm');
 
+Route::get('/promtionRech',function()
+{
+    return view('Requetes.gradeRech');
+})->name('promRech');
+
+Route::post('/promtionRech',[RequeteController::class,"savePromRech"])->name('SaveRech');
+
 
 Route::get('/espaceEnseChe',[RequeteController::class,"showReqEC"])->name('espaceEC');
 

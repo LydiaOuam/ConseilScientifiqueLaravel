@@ -2,34 +2,31 @@
 
 @section('contenu')
 
-<form action="" style="margin-top=20px; margin-top:40px ;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
+<h6 style="margin-top=20px; margin-top:40px ;padding:10px 70px;padding: 5px;width: 70%;margin-left: 15%;">Demande d'une promotion dans la recherche</h6>
+<form  method="POST" action="{{route('SaveRech')}}" enctype="multipart/form-data" style="margin-top=20px; margin-top:40px ;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
+@csrf
+
+        <label for="GradeActuel">Grade actuel:</label>
+
+                <select  name="GradeActuel" class="form-control" >
+                    <option  value="Attaché de recherche">Attaché de recherche</option>
+                    <option  value="Chargé de recherche">Chargé de recherche</option>
+                    <option  value="Maître de recherche ">Maître de recherche </option>
+                </select>   
+
+       <label for="Grade">Promotion :</label>
+
+            <select  name="Grade" class="form-control" >
+               
+                <option  value="Chargé de recherche">Chargé de recherche</option>
+                <option  value="Maître de recherche ">Maître de recherche </option>
+                <option value="Directeur de recherche">Directeur de recherche</option>
+
+            </select>
 
 
-        <h6>Soumettre une nouvelle offre de formation: </h6>
-
-        <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Grade actuel: </span>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        </div>
-
-        <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Promotion: </span>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        </div>
-
-        <h6>Fichier:</h6>
-        
-       
-        <div class="input-group mb-3">
-          <input type="file" class="form-control" id="inputGroupFile01">
-        </div>
-
-
-        <button type="submit" class="btn btn-success" style="margin-left:50px;">Soumettre</button>
-        <button type="reset" class="btn btn-secondary" style="margin-left:100px;">Annuler</button>
-
-     
-     
+        <button type="submit" class="btn btn-success" style="margin-left:50px;margin-top:20px;">Soumettre</button>
+   
 </form>
 
 @endsection

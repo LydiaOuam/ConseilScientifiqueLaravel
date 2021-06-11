@@ -73,7 +73,7 @@ class RequeteController extends Controller
                 return redirect(route('Polycopie'));
                 break;
             case "15":
-                return view('Requetes.annesabb');
+                return redirect(route('anneesabb'));
                 break;
             case "16":
                //return view('Requetes.polycopie');
@@ -582,6 +582,33 @@ class RequeteController extends Controller
 
             return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
         }
+
+         /**Anne sabbatique */
+         public function saveAnnee(Request $request)
+         {
+            //  dd($request->all());
+             $request->validate([
+                 'nom' => 'required',
+                 'detisnation' => 'required',
+                 'etablissement' => 'required',
+                 'DateDébut' => 'required',
+                 'DateFin' => 'required',
+
+             ]);
+ 
+             $tab = array($request->nom,$request->detisnation,$request->etablissement,$request->DateDébut,$request->DateFin);
+             $info =  implode(" ",$tab);
+ 
+             $requete = new Requete();
+             $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+             $requete->type = 15;
+             $requete->observation = $info;
+             $requete->save();
+ 
+
+ 
+             return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+         }
 
 
 }

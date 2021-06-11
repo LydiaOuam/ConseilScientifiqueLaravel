@@ -239,10 +239,15 @@ Route::get('/polycopie',function()
 
 Route::post('/polycopie',[RequeteController::class,"savePolycopie"])->name('savePol');
 
+Route::get('/annsabb',function(){
+    return view('Requetes.annesabb');
+})->name('anneesabb');
+
+Route::post('/annsabb',[RequeteController::class,"saveAnnee"])->name('saveAnneeSab');
+
 
 Route::post('/habilitation',[RequeteController::class,"saveHabilitation"])->name('SaveHabilitation');
 
-Route::get('/annsabb',[RequeteController::class,"choixReq"])->name('annsabb');
 
 Route::get('/rapportRech',[RequeteController::class,"choixReq"])->name('rapportRech');
 

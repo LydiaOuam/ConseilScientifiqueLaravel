@@ -58,7 +58,7 @@ class RequeteController extends Controller
                 return redirect(route('Rajouter'));
                 break;
             case "10":
-                return view('Requetes.reinscription');
+                return redirect(route('Reinscrire'));
                 break;
             case "11":
                 //return view('Requetes.rajouter');
@@ -360,7 +360,32 @@ class RequeteController extends Controller
            return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
        }
 
+       /**Reinscription */
 
+       public function saveReinscription(Request $request)
+       {
+            // dd($request->all());
+           $request->validate([
+               'type' => 'required',
+               'Département' => 'required',
+               'Nom'=>'required',
+               'NomDirecteur'=>'required',
+               'NomCoDirecteur'=>'required',
+               'Diplôme'=>'required',
+               'Intitulé'=>'required',
+   
+           ]);
+   
+           $tab = array($request->type,$request->Département,$request->Nom,$request->NomDirecteur,$request->NomCoDirecteur,$request->Diplôme,$request->Intitulé);
+           $info =  implode(" ",$tab);
+   
+           $requete = new Requete();
+           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->type = 10;
+           $requete->observation = $info;
+           $requete->save();
+           return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+       }
 
 
 

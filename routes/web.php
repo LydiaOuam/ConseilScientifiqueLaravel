@@ -187,9 +187,6 @@ Route::get('/inscrire',function()
 
 Route::post('/inscrire',[RequeteController::class,"saveInscription"])->name('InscDoc');
 
-
-Route::get('/reinscrire',[RequeteController::class,"choixReq"])->name('reinscrire');
-
 Route::get('/geler',function()
 {
     return view('Requetes.geler');
@@ -204,6 +201,15 @@ Route::get('/rajouter',function()
 })->name('Rajouter');
 
 Route::post('/rajouter',[RequeteController::class,"saveCoDirec"])->name('SaveRajouter');
+
+
+Route::get('/reinscrire',function()
+{
+    return view('Requetes.reinscription');
+})->name('Reinscrire');
+
+Route::post('/reinscrire',[RequeteController::class,"saveReinscription"])->name('saveReinscrip');
+
 
 
 Route::get('/espaceEnseChe',[RequeteController::class,"showReqEC"])->name('espaceEC');

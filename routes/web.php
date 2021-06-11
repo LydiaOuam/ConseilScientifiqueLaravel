@@ -180,7 +180,13 @@ Route::get('/changerDirecte',function()
 Route::post('/changerDirecte',[RequeteController::class,"saveChangerDir"])->name('saveChanerDir');
 
 
-Route::get('/inscrire',[RequeteController::class,"choixReq"])->name('inscrire');
+Route::get('/inscrire',function()
+{
+    return view('Requetes.inscrire');
+})->name('insc');
+
+Route::post('/inscrire',[RequeteController::class,"saveInscription"])->name('InscDoc');
+
 
 Route::get('/reinscrire',[RequeteController::class,"choixReq"])->name('reinscrire');
 

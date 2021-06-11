@@ -49,7 +49,7 @@ class RequeteController extends Controller
                 return redirect(route('changerDire'));
                 break;
             case "7":
-                return view('Requetes.inscrire');
+                return redirect(route('insc'));
                 break;
             case "8":
                 return view('Requetes.geler');
@@ -292,6 +292,33 @@ class RequeteController extends Controller
         $requete->save();
         return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
     }
+
+    
+    public function saveInscription(Request $request)
+    {
+        //  dd($request->all());
+        $request->validate([
+            'type' => 'required',
+            'Département' => 'required',
+            'Nom'=>'required',
+            'NomDirecteur'=>'required',
+            'NomCoDirecteur'=>'required',
+            'Diplôme'=>'required',
+            'Intitulé'=>'required',
+
+        ]);
+
+        $tab = array($request->type,$request->Département,$request->Nom,$request->NomDirecteur,$request->NomCoDirecteur,$request->Diplôme,$request->Intitulé);
+        $info =  implode(" ",$tab);
+
+        $requete = new Requete();
+        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->type = 1;
+        $requete->observation = $info;
+        $requete->save();
+        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+    }
+
 
 
 }

@@ -164,7 +164,13 @@ Route::get('/sejourS',function()
 
 Route::post('/sejourS',[RequeteController::class,"saveSejour"])->name('SaveSej');
 
-Route::get('/changerTheme',[RequeteController::class,"choixReq"])->name('changerTheme');
+Route::get('/changerTheme',function()
+{
+    return view('Requetes.changeTheme');
+})->name('changerTh');
+
+Route::post('/changerTheme',[RequeteController::class,"saveChanger"])->name('SaveChan');
+
 
 Route::get('/changerDirecte',[RequeteController::class,"choixReq"])->name('changerDirecte');
 

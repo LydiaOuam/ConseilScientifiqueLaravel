@@ -40,7 +40,7 @@ class RequeteController extends Controller
                 return redirect(route('SejSc'));
                 break;
             case "3":
-                return view('Requetes.changeTheme');
+                return redirect(route('changerTh'));
                 break;
             case "4":
                  return redirect(route('Soutenance'));
@@ -243,6 +243,26 @@ class RequeteController extends Controller
         ]);
 
         $tab = array($request->Nom,$request->Pays,$request->Etablissement,$request->Début,$request->Fin,$request->Responsable);
+        $info =  implode(" ",$tab);
+
+        $requete = new Requete();
+        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->type = 1;
+        $requete->observation = $info;
+        $requete->save();
+        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+    }
+
+    public function saveChanger(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'IntituléInitial' => 'required',
+            'NouveauIntitulé' => 'required',
+            'Motif'=>'required',
+        ]);
+
+        $tab = array($request->IntituléInitial,$request->NouveauIntitulé,$request->Motif);
         $info =  implode(" ",$tab);
 
         $requete = new Requete();

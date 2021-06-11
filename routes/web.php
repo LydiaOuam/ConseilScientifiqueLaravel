@@ -198,7 +198,13 @@ Route::get('/geler',function()
 
 Route::post('/geler',[RequeteController::class,"saveGeler"])->name('SavGeler');
 
-Route::get('/rajouter',[RequeteController::class,"choixReq"])->name('rajouter');
+Route::get('/rajouter',function()
+{
+    return view('Requetes.rajouter');
+})->name('Rajouter');
+
+Route::post('/rajouter',[RequeteController::class,"saveCoDirec"])->name('SaveRajouter');
+
 
 Route::get('/espaceEnseChe',[RequeteController::class,"showReqEC"])->name('espaceEC');
 

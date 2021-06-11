@@ -55,7 +55,7 @@ class RequeteController extends Controller
                 return redirect(route('Geler'));
                 break;
             case "9":
-                return view('Requetes.rajouter');
+                return redirect(route('Rajouter'));
                 break;
             case "10":
                 return view('Requetes.reinscription');
@@ -338,6 +338,27 @@ class RequeteController extends Controller
         $requete->save();
         return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
     }
+
+       /**AJOUTER UN CO DIRECTER */
+       public function saveCoDirec(Request $request)
+       {
+            // dd($request->all());
+           $request->validate([
+               
+               'nom'=>'required',
+               'observation' => 'required',
+           ]);
+   
+           $tab = array($request->nom,$request->observation);
+           $info =  implode(" ",$tab);
+   
+           $requete = new Requete();
+           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->type = 9;
+           $requete->observation = $info;
+           $requete->save();
+           return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+       }
 
 
 

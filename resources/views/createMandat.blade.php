@@ -21,7 +21,7 @@
         <legend>Dates</legend>
             <div class="mb-3">
             <label class="form-label">Date début</label>
-            <input type="date" name="date_deb" class= "form-control" min="{{date('Y-m-d')}}">
+            <input type="date" name="date_deb" class= "form-control" >
             </div>
             <div class="mb-3">
             <label class="form-label">Date fin</label>

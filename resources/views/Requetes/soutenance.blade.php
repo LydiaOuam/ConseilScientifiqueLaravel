@@ -31,11 +31,11 @@
           <input type="text" class="form-control" name="annee">
         </div>
         <div class="input-group input-group-sm mb-3" ">
-        <span  style="margin-right:20px;">Departement: </span>
+        <span  style="margin-right:20px;">Département: </span>
           <input type="text" class="form-control" name="dep">
         </div>
         <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Intitule de la thèse: </span>
+        <span  style="margin-right:20px;">Intitulé de la thèse: </span>
         <textarea class="form-control" name="intit"></textarea>
         </div>
         <div  class="mb-3">
@@ -60,7 +60,7 @@
             </div> 
 
                
-     <button  type="submit" class="btn btn-success">Valider les modifications</button>
+     <button  type="submit" class="btn btn-success">Envoyer</button>
     
  
 </form>

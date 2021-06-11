@@ -54,6 +54,8 @@ class ListController extends Controller
 
 public function updatee(Request $request,$id)
    {
+dd($request->all());
+    
     $compte = User :: find($id);
 
        $compte->name=$request->name;

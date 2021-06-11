@@ -9,6 +9,7 @@
         <!-- 
             * Les champs: nom,prenom,userName,password,email,date de naissance,adresse
          -->
+         
 <form  method="POST" action="{{route('UpdateCompte',[$compte->id])}}" enctype="multipart/form-data" style="margin-top=20px; margin-top:40px ;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
 @csrf
 <img src="{{asset('/images/'.$compte->photo)}}" style="padding: 5px;
@@ -98,7 +99,7 @@
 
             <div  class="mb-3">
                     <label for="photo" class="form-label">Ajouter une photo</label>
-                    <input class="form-control" type="file" id="photo" name="photo">
+                    <input class="form-control" type="file" id="photo" name="photo[]" multiple>
             </div> 
             <label for="TeachGrade">Grade d'enseignement:</label>
                 <select  name="TeachGrade" class="form-control"  value="{{$compte->TeachGrade}}">

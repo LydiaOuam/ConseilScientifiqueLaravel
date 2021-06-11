@@ -232,6 +232,14 @@ Route::get('/habilitation',function()
     return view('Requetes.habilitation');
 })->name('Habilitation');
 
+Route::get('/polycopie',function()
+{
+    return view('Requetes.polycopie');
+})->name('Polycopie');
+
+Route::post('/polycopie',[RequeteController::class,"savePolycopie"])->name('savePol');
+
+
 Route::post('/habilitation',[RequeteController::class,"saveHabilitation"])->name('SaveHabilitation');
 
 Route::get('/annsabb',[RequeteController::class,"choixReq"])->name('annsabb');
@@ -244,7 +252,6 @@ Route::get('/rapportSynthe',[RequeteController::class,"choixReq"])->name('rappor
 
 Route::get('/modifierCahier',[RequeteController::class,"choixReq"])->name('modifierCahier');
 
-Route::get('/polycopie',[RequeteController::class,"choixReq"])->name('polycopie');
 
 Route::get('/rapportExpertise',[RequeteController::class,"choixReq"])->name('rapportExpertise');
 

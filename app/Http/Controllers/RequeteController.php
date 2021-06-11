@@ -70,7 +70,7 @@ class RequeteController extends Controller
                 return redirect(route('Habilitation'));
                 break;
             case "14":
-                return view('Requetes.polycopie');
+                return redirect(route('Polycopie'));
                 break;
             case "15":
                 return view('Requetes.annesabb');
@@ -545,11 +545,43 @@ class RequeteController extends Controller
                 }
                 }
             }
-
-
-
-           return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+            return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
        }
+
+         /**Polycopie */
+        public function savePolycopie(Request $request)
+        {
+            // dd($request->all());
+            $request->validate([
+                'polycopié' => 'required',
+            ]);
+
+            $tab = array($request->observation);
+            $info =  implode(" ",$tab);
+
+            $requete = new Requete();
+            $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+            $requete->type = 14;
+            $requete->observation = $info;
+            $requete->save();
+
+            $data = DB::table('requetes')->select('idRequete')
+                    ->orderBy('idRequete','desc')
+                    ->first();
+
+                    if($file = $request->polycopié)
+                    {
+                        $name = $file->getClientOriginalName();
+                       if($file->move('upload',$name)){
+                        $item = new Item();
+                        $item->idRequete = $data->idRequete;
+                        $item->fichier = $name;
+                        $item->save();
+                       }
+                    }
+
+            return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+        }
 
 
 }

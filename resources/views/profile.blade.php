@@ -99,7 +99,7 @@
 
             <div  class="mb-3">
                     <label for="photo" class="form-label">Ajouter une photo</label>
-                    <input class="form-control" type="file" id="photo" name="photo[]" multiple>
+                    <input class="form-control" type="file" id="photo" name="photo" >
             </div> 
             <label for="TeachGrade">Grade d'enseignement:</label>
                 <select  name="TeachGrade" class="form-control"  value="{{$compte->TeachGrade}}">

@@ -52,7 +52,7 @@ class RequeteController extends Controller
                 return redirect(route('insc'));
                 break;
             case "8":
-                return view('Requetes.geler');
+                return redirect(route('Geler'));
                 break;
             case "9":
                 return view('Requetes.rajouter');
@@ -108,7 +108,7 @@ class RequeteController extends Controller
         }
         
     }
-        
+        /** Soumettre dossier soutenance */
     public function saveRequete(Request $request)
     {
         $request->validate([
@@ -210,7 +210,7 @@ class RequeteController extends Controller
 
     
     }
-
+            /**  Abondonner une these*/
     public function saveAbondon(Request $request)
     {
         $request->validate([
@@ -229,7 +229,7 @@ class RequeteController extends Controller
         $requete->save();
         return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
     }
-
+    /** Sejour scientifique */
     public function saveSejour(Request $request)
     {
         // dd($request->all());
@@ -247,12 +247,12 @@ class RequeteController extends Controller
 
         $requete = new Requete();
         $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
-        $requete->type = 1;
+        $requete->type = 2;
         $requete->observation = $info;
         $requete->save();
         return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
     }
-
+        /**Changement du theme */
     public function saveChanger(Request $request)
     {
         // dd($request->all());
@@ -267,12 +267,12 @@ class RequeteController extends Controller
 
         $requete = new Requete();
         $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
-        $requete->type = 1;
+        $requete->type = 3;
         $requete->observation = $info;
         $requete->save();
         return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
     }
-
+    /**Changement du directeur */
     public function saveChangerDir(Request $request)
     {
         // dd($request->all());
@@ -287,12 +287,12 @@ class RequeteController extends Controller
 
         $requete = new Requete();
         $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
-        $requete->type = 1;
+        $requete->type = 5;
         $requete->observation = $info;
         $requete->save();
         return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
     }
-
+    /**s'inscrire */
     
     public function saveInscription(Request $request)
     {
@@ -313,11 +313,33 @@ class RequeteController extends Controller
 
         $requete = new Requete();
         $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
-        $requete->type = 1;
+        $requete->type = 7;
         $requete->observation = $info;
         $requete->save();
         return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
     }
+    /**Geler inscription */
+    public function saveGeler(Request $request)
+    {
+        //  dd($request->all());
+        $request->validate([
+            
+            'Nom'=>'required',
+            'observation' => 'required',
+        ]);
+
+        $tab = array($request->Nom,$request->observation);
+        $info =  implode(" ",$tab);
+
+        $requete = new Requete();
+        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->type = 8;
+        $requete->observation = $info;
+        $requete->save();
+        return redirect(route('ReqChoix'))->with('success','Votre requete  a été bien soumise, elle sera traitée le :');
+    }
+
+
 
 
 

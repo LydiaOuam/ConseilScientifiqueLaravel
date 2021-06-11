@@ -190,9 +190,13 @@ Route::post('/inscrire',[RequeteController::class,"saveInscription"])->name('Ins
 
 Route::get('/reinscrire',[RequeteController::class,"choixReq"])->name('reinscrire');
 
+Route::get('/geler',function()
+{
+    return view('Requetes.geler');
+})->name('Geler');
 
 
-Route::get('/geler',[RequeteController::class,"choixReq"])->name('geler');
+Route::post('/geler',[RequeteController::class,"saveGeler"])->name('SavGeler');
 
 Route::get('/rajouter',[RequeteController::class,"choixReq"])->name('rajouter');
 

@@ -150,6 +150,13 @@ Route::get('/soutenance',function()
 
 Route::post('/soutenance',[RequeteController::class,"saveRequete"])->name('SaveSoutenance');
 
+Route::get('/abondon',function()
+{
+    return view('Requetes.abondon');
+})->name('Abondon');
+
+Route::post('/abondon',[RequeteController::class,"saveAbondon"])->name('saveAbondon');
+
 
 Route::get('/sejourS',[RequeteController::class,"choixReq"])->name('sejour');
 
@@ -161,7 +168,7 @@ Route::get('/inscrire',[RequeteController::class,"choixReq"])->name('inscrire');
 
 Route::get('/reinscrire',[RequeteController::class,"choixReq"])->name('reinscrire');
 
-Route::get('/abondon',[RequeteController::class,"choixReq"])->name('abondon');
+
 
 Route::get('/geler',[RequeteController::class,"choixReq"])->name('geler');
 

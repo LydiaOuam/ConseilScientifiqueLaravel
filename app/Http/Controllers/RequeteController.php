@@ -33,7 +33,8 @@ class RequeteController extends Controller
         // };
         switch($req->typereq){
             case "1":
-                return view('Requetes.abondon');
+                
+                return redirect(route('Abondon'));
                 break;
             case "2":
                 return view('Requetes.sejourScient');
@@ -208,6 +209,11 @@ class RequeteController extends Controller
      print_r($info);
 
     
+    }
+
+    public function saveAbondon(Request $request)
+    {
+        dd($request);
     }
 
 }

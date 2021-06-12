@@ -76,7 +76,7 @@ class RequeteController extends Controller
                 return redirect(route('anneesabb'));
                 break;
             case "16":
-                return redirect(route('GrapportRech'));
+                return redirect(route('NvProjetRech'));
                 break;
             case "17":
                 return redirect(route('offreFormat'));
@@ -94,10 +94,10 @@ class RequeteController extends Controller
                 return redirect(route('SuspenRT'));
                 break;
             case "22":
-                return view('Requetes.rapportRech');
+                return redirect(route('GrapportRech'));
                 break;
             case "23":
-                return view('Requetes.rapportSynthe');
+                return redirect(route('rapportSynthe'));
                 break;
             case "24":
                 return view('Requetes.mofiCahieCh');
@@ -611,43 +611,42 @@ class RequeteController extends Controller
              return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
          }
 
-          /**Rapport recherche */
-          public function saveRappRech(Request $request)
-          {
-             //  dd($request->all());
-              $request->validate([
-                  'nom' => 'required',
-                  'rapport' => 'required',
-              ]);
-  
-              $tab = array($request->nom,$request->observation);
-              $info =  implode(" ",$tab);
-  
-              $requete = new Requete();
-              $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
-              $requete->type = 16;
-              $requete->observation = $info;
-              $requete->save();
+            /**Rapport recherche */
+            public function saveNvPrRech(Request $request)
+            {
+                //  dd($request->all());
+                $request->validate([
+                    'Intitulé' => 'required',
+                    'Chef' => 'required',
+                    'membre' => 'required',
+                    'rapport' => 'required',
+                ]);
 
-              $data = DB::table('requetes')->select('idRequete')
-              ->orderBy('idRequete','desc')
-              ->first();
+                $tab = array($request->Intitulé,$request->Chef,$request->membre,$request->observation);
+                $info =  implode(" ",$tab);
 
-              if($file = $request->rapport)
-              {
-                  $name = $file->getClientOriginalName();
-                 if($file->move('upload',$name)){
-                  $item = new Item();
-                  $item->idRequete = $data->idRequete;
-                  $item->fichier = $name;
-                  $item->save();
-                 }
-              }
-  
- 
-  
-              return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
-          }
+                $requete = new Requete();
+                $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+                $requete->type = 16;
+                $requete->observation = $info;
+                $requete->save();
+
+                $data = DB::table('requetes')->select('idRequete')
+                ->orderBy('idRequete','desc')
+                ->first();
+
+                if($file = $request->rapport)
+                {
+                    $name = $file->getClientOriginalName();
+                    if($file->move('upload',$name)){
+                    $item = new Item();
+                    $item->idRequete = $data->idRequete;
+                    $item->fichier = $name;
+                    $item->save();
+                    }
+                }
+                return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+            }
 
           
           /**Offre de formation */
@@ -836,4 +835,80 @@ class RequeteController extends Controller
          }
          return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
      }
+               /**Rapport recherche */
+               public function saveRappRech(Request $request)
+               {
+                  //  dd($request->all());
+                   $request->validate([
+                       'nom' => 'required',
+                       'rapport' => 'required',
+                   ]);
+       
+                   $tab = array($request->nom,$request->observation);
+                   $info =  implode(" ",$tab);
+       
+                   $requete = new Requete();
+                   $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+                   $requete->type = 22;
+                   $requete->observation = $info;
+                   $requete->save();
+     
+                   $data = DB::table('requetes')->select('idRequete')
+                   ->orderBy('idRequete','desc')
+                   ->first();
+     
+                   if($file = $request->rapport)
+                   {
+                       $name = $file->getClientOriginalName();
+                      if($file->move('upload',$name)){
+                       $item = new Item();
+                       $item->idRequete = $data->idRequete;
+                       $item->fichier = $name;
+                       $item->save();
+                      }
+                   }
+       
+      
+       
+                   return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+               }
+                /**Rapport recherche */
+                public function saveRappSyn(Request $request)
+                {
+                   //  dd($request->all());
+                    $request->validate([
+                        'nom' => 'required',
+                        'rapport' => 'required',
+                    ]);
+        
+                    $tab = array($request->nom,$request->observation);
+                    $info =  implode(" ",$tab);
+        
+                    $requete = new Requete();
+                    $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+                    $requete->type = 23;
+                    $requete->observation = $info;
+                    $requete->save();
+      
+                    $data = DB::table('requetes')->select('idRequete')
+                    ->orderBy('idRequete','desc')
+                    ->first();
+      
+                    if($file = $request->rapport)
+                    {
+                        $name = $file->getClientOriginalName();
+                       if($file->move('upload',$name)){
+                        $item = new Item();
+                        $item->idRequete = $data->idRequete;
+                        $item->fichier = $name;
+                        $item->save();
+                       }
+                    }
+        
+       
+        
+                    return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+                }
+
+               
 }

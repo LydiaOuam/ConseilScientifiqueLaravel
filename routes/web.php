@@ -294,7 +294,21 @@ Route::get('/miseEndispo',function()
 
 Route::post('/miseEndispo',[RequeteController::class,"saveSuspRT"])->name('SaveSuspenRT');
 
-Route::get('/rapportSynthe',[RequeteController::class,"choixReq"])->name('rapportSynthe');
+Route::get('/NouveauProjetRech',function()
+{
+    return view('Requetes.nvprojetRech');
+})->name('NvProjetRech');
+
+Route::post('/NouveauProjetRech',[RequeteController::class,"saveNvPrRech"])->name('SaveNrech');
+
+
+Route::get('/rapportSynthe',function()
+{
+    return view('Requetes.rapportSynthe');
+
+})->name('rapportSynthe');
+
+Route::post('/rapportSynthe',[RequeteController::class,"saveRappSyn"])->name('SaveRapp');
 
 Route::get('/modifierCahier',[RequeteController::class,"choixReq"])->name('modifierCahier');
 

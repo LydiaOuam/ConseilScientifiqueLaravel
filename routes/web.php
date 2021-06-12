@@ -286,6 +286,13 @@ Route::get('/rapportExpertise',function()
 
 Route::post('/rapportExpertise',[RequeteController::class,"saveRappExper"])->name('SavRapportExpertise');
 
+Route::get('/miseEndispo',function()
+{
+    return view('Requetes.demandesuspensionRT');
+
+})->name('SuspenRT');
+
+Route::post('/miseEndispo',[RequeteController::class,"saveSuspRT"])->name('SaveSuspenRT');
 
 Route::get('/rapportSynthe',[RequeteController::class,"choixReq"])->name('rapportSynthe');
 

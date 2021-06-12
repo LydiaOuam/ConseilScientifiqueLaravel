@@ -91,7 +91,7 @@ class RequeteController extends Controller
                 return redirect(route('rapportExpertise'));
                 break;
             case "21":
-               //return view('Requetes.offreFormat');
+                return redirect(route('SuspenRT'));
                 break;
             case "22":
                 return view('Requetes.rapportRech');
@@ -801,4 +801,39 @@ class RequeteController extends Controller
        }
        return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
    }
+
+     /**Suspension de la RT */
+     public function saveSuspRT(Request $request)
+     {
+       //   dd($request->all());
+         $request->validate([
+             'nom' => 'required',
+             'demande' => 'required',
+         ]);
+  
+         $tab = array($request->nom,$request->observation);
+         $info =  implode(" ",$tab);
+  
+         $requete = new Requete();
+         $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+         $requete->type = 21;
+         $requete->observation = $info;
+         $requete->save();
+  
+         $data = DB::table('requetes')->select('idRequete')
+         ->orderBy('idRequete','desc')
+         ->first();
+  
+         if($file = $request->demande)
+         {
+             $name = $file->getClientOriginalName();
+            if($file->move('upload',$name)){
+             $item = new Item();
+             $item->idRequete = $data->idRequete;
+             $item->fichier = $name;
+             $item->save();
+            }
+         }
+         return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+     }
 }

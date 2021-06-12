@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailsTable extends Migration
+class CreateSessionCSFSTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('details', function (Blueprint $table) {
-            $table->id('idDetail');
-            $table->unsignedBigInteger('idRequete'); 
-            $table->foreign('idRequete')
-            ->references('idRequete')->on('requetes')
-            ->onDelete('cascade');
-            $table->text('detail');
+        Schema::create('session_c_s_f_s', function (Blueprint $table) {
+            $table->id('idSessionCSF');
+            $table->unsignedBigInteger('idMandat'); 
+            $table->foreign('idMandat')
+                  ->references('idMandat')->on('mandats')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('details');
+        Schema::dropIfExists('session_c_s_f_s');
     }
 }

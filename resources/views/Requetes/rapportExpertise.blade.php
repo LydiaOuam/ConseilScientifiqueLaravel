@@ -2,30 +2,28 @@
 
 @section('contenu')
 
-<form action="" style="margin-top=20px; margin-top:40px ;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
+<h6 style="margin-top=20px; margin-top:40px ;padding:10px 70px;padding: 5px;width: 70%;margin-left: 15%;">Remettre un rapport d'expertise polycopié: </h6> 
+<form  method="POST" action="{{route('SavRapportExpertise')}}" enctype="multipart/form-data" style="margin-top=20px;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
+@csrf
 
-
-        <h6>Remettre un rapport d'expertise polycopie: </h6>
-     
-
-        <h6>Le rapport:</h6>
-        
-       
-        <div class="input-group mb-3">
-          <input type="file" class="form-control" id="inputGroupFile01">
+        <div class="input-group input-group-sm mb-3" ">
+        <span  style="margin-right:20px;">Nom et Prénom: </span>
+          <input type="text" class="form-control" name="nom">
         </div>
 
+        <div  class="mb-3">
+                    <label for="rapport" class="form-label"><h6>Le rapport:</h6></label>
+                    <input  type="file"  class="form-control" name="rapport">
+            </div> 
 
-        <div class="input-group input-group-sm mb-3" >
+
+            <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Observation: </span>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
+        <textarea class="form-control" aria-label="With textarea" name="observation"></textarea>
         </div>
 
         <button type="submit" class="btn btn-success" style="margin-left:50px;">Soumettre</button>
-        <button type="reset" class="btn btn-secondary" style="margin-left:100px;">Annuler</button>
 
-     
-     
 </form>
 
 @endsection

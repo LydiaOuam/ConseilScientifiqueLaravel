@@ -278,13 +278,20 @@ Route::get('/mutation',function()
 
 Route::post('/mutation',[RequeteController::class,"SaveMuta"])->name('SaveMutation');
 
+Route::get('/rapportExpertise',function()
+{
+    return view('Requetes.rapportExpertise');
+
+})->name('rapportExpertise');
+
+Route::post('/rapportExpertise',[RequeteController::class,"saveRappExper"])->name('SavRapportExpertise');
+
 
 Route::get('/rapportSynthe',[RequeteController::class,"choixReq"])->name('rapportSynthe');
 
 Route::get('/modifierCahier',[RequeteController::class,"choixReq"])->name('modifierCahier');
 
 
-Route::get('/rapportExpertise',[RequeteController::class,"choixReq"])->name('rapportExpertise');
 
 
 

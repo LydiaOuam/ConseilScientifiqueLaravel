@@ -88,7 +88,7 @@ class RequeteController extends Controller
                 return redirect(route('Mutat')); 
                 break;
             case "20":
-                return view('Requetes.rapportExpertise');
+                return redirect(route('rapportExpertise'));
                 break;
             case "21":
                //return view('Requetes.offreFormat');
@@ -767,5 +767,38 @@ class RequeteController extends Controller
   
               return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
           }
+   /**Mutation */
+   public function saveRappExper(Request $request)
+   {
+     //   dd($request->all());
+       $request->validate([
+           'nom' => 'required',
+           'rapport' => 'required',
+       ]);
 
+       $tab = array($request->nom,$request->observation);
+       $info =  implode(" ",$tab);
+
+       $requete = new Requete();
+       $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+       $requete->type = 20;
+       $requete->observation = $info;
+       $requete->save();
+
+       $data = DB::table('requetes')->select('idRequete')
+       ->orderBy('idRequete','desc')
+       ->first();
+
+       if($file = $request->rapport)
+       {
+           $name = $file->getClientOriginalName();
+          if($file->move('upload',$name)){
+           $item = new Item();
+           $item->idRequete = $data->idRequete;
+           $item->fichier = $name;
+           $item->save();
+          }
+       }
+       return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+   }
 }

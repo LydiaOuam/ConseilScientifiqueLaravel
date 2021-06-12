@@ -310,7 +310,13 @@ Route::get('/rapportSynthe',function()
 
 Route::post('/rapportSynthe',[RequeteController::class,"saveRappSyn"])->name('SaveRapp');
 
-Route::get('/modifierCahier',[RequeteController::class,"choixReq"])->name('modifierCahier');
+Route::get('/modifierCahier',function()
+{
+    return view('Requetes.mofiCahieCh');
+})->name('modifierCahier');
+
+Route::post('/modifierCahier',[RequeteController::class,"saveModif"])->name('savemodifierCahier');
+
 
 
 

@@ -100,7 +100,7 @@ class RequeteController extends Controller
                 return redirect(route('rapportSynthe'));
                 break;
             case "24":
-                return view('Requetes.mofiCahieCh');
+                return redirect(route('modifierCahier'));
                 break;
 
         
@@ -872,7 +872,7 @@ class RequeteController extends Controller
        
                    return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
                }
-                /**Rapport recherche */
+                /**Rapport recherche synthese */
                 public function saveRappSyn(Request $request)
                 {
                    //  dd($request->all());
@@ -904,11 +904,43 @@ class RequeteController extends Controller
                         $item->save();
                        }
                     }
-        
-       
-        
                     return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
                 }
+
+                    /**Modifier cahier de charge d'une formation */
+                    public function saveModif(Request $request)
+                    {
+                       //  dd($request->all());
+                        $request->validate([
+                            'cahier' => 'required',
+                        ]);
+            
+                        $tab = array($request->observation);
+                        $info =  implode(" ",$tab);
+            
+                        $requete = new Requete();
+                        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+                        $requete->type = 24;
+                        $requete->observation = $info;
+                        $requete->save();
+          
+                        $data = DB::table('requetes')->select('idRequete')
+                        ->orderBy('idRequete','desc')
+                        ->first();
+          
+                        if($file = $request->cahier)
+                        {
+                            $name = $file->getClientOriginalName();
+                           if($file->move('upload',$name)){
+                            $item = new Item();
+                            $item->idRequete = $data->idRequete;
+                            $item->fichier = $name;
+                            $item->save();
+                           }
+                        }
+                        return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+                    }
+                
 
                
 }

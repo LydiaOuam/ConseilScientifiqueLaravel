@@ -270,6 +270,14 @@ Route::get('/titularisation',function()
 
 Route::post('/titularisation',[RequeteController::class,"saveTitu"])->name('SaveTitula');
 
+Route::get('/mutation',function()
+{
+    return view('Requetes.mutation');
+
+})->name('Mutat');
+
+Route::post('/mutation',[RequeteController::class,"SaveMuta"])->name('SaveMutation');
+
 
 Route::get('/rapportSynthe',[RequeteController::class,"choixReq"])->name('rapportSynthe');
 

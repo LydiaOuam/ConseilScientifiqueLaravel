@@ -14,11 +14,13 @@ class CreateSessionCSFSTable extends Migration
     public function up()
     {
         Schema::create('session_c_s_f_s', function (Blueprint $table) {
+            
             $table->id('idSessionCSF');
             $table->unsignedBigInteger('idMandat'); 
             $table->foreign('idMandat')
                   ->references('idMandat')->on('mandats')
                   ->onDelete('cascade');
+            $table->date('dateSesCSF');
             $table->timestamps();
         });
     }

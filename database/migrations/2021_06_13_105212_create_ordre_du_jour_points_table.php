@@ -14,7 +14,6 @@ class CreateOrdreDuJourPointsTable extends Migration
     public function up()
     {
         Schema::create('ordre_du_jour_points', function (Blueprint $table) {
-            
             $table->unsignedBigInteger('idPoints'); 
             $table->foreign('idPoints')
                   ->references('id')->on('points')

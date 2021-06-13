@@ -10,6 +10,7 @@ use App\Models\Compte;
 use App\HTTP\Controllers\MessagerieController;
 use App\HTTP\Controllers\RequeteController;
 use App\HTTP\Controllers\RequeController;
+use App\HTTP\Controllers\SessionController;
 
 
 
@@ -121,10 +122,9 @@ Route::get('/accueil',function()
 });
 
 
-Route::get('/planifier',function()
-{
-    return view('/DSession.planifier');
-});
+Route::get('/planifier',[SessionController::class,"allPoint"])->name('SessionCSF');
+
+Route::post('/planifier',[SessionController::class,"saveSess"])->name('SaveSessCsf');
 
 Route::get('classerMandat',[MandatController::class,"infMandat"])->name('classer');
 

@@ -8,6 +8,7 @@ use App\Models\Requete;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
+use App\Models\SessionCSD;
 
 
 class RequeteController extends Controller
@@ -111,25 +112,47 @@ class RequeteController extends Controller
         /** Soumettre dossier soutenance */
     public function saveRequete(Request $request)
     {
-        $request->validate([
-            'typedoc' => 'required',
-            'nomPren' => 'required',
-            'direct'=>'required',
-            'annee'=>'required',
-            'dep'=>'required',
-            'intit'=>'required',
-            'rapport'=>'required',
-        ]);
+        // $request->validate([
+        //     'typedoc' => 'required',
+        //     'nomPren' => 'required',
+        //     'direct'=>'required',
+        //     'annee'=>'required',
+        //     'dep'=>'required',
+        //     'intit'=>'required',
+        //     'rapport'=>'required',
+        // ]);
+
 
         $tab = array($request->typedoc,$request->nomPren,$request->direct,$request->annee,$request->dep,$request->intit);
         $info =  implode(" ",$tab);
 
+        $session = SessionCSD::all();
+        $last_sessionCsd_object = collect($session)->last();
+
+       
+
+        
+        $dateSoum =  new DateTime( date('Y-m-d'));
         $requete = new Requete();
-        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->dateSoumission =  $dateSoum;
         $requete->type = 4;
         $requete->observation = $info;
-        $requete->save();
+
+        // $dateLimitee = strtotime($dateSoum);
+        // $datLim = date('Y-m-d',$dateLimitee);
         
+
+        if($datLim <$dateSoum)
+        {
+        
+            return "true";
+            $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+        }
+        else return "false";
+        $requete->save();
+
+
+       
      
 
         $data = DB::table('requetes')->select('idRequete')

@@ -107,15 +107,13 @@ class SessionController extends Controller
         {
             if($requete->idSession == null)
             {
-                // $requete->idSession = $last_sessionCsd_object->idSessionCSD;
                 Requete::where('idRequete',$requete->idRequete)
                             ->update(['idSession'=>$last_sessionCsd_object->idSessionCSD]);
-                // DB::update('requetes set idSession = ? where idRequete = ?',[$last_sessionCsd_object->idSessionCSD,$requete->idRequete]);
             }
         }
 
         
-        return redirect(route('planiCsd'))->with('success',"La session a ete bien cree ");
+        return redirect(route('planiCsd'))->with('success',"La session a été bien crée ");
 
 
     }

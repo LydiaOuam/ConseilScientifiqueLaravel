@@ -8,7 +8,9 @@ use App\Models\Mandat;
 use App\Models\SessionCSF;
 use App\Models\SessionCSD;
 use App\Models\OrdreDuJour;
+use App\Models\Requete;
 use App\Models\OrdreDuJourPoint;
+use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
@@ -59,11 +61,16 @@ class SessionController extends Controller
   
     }
 
-    public function saveSessCSD(Request $request)
-    {
 
-        // dd($request->all());
-        
+    /** --------------------------------------------------------------------------------
+     *                      Session CSD
+     * ---------------------------------------------------------------------------------
+     */
+
+    public function saveSessCSD(Request $request)
+    {   
+
+      
         $sessions = SessionCSF::all();
         $last_session_object = collect($sessions)->last(); 
 
@@ -88,9 +95,26 @@ class SessionController extends Controller
         $sessionCSD->idPresidentCSD = session('user')->id;
         $sessionCSD->dateLimite = $request->date_limite;
         $sessionCSD->dateSession = $request->date_deb;
-
         $sessionCSD->save();
+ 
+        $session = SessionCSD::all();
+        $last_sessionCsd_object = collect($session)->last(); 
 
+
+        $requetes = Requete::all();
+
+        foreach($requetes as $requete)
+        {
+            if($requete->idSession == null)
+            {
+                // $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+                Requete::where('idRequete',$requete->idRequete)
+                            ->update(['idSession'=>$last_sessionCsd_object->idSessionCSD]);
+                // DB::update('requetes set idSession = ? where idRequete = ?',[$last_sessionCsd_object->idSessionCSD,$requete->idRequete]);
+            }
+        }
+
+        
         return redirect(route('planiCsd'))->with('success',"La session a ete bien cree ");
 
 

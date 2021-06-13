@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Point;
 use App\Models\Mandat;
 use App\Models\SessionCSF;
+use App\Models\SessionCSD;
 use App\Models\OrdreDuJour;
 use App\Models\OrdreDuJourPoint;
 
@@ -20,31 +21,78 @@ class SessionController extends Controller
 
     public function saveSess(Request $request)
     {
-        $mandat = Mandat::where('etat','=',1)->first();
-        $session = new SessionCSF();
-        $session->idMandat = $mandat->idMandat;
-        $session->dateSesCSF = $request->date_deb;
-        $session->save();
 
+        $request->validate([
+            'date_deb'=>'required',
+        ]);
+        
+        if(isset( $_POST['choix']))
+        {
+            $mandat = Mandat::where('etat','=',1)->first();
+            $session = new SessionCSF();
+            $session->idMandat = $mandat->idMandat;
+            $session->dateSesCSF = $request->date_deb;
+            $session->save();
+    
+            $sessions = SessionCSF::all();
+            $last_session_object = collect($sessions)->last(); 
+           
+            $ordre = new OrdreDuJour();
+            $ordre->idSessionCSF =  $last_session_object->idSessionCSF;
+            $ordre->save();
+    
+            $ordres = OrdreDuJour::all();
+            $last_ordres_object = collect($ordres)->last();
+            $choix = $_POST['choix'];
+        
+            foreach($choix as $choice)
+            {
+                $ordre_point = new OrdreDuJourPoint();
+                $ordre_point->idOrdre = $last_ordres_object->idOrdre;
+                $ordre_point->idPoints = $choice;
+                $ordre_point->save();
+            }
+
+            return redirect(route('SessionCSF'))->with('success','La session CSF est enregistrée');
+        }
+        else return redirect(route('SessionCSF'))->with('error','Vous devez inclure au moins un point');
+  
+    }
+
+    public function saveSessCSD(Request $request)
+    {
+
+        // dd($request->all());
+        
         $sessions = SessionCSF::all();
         $last_session_object = collect($sessions)->last(); 
-       
-        $ordre = new OrdreDuJour();
-        $ordre->idSessionCSF =  $last_session_object->idSessionCSF;
-        $ordre->save();
 
-        $ordres = OrdreDuJour::all();
-        $last_ordres_object = collect($ordres)->last();
-        
+        $request->validate([
+            'date_deb'=>'required',
+            'date_limite'=>'required',
+        ]);
 
-        $choix = $_POST['choix'];
-        
-        foreach($choix as $choice)
-        {
-            $ordre_point = new OrdreDuJourPoint();
-            $ordre_point->idOrdre = $last_ordres_object->idOrdre;
-            $ordre_point->idPoints = $choice;
-            $ordre_point->save();
-        }
+        $datesess = $last_session_object->dateSesCSF;
+        $dateLim = date('Y-m-d', strtotime($datesess. ' -3 days'));
+        $dateLimDEp = date('Y-m-d', strtotime($datesess. ' -7 days'));
+
+
+        if($request->date_deb>$dateLim)
+            return redirect(route('planiCsd'))->with('error',"Impossible de planifier la session CSD pour ce jour");
+        if($request->date_limite>=$dateLimDEp)
+            return redirect(route('planiCsd'))->with('error',"Impossible de fixer cette date limite ");
+
+        $sessionCSD = new SessionCSD();
+
+        $sessionCSD->idSessionCSF = $last_session_object->idSessionCSF;
+        $sessionCSD->idPresidentCSD = session('user')->id;
+        $sessionCSD->dateLimite = $request->date_limite;
+        $sessionCSD->dateSession = $request->date_deb;
+
+        $sessionCSD->save();
+
+        return redirect(route('planiCsd'))->with('success',"La session a ete bien cree ");
+
+
     }
 }

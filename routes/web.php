@@ -6,14 +6,11 @@ use App\HTTP\Controllers\ListController;
 use App\HTTP\Controllers\MandatController;
 use App\HTTP\Controllers\AuthController;
 use App\HTTP\Controllers\ContactController;
-use App\Models\Compte;
 use App\HTTP\Controllers\MessagerieController;
 use App\HTTP\Controllers\RequeteController;
 use App\HTTP\Controllers\RequeController;
 use App\HTTP\Controllers\SessionController;
-
-
-
+use App\Models\Compte;
 
 
 
@@ -28,10 +25,7 @@ use App\HTTP\Controllers\SessionController;
 |
 */
 
-// Route::get('/',function()  //si on nous demande la page d'accueil / on va executer une fonction ......
-// {
-//     return view('base');
-// })->name('Accueil');
+
 
 Route::get('/',function()
 {
@@ -125,6 +119,13 @@ Route::get('/accueil',function()
 Route::get('/planifier',[SessionController::class,"allPoint"])->name('SessionCSF');
 
 Route::post('/planifier',[SessionController::class,"saveSess"])->name('SaveSessCsf');
+
+Route::get('/planifierCSD',function()
+{
+    return view('DSession.plaifiersessCSD');
+
+})->name('planiCsd');
+Route::post('/planifierCSD',[SessionController::class,"saveSessCSD"])->name('saveCSD');
 
 Route::get('classerMandat',[MandatController::class,"infMandat"])->name('classer');
 

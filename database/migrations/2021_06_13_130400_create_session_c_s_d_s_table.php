@@ -23,6 +23,8 @@ class CreateSessionCSDSTable extends Migration
             $table->foreign('idPresidentCSD')
                   ->references('id')->on('users')
                   ->onDelete('cascade');
+            $table->date('dateSession');
+            $table->date('dateLimite');
             $table->timestamps();
         });
     }

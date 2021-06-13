@@ -115,6 +115,7 @@
 </div>
 </header>
 <body>
+@include('messages')
 
 @yield('scontent')
 

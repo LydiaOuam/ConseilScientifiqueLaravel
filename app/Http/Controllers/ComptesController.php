@@ -74,12 +74,4 @@ class ComptesController extends Controller
         return  view('/modale',compact('roles','user_roles'));//une vue on lui passe un tableau
     }
 
-    // public function showDept()
-    // {
-    //     $dep = Departement::all();
-    //     // dd($dep);
-
-    //     return  view('/ajouterCompte',compact('dep'));
-    // }
-
 }

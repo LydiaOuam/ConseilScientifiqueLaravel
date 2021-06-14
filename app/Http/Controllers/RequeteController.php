@@ -112,24 +112,20 @@ class RequeteController extends Controller
         /** Soumettre dossier soutenance */
     public function saveRequete(Request $request)
     {
-        // $request->validate([
-        //     'typedoc' => 'required',
-        //     'nomPren' => 'required',
-        //     'direct'=>'required',
-        //     'annee'=>'required',
-        //     'dep'=>'required',
-        //     'intit'=>'required',
-        //     'rapport'=>'required',
-        // ]);
+        $request->validate([
+            'typedoc' => 'required',
+            'nomPren' => 'required',
+            'direct'=>'required',
+            'annee'=>'required',
+            'dep'=>'required',
+            'intit'=>'required',
+            'rapport'=>'required',
+        ]);
 
 
         $tab = array($request->typedoc,$request->nomPren,$request->direct,$request->annee,$request->dep,$request->intit);
         $info =  implode(" ",$tab);
 
-        $session = SessionCSD::all();
-        $last_sessionCsd_object = collect($session)->last();
-
-       
 
         
         $dateSoum =  new DateTime( date('Y-m-d'));
@@ -137,22 +133,18 @@ class RequeteController extends Controller
         $requete->dateSoumission =  $dateSoum;
         $requete->type = 4;
         $requete->observation = $info;
-
-        // $dateLimitee = strtotime($dateSoum);
-        // $datLim = date('Y-m-d',$dateLimitee);
         
+        $session = SessionCSD::all();
+        $last_sessionCsd_object = collect($session)->last();
+        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+        $attach = false;
 
-        if($datLim <$dateSoum)
-        {
-        
-            return "true";
+        if($last_sessionCsd_object->dateLimite > $result)
+        {     $attach = true; 
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
-        else return "false";
         $requete->save();
 
-
-       
      
 
         $data = DB::table('requetes')->select('idRequete')
@@ -228,9 +220,10 @@ class RequeteController extends Controller
                
             }
         }
-  
-    return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
-
+        if($attach)
+                return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+                return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+         
     
     }
             /**  Abondonner une these*/
@@ -244,13 +237,25 @@ class RequeteController extends Controller
         ]);
         $tab = array($request->Nom,$request->Intitulé,$request->Département,$request->Directeur,$request->Observation);
         $info =  implode(" ",$tab);
-
+        $dateSoum =  new DateTime( date('Y-m-d'));
         $requete = new Requete();
-        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->dateSoumission = $dateSoum;
         $requete->type = 1;
         $requete->observation = $info;
+                
+        $session = SessionCSD::all();
+        $last_sessionCsd_object = collect($session)->last();
+        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+        $attach = false;
+
+        if($last_sessionCsd_object->dateLimite > $result)
+        {     $attach = true; 
+            $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+        }
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+        if($attach)
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
     }
     /** Sejour scientifique */
     public function saveSejour(Request $request)
@@ -268,12 +273,28 @@ class RequeteController extends Controller
         $tab = array($request->Nom,$request->Pays,$request->Etablissement,$request->Début,$request->Fin,$request->Responsable);
         $info =  implode(" ",$tab);
 
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
         $requete = new Requete();
-        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->dateSoumission = $dateSoum;
         $requete->type = 2;
         $requete->observation = $info;
+
+                
+        $session = SessionCSD::all();
+        $last_sessionCsd_object = collect($session)->last();
+        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+        $attach = false;
+
+        if($last_sessionCsd_object->dateLimite > $result)
+        {     $attach = true; 
+            $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+        }
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+
+        if($attach)
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
     }
         /**Changement du theme */
     public function saveChanger(Request $request)
@@ -288,12 +309,26 @@ class RequeteController extends Controller
         $tab = array($request->IntituléInitial,$request->NouveauIntitulé,$request->Motif);
         $info =  implode(" ",$tab);
 
+        $dateSoum =  new DateTime( date('Y-m-d'));
         $requete = new Requete();
-        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->dateSoumission = $dateSoum;
         $requete->type = 3;
         $requete->observation = $info;
+
+                        
+        $session = SessionCSD::all();
+        $last_sessionCsd_object = collect($session)->last();
+        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+        $attach = false;
+
+        if($last_sessionCsd_object->dateLimite > $result)
+        {     $attach = true; 
+            $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+        }
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+        if($attach)
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
     }
     /**Changement du directeur */
     public function saveChangerDir(Request $request)
@@ -308,12 +343,26 @@ class RequeteController extends Controller
         $tab = array($request->NomDirecteurActuel,$request->NomDirecteur,$request->Motif);
         $info =  implode(" ",$tab);
 
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
         $requete = new Requete();
-        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->dateSoumission = $dateSoum ;
         $requete->type = 5;
         $requete->observation = $info;
+                                
+        $session = SessionCSD::all();
+        $last_sessionCsd_object = collect($session)->last();
+        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+        $attach = false;
+
+        if($last_sessionCsd_object->dateLimite > $result)
+        {     $attach = true; 
+            $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+        }
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+        if($attach)
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
     }
     /**s'inscrire */
     
@@ -334,12 +383,26 @@ class RequeteController extends Controller
         $tab = array($request->type,$request->Département,$request->Nom,$request->NomDirecteur,$request->NomCoDirecteur,$request->Diplôme,$request->Intitulé);
         $info =  implode(" ",$tab);
 
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
         $requete = new Requete();
-        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->dateSoumission = $dateSoum;
         $requete->type = 7;
         $requete->observation = $info;
+                                        
+        $session = SessionCSD::all();
+        $last_sessionCsd_object = collect($session)->last();
+        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+        $attach = false;
+
+        if($last_sessionCsd_object->dateLimite > $result)
+        {     $attach = true; 
+            $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+        }
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+        if($attach)
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
     }
     /**Geler inscription */
     public function saveGeler(Request $request)
@@ -354,12 +417,26 @@ class RequeteController extends Controller
         $tab = array($request->Nom,$request->observation);
         $info =  implode(" ",$tab);
 
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
         $requete = new Requete();
-        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+        $requete->dateSoumission = $dateSoum;
         $requete->type = 8;
         $requete->observation = $info;
+
+        $session = SessionCSD::all();
+        $last_sessionCsd_object = collect($session)->last();
+        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+        $attach = false;
+
+        if($last_sessionCsd_object->dateLimite > $result)
+        {     $attach = true; 
+            $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+        }
         $requete->save();
-        return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+        if($attach)
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
     }
 
        /**AJOUTER UN CO DIRECTER */
@@ -375,12 +452,25 @@ class RequeteController extends Controller
            $tab = array($request->nom,$request->observation);
            $info =  implode(" ",$tab);
    
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
            $requete = new Requete();
-           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->dateSoumission = $dateSoum;
            $requete->type = 9;
            $requete->observation = $info;
+           $session = SessionCSD::all();
+           $last_sessionCsd_object = collect($session)->last();
+           $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+           $attach = false;
+   
+           if($last_sessionCsd_object->dateLimite > $result)
+           {     $attach = true; 
+               $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+           }
            $requete->save();
-           return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+           if($attach)
+           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
        }
 
        /**Reinscription */
@@ -402,12 +492,25 @@ class RequeteController extends Controller
            $tab = array($request->type,$request->Département,$request->Nom,$request->NomDirecteur,$request->NomCoDirecteur,$request->Diplôme,$request->Intitulé);
            $info =  implode(" ",$tab);
    
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
            $requete = new Requete();
-           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->dateSoumission = $dateSoum;
            $requete->type = 10;
            $requete->observation = $info;
+           $session = SessionCSD::all();
+           $last_sessionCsd_object = collect($session)->last();
+           $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+           $attach = false;
+   
+           if($last_sessionCsd_object->dateLimite > $result)
+           {     $attach = true; 
+               $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+           }
            $requete->save();
-           return redirect(route('ReqChoix'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+           if($attach)
+           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
        }
 
        /** promotion academique*/
@@ -423,12 +526,25 @@ class RequeteController extends Controller
            $tab = array($request->GradeActuel,$request->Grade);
            $info =  implode(" ",$tab);
    
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
            $requete = new Requete();
-           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->dateSoumission =  $dateSoum;
            $requete->type = 11;
            $requete->observation = $info;
+           $session = SessionCSD::all();
+           $last_sessionCsd_object = collect($session)->last();
+           $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+           $attach = false;
+   
+           if($last_sessionCsd_object->dateLimite > $result)
+           {     $attach = true; 
+               $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+           }
            $requete->save();
-           return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+           if($attach)
+           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
        }
 
        
@@ -445,12 +561,25 @@ class RequeteController extends Controller
            $tab = array($request->GradeActuel,$request->Grade);
            $info =  implode(" ",$tab);
    
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
            $requete = new Requete();
-           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->dateSoumission =  $dateSoum;
            $requete->type = 12;
            $requete->observation = $info;
+           $session = SessionCSD::all();
+           $last_sessionCsd_object = collect($session)->last();
+           $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+           $attach = false;
+   
+           if($last_sessionCsd_object->dateLimite > $result)
+           {     $attach = true; 
+               $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+           }
            $requete->save();
-           return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+           if($attach)
+           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
        }
 
          
@@ -468,10 +597,23 @@ class RequeteController extends Controller
            $tab = array($request->nom,$request->département,$request->observation);
            $info =  implode(" ",$tab);
    
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
            $requete = new Requete();
-           $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+           $requete->dateSoumission =  $dateSoum;
            $requete->type = 13;
            $requete->observation = $info;
+           $session = SessionCSD::all();
+           $last_sessionCsd_object = collect($session)->last();
+           $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+           $attach = false;
+   
+           if($last_sessionCsd_object->dateLimite > $result)
+           {     $attach = true; 
+               $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+           }
+         
+        
            $requete->save();
 
            $data = DB::table('requetes')->select('idRequete')
@@ -568,7 +710,9 @@ class RequeteController extends Controller
                 }
                 }
             }
-            return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+            if($attach)
+            return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+            return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
        }
 
          /**Polycopie */
@@ -583,10 +727,22 @@ class RequeteController extends Controller
             $tab = array($request->nom,$request->observation);
             $info =  implode(" ",$tab);
 
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
             $requete = new Requete();
-            $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+            $requete->dateSoumission =  $dateSoum;
             $requete->type = 14;
             $requete->observation = $info;
+            $session = SessionCSD::all();
+            $last_sessionCsd_object = collect($session)->last();
+            $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+            $attach = false;
+    
+            if($last_sessionCsd_object->dateLimite > $result)
+            {     $attach = true; 
+                $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+            }
+          
             $requete->save();
 
             $data = DB::table('requetes')->select('idRequete')
@@ -604,7 +760,9 @@ class RequeteController extends Controller
                        }
                     }
 
-            return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+                    if($attach)
+                    return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+                    return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
         }
 
          /**Anne sabbatique */
@@ -623,15 +781,25 @@ class RequeteController extends Controller
              $tab = array($request->nom,$request->detisnation,$request->etablissement,$request->DateDébut,$request->DateFin);
              $info =  implode(" ",$tab);
  
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
              $requete = new Requete();
-             $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+             $requete->dateSoumission = $dateSoum;
              $requete->type = 15;
              $requete->observation = $info;
+             $session = SessionCSD::all();
+             $last_sessionCsd_object = collect($session)->last();
+             $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+             $attach = false;
+     
+             if($last_sessionCsd_object->dateLimite > $result)
+             {     $attach = true; 
+                 $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+             }
              $requete->save();
- 
-
- 
-             return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+             if($attach)
+             return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+             return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
          }
 
             /**Rapport recherche */
@@ -648,10 +816,22 @@ class RequeteController extends Controller
                 $tab = array($request->Intitulé,$request->Chef,$request->membre,$request->observation);
                 $info =  implode(" ",$tab);
 
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
                 $requete = new Requete();
-                $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+                $requete->dateSoumission = $dateSoum;
                 $requete->type = 16;
                 $requete->observation = $info;
+                $session = SessionCSD::all();
+                $last_sessionCsd_object = collect($session)->last();
+                $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+                $attach = false;
+        
+                if($last_sessionCsd_object->dateLimite > $result)
+                {     $attach = true; 
+                    $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+                }
+             
                 $requete->save();
 
                 $data = DB::table('requetes')->select('idRequete')
@@ -668,7 +848,9 @@ class RequeteController extends Controller
                     $item->save();
                     }
                 }
-                return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+                if($attach)
+                return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+                return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
             }
 
           
@@ -685,10 +867,23 @@ class RequeteController extends Controller
               $tab = array($request->nom,$request->Niveau,$request->observation);
               $info =  implode(" ",$tab);
   
+        $dateSoum =  new DateTime( date('Y-m-d'));
+
               $requete = new Requete();
-              $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+              $requete->dateSoumission = $dateSoum;
               $requete->type = 17;
               $requete->observation = $info;
+              $session = SessionCSD::all();
+              $last_sessionCsd_object = collect($session)->last();
+              $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+              $attach = false;
+      
+              if($last_sessionCsd_object->dateLimite > $result)
+              {     $attach = true; 
+                  $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+              }
+           
+  
               $requete->save();
 
               $data = DB::table('requetes')->select('idRequete')
@@ -706,9 +901,9 @@ class RequeteController extends Controller
                  }
               }
   
- 
-  
-              return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+              if($attach)
+              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
           }
 
           /**Titularisation */
@@ -722,11 +917,24 @@ class RequeteController extends Controller
   
               $tab = array($request->nom,$request->observation);
               $info =  implode(" ",$tab);
+
+              $dateSoum =  new DateTime( date('Y-m-d'));
   
               $requete = new Requete();
-              $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+              $requete->dateSoumission = $dateSoum;
               $requete->type = 18;
               $requete->observation = $info;
+              $session = SessionCSD::all();
+              $last_sessionCsd_object = collect($session)->last();
+              $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+              $attach = false;
+      
+              if($last_sessionCsd_object->dateLimite > $result)
+              {     $attach = true; 
+                  $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+              }
+           
+              
               $requete->save();
 
               $data = DB::table('requetes')->select('idRequete')
@@ -745,8 +953,9 @@ class RequeteController extends Controller
               }
   
  
-  
-              return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+              if($attach)
+              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
           }
 
           
@@ -764,10 +973,22 @@ class RequeteController extends Controller
               $tab = array($request->nom,$request->etablissement,$request->observation);
               $info =  implode(" ",$tab);
   
+              $dateSoum =  new DateTime( date('Y-m-d'));
+
               $requete = new Requete();
-              $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+              $requete->dateSoumission =  $dateSoum;
               $requete->type = 19;
               $requete->observation = $info;
+              $session = SessionCSD::all();
+              $last_sessionCsd_object = collect($session)->last();
+              $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+              $attach = false;
+      
+              if($last_sessionCsd_object->dateLimite > $result)
+              {     $attach = true; 
+                  $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+              }
+           
               $requete->save();
 
               $data = DB::table('requetes')->select('idRequete')
@@ -787,7 +1008,10 @@ class RequeteController extends Controller
   
  
   
-              return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+             
+              if($attach)
+              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
           }
    /**Mutation */
    public function saveRappExper(Request $request)
@@ -800,11 +1024,22 @@ class RequeteController extends Controller
 
        $tab = array($request->nom,$request->observation);
        $info =  implode(" ",$tab);
+       $dateSoum =  new DateTime( date('Y-m-d'));
 
        $requete = new Requete();
-       $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+       $requete->dateSoumission = $dateSoum;
        $requete->type = 20;
        $requete->observation = $info;
+       $session = SessionCSD::all();
+       $last_sessionCsd_object = collect($session)->last();
+       $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+       $attach = false;
+
+       if($last_sessionCsd_object->dateLimite > $result)
+       {     $attach = true; 
+           $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+       }
+    
        $requete->save();
 
        $data = DB::table('requetes')->select('idRequete')
@@ -821,7 +1056,10 @@ class RequeteController extends Controller
            $item->save();
           }
        }
-       return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+                    
+       if($attach)
+       return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+       return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
    }
 
      /**Suspension de la RT */
@@ -835,11 +1073,22 @@ class RequeteController extends Controller
   
          $tab = array($request->nom,$request->observation);
          $info =  implode(" ",$tab);
+         $dateSoum =  new DateTime( date('Y-m-d'));
   
          $requete = new Requete();
-         $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+         $requete->dateSoumission = $dateSoum;
          $requete->type = 21;
          $requete->observation = $info;
+         $session = SessionCSD::all();
+         $last_sessionCsd_object = collect($session)->last();
+         $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+         $attach = false;
+  
+         if($last_sessionCsd_object->dateLimite > $result)
+         {     $attach = true; 
+             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+         }
+      
          $requete->save();
   
          $data = DB::table('requetes')->select('idRequete')
@@ -856,7 +1105,9 @@ class RequeteController extends Controller
              $item->save();
             }
          }
-         return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+         if($attach)
+         return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+         return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
      }
                /**Rapport recherche */
                public function saveRappRech(Request $request)
@@ -869,11 +1120,22 @@ class RequeteController extends Controller
        
                    $tab = array($request->nom,$request->observation);
                    $info =  implode(" ",$tab);
+                   $dateSoum =  new DateTime( date('Y-m-d'));
        
                    $requete = new Requete();
-                   $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+                   $requete->dateSoumission =  $dateSoum;
                    $requete->type = 22;
                    $requete->observation = $info;
+                   $requete->observation = $info;
+                   $session = SessionCSD::all();
+                   $last_sessionCsd_object = collect($session)->last();
+                   $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+                   $attach = false;
+            
+                   if($last_sessionCsd_object->dateLimite > $result)
+                   {     $attach = true; 
+                       $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+                   }
                    $requete->save();
      
                    $data = DB::table('requetes')->select('idRequete')
@@ -892,8 +1154,9 @@ class RequeteController extends Controller
                    }
        
       
-       
-                   return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+                   if($attach)
+                   return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+                   return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
                }
                 /**Rapport recherche synthese */
                 public function saveRappSyn(Request $request)
@@ -906,11 +1169,22 @@ class RequeteController extends Controller
         
                     $tab = array($request->nom,$request->observation);
                     $info =  implode(" ",$tab);
+                    $dateSoum =  new DateTime( date('Y-m-d'));
         
                     $requete = new Requete();
-                    $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+                    $requete->dateSoumission = $dateSoum ;
                     $requete->type = 23;
                     $requete->observation = $info;
+                    $requete->observation = $info;
+                    $session = SessionCSD::all();
+                    $last_sessionCsd_object = collect($session)->last();
+                    $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+                    $attach = false;
+             
+                    if($last_sessionCsd_object->dateLimite > $result)
+                    {     $attach = true; 
+                        $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+                    }
                     $requete->save();
       
                     $data = DB::table('requetes')->select('idRequete')
@@ -927,7 +1201,9 @@ class RequeteController extends Controller
                         $item->save();
                        }
                     }
-                    return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+                    if($attach)
+                    return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+                    return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
                 }
 
                     /**Modifier cahier de charge d'une formation */
@@ -940,11 +1216,21 @@ class RequeteController extends Controller
             
                         $tab = array($request->observation);
                         $info =  implode(" ",$tab);
+                        $dateSoum =  new DateTime( date('Y-m-d'));
             
                         $requete = new Requete();
-                        $requete->dateSoumission = new DateTime( date('Y-m-d H:i:s'));
+                        $requete->dateSoumission =  $dateSoum;
                         $requete->type = 24;
                         $requete->observation = $info;
+                        $session = SessionCSD::all();
+                        $last_sessionCsd_object = collect($session)->last();
+                        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
+                        $attach = false;
+                 
+                        if($last_sessionCsd_object->dateLimite > $result)
+                        {     $attach = true; 
+                            $requete->idSession = $last_sessionCsd_object->idSessionCSD;
+                        }
                         $requete->save();
           
                         $data = DB::table('requetes')->select('idRequete')
@@ -961,7 +1247,9 @@ class RequeteController extends Controller
                             $item->save();
                            }
                         }
-                        return redirect(route('espaceEC'))->with('success','Votre requête  a été bien soumise, elle sera traitée le :');
+                        if($attach)
+                        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+                        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
                     }
                 
 

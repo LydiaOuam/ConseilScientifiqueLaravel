@@ -2,6 +2,7 @@
     @section('titre')
         Planifier une session CSF
     @endsection
+
 @section('scontent')
 
 

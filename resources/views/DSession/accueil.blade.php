@@ -40,7 +40,7 @@
             <span>Session</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li> <a class="dropdown-item" href="#">
+              <li> <a class="dropdown-item" href="@yield('chemin')">
               <span> Planifier une session</span>
                </a>
                    
@@ -60,8 +60,6 @@
 
                
               <li><a class="dropdown-item" href="#">Modifier la date d'une session</a></li>
-              <li><a class="dropdown-item " href="@yield('lienfixer')">Fixer l'ordre du jour</a></li>
-              <li><a class="dropdown-item" href="{{route('Comptes')}}">Fixer les délai de dépôt des dossiers </a></li>
               <li><a class="dropdown-item" href="{{route('Comptes')}}">Générer un extrait de PV </a></li>
 
 

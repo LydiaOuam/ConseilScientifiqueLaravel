@@ -2,6 +2,8 @@
     @section('titre')
         Planifier une session CSF
     @endsection
+
+
 @section('scontent')
 
   <form  method="POST" action="{{route('saveCSD')}}" enctype="multipart/form-data"style="margin-top=20px; margin-top:40px ;padding:10px 70px;border-style: solid;border-color: white;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">

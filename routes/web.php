@@ -104,27 +104,7 @@ Route::get('/detailMessage/{id}',[ContactController::class,"afficherMessage"])->
 
 Route::get('/repondre/{id}',[ContactController::class,"repondre"])->name('Repondre');
 
-Route::get('/session',function()
-{
-    return view('/DSession.session');
-});
 
-
-Route::get('/accueil',function()
-{
-    return view('/DSession.accueil');
-});
-
-
-Route::get('/planifier',[SessionController::class,"allPoint"])->name('SessionCSF');
-
-Route::post('/planifier',[SessionController::class,"saveSess"])->name('SaveSessCsf');
-
-Route::get('/planifierCSD',function()
-{
-    return view('DSession.plaifiersessCSD');
-
-})->name('planiCsd');
 Route::post('/planifierCSD',[SessionController::class,"saveSessCSD"])->name('saveCSD');
 
 Route::get('classerMandat',[MandatController::class,"infMandat"])->name('classer');
@@ -318,6 +298,41 @@ Route::get('/modifierCahier',function()
 
 Route::post('/modifierCahier',[RequeteController::class,"saveModif"])->name('savemodifierCahier');
 
+/**--------------------------------------------------------------------------------------
+ * Sessions
+ * --------------------------------------------------------------------------------------
+ */
+Route::get('/session',function()
+{
+    return view('/DSession.session');
+
+})->name('traiterRequete');
+
+/**
+ * 
+ * Route::get('/accueil',function()
+ *      {
+ *           return view('/DSession.accueil');
+ *      })->name('AccueilCS');
+ *  
+ */
+
+
+
+Route::get('/planifier',[SessionController::class,"allPoint"])->name('SessionCSF');
+
+Route::post('/planifier',[SessionController::class,"saveSess"])->name('SaveSessCsf');
+
+Route::get('/planifierCSD',function()
+{
+    return view('DSession.plaifiersessCSD');
+
+})->name('planiCsd');
+
+ Route::get('sessionCSF',function()
+ {
+     return view('DSession');
+ });
 
 
 

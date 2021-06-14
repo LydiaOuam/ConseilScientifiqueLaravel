@@ -10,6 +10,7 @@ use App\HTTP\Controllers\MessagerieController;
 use App\HTTP\Controllers\RequeteController;
 use App\HTTP\Controllers\RequeController;
 use App\HTTP\Controllers\SessionController;
+use App\HTTP\Controllers\TraitementController;
 use App\Models\Compte;
 
 
@@ -302,11 +303,7 @@ Route::post('/modifierCahier',[RequeteController::class,"saveModif"])->name('sav
  * Sessions
  * --------------------------------------------------------------------------------------
  */
-Route::get('/session',function()
-{
-    return view('/DSession.session');
-
-})->name('traiterRequete');
+Route::get('/session',[TraitementController::class,"traiter"])->name('traiterRequete');
 
 /**
  * 

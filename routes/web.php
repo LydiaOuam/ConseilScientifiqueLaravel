@@ -333,10 +333,7 @@ Route::get('/planifierCSD',function()
 
  //---------------------------------------------------------------------------
 
- Route::get('listItems/{id}',function()
- {
-     return 'hello';
- })->name('List');
+ Route::get('listItems/{id}',[TraitementController::class,"list"])->name('List');
 
 
 

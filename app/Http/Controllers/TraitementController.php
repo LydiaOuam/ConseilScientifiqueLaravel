@@ -20,4 +20,12 @@ class TraitementController extends Controller
         $types = Point::all();
         return view('/DSession.session',compact('requetes','types','items'));
     }
+
+    public function list( $id)
+    {
+        $items = Item::where('idItem',$id)->get();
+
+        // dd($items);
+        return view('list',compact('items'));
+    }
 }

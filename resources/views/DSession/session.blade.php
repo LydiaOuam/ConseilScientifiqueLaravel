@@ -43,13 +43,10 @@
           </button>
         </h2>
         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-        <div>{{$requete->idRequete}}
+        <div>
               @foreach($items as $item)
-              {{$item->idRequete}}<br>
-                {{$item->fichier}}<br>
-               <iframe src="/upload/{{$item->fichier}}" frameborder="0"></iframe>
-                @if($item->idRequete == $requete->idRequete)
-                
+              @if($item->idRequete == $requete->idRequete)
+                <a target="_blank"  href="{{route('List',[$item->idItem])}}">{{$item->fichier}}</a><br> 
                 @endif
               @endforeach
         </div>

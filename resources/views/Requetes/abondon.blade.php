@@ -14,19 +14,19 @@
 
 
 
-      <div class="input-group input-group-sm mb-3" ">
+      <div class="input-group input-group-sm mb-3" >
       <span  style="margin-right:20px;">Département : </span>
         <input type="text" class="form-control" name="Département" >
       </div>
 
 
-      <div class="input-group input-group-sm mb-3" ">
+      <div class="input-group input-group-sm mb-3" >
       <span  style="margin-right:20px;">Nom et Prénom de directeur : </span>
         <input type="text" class="form-control" name="Directeur">
       </div>
 
       
-      <div class="input-group input-group-sm mb-3" ">
+      <div class="input-group input-group-sm mb-3" >
       <span  style="margin-right:20px;">Intitulé de la thèse : </span>
         <textarea type="text" class="form-control" name="Intitulé"></textarea>
       </div>

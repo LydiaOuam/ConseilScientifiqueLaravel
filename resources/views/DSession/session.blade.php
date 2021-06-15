@@ -6,7 +6,7 @@
 
 
 @section('scontent')
-<form style=" margin-left:30px;margin-right:30px;margin-top:50px;">
+<div style=" margin-left:30px;margin-right:30px;margin-top:50px;">
     <div class="accordion" id="accordionPanelsStayOpenExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -200,6 +200,9 @@
         </div>
         
       </div>
+ 
+<form action="{{route('deciderRequete',[$requete->idRequete])}}" method="POST" >
+      @csrf    
       <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
@@ -209,7 +212,7 @@
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
         <div style="margin-top:20px;">
         <h6   style="margin-top:20px;margin-left:20px;"> Donner un avis</h6>
-            <select class="form-select" aria-label="Default select example"  style="margin-top:20px;margin-left:20px;width:50%;">
+            <select class="form-select" aria-label="Default select example" name="decision"  style="margin-top:20px;margin-left:20px;width:50%;">
                 <option value="1">Favorable</option>
                 <option value="2">Défavorable</option>
                 <option value="3">Différé</option>
@@ -218,8 +221,12 @@
             </select>
         </div >
           <h6   style="margin-top:20px;margin-left:20px;"> Donner une observation</h6>
-          <div class="accordion-body" id="editor"></div>
-          <button type="button" class="btn btn-success"  style="margin-top:20px;margin-left:20px;margin-bottom:20px;">Valider</button>
+                    
+            <div class="input-group input-group-sm mb-3">
+              <textarea type="text" class="form-control" name="observation" style="margin-right:20px; margin-left:20px;"></textarea>
+            </div>
+
+          <button type="submit" class="btn btn-success"  style="margin-top:20px;margin-left:20px;margin-bottom:20px;">Valider</button>
         </div>
         
       </div>
@@ -229,19 +236,9 @@
   
 </form>
 {{$requetes->links()}}
-
+</div>
 <!-- ------------------------ -->
 
-
-
-
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
 
 @endsection
 </body>

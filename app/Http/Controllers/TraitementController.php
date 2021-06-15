@@ -28,4 +28,11 @@ class TraitementController extends Controller
         // dd($items);
         return view('list',compact('items'));
     }
+    
+    public function decision(Request $request,$id)
+    {
+        dd($id);
+        dd($request->all());
+    }
+
 }

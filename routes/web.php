@@ -305,6 +305,9 @@ Route::post('/modifierCahier',[RequeteController::class,"saveModif"])->name('sav
  */
 Route::get('/session',[TraitementController::class,"traiter"])->name('traiterRequete');
 
+Route::post('/session/{id}',[TraitementController::class,"decision"])->name('deciderRequete');
+
+
 /**
  * 
  * Route::get('/accueil',function()
@@ -330,6 +333,7 @@ Route::get('/planifierCSD',function()
  {
      return view('DSession');
  });
+ 
 
  //---------------------------------------------------------------------------
 

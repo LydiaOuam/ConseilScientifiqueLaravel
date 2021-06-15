@@ -138,6 +138,46 @@
                           Observations :@for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
                           @endif
                     @endforeach
+                    
+                    @elseif($requete->type == 15)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                          Pays de detisnation : {{$champs[2]}} <br>
+                          Date début de séjour: {{$champs[3]}} <br>
+                          Date fin de séjour: {{$champs[4]}} <br>
+                          Etablissement d'accueil :@for($i = 5;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
+                          @endif
+                    @endforeach
+
+                    @elseif($requete->type == 16)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Chef du projet: {{$champs[0]}} {{$champs[1]}} <br>
+                          Intitulé du projet:@for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
+                          @endif
+                    @endforeach
+
+                    @elseif($requete->type == 17)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                          Niveau :  {{$champs[2]}}<br>
+                         Désignation :@for($i = 3;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
+                          @endif
+                    @endforeach
+
+                    @elseif($requete->type == 19)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                          Etablissement d’accueil : @for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
+                          @endif
+                    @endforeach
             @endif
 
           </div>

@@ -6,6 +6,10 @@
 <form  method="POST" action="{{route('SaveOffreFormat')}}" enctype="multipart/form-data" style="margin-top=20px;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
 @csrf
 
+        <div class="input-group input-group-sm mb-3" >
+        <span  style="margin-right:20px;">Nom et Prénom : </span>
+                <input type="text" class="form-control" name="Nom" >
+        </div>
 
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Désignation: </span>
@@ -24,11 +28,6 @@
           <input type="file" accept="application/pdf" class="form-control" name="cahier">
         </div>
 
-
-        <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Observation: </span>
-        <textarea class="form-control" aria-label="With textarea" name="observation"></textarea>
-        </div>
 
         <button type="submit" class="btn btn-success" style="margin-left:50px;">Soumettre</button>
 

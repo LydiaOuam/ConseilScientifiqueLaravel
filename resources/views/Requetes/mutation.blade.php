@@ -22,13 +22,7 @@
         <div  class="mb-3">
                     <label for="demande" class="form-label"> <h6>Demande:</h6></label>
                     <input  type="file" accept="application/pdf" class="form-control" name="demande">
-            </div> 
-
-
-        <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Observation: </span>
-        <textarea class="form-control" aria-label="With textarea" name="observation"></textarea>
-        </div>
+        </div> 
 
         <button type="submit" class="btn btn-success" style="margin-left:50px;">Soumettre</button>
 

@@ -782,7 +782,7 @@ class RequeteController extends Controller
 
              ]);
  
-             $tab = array($request->nom,$request->detisnation,$request->etablissement,$request->DateDébut,$request->DateFin);
+             $tab = array($request->nom,$request->detisnation,$request->DateDébut,$request->DateFin,$request->etablissement);
              $info =  implode(" ",$tab);
  
         $dateSoum =  new DateTime( date('Y-m-d'));
@@ -813,11 +813,10 @@ class RequeteController extends Controller
                 $request->validate([
                     'Intitulé' => 'required',
                     'Chef' => 'required',
-                    'membre' => 'required',
                     'rapport' => 'required',
                 ]);
 
-                $tab = array($request->Intitulé,$request->Chef,$request->membre,$request->observation);
+                $tab = array($request->Chef,$request->Intitulé);
                 $info =  implode(" ",$tab);
 
         $dateSoum =  new DateTime( date('Y-m-d'));
@@ -863,12 +862,13 @@ class RequeteController extends Controller
           {
             //   dd($request->all());
               $request->validate([
+                'Nom' => 'required',
                   'désignation' => 'required',
                   'Niveau' => 'required',
                   'cahier' => 'required',
               ]);
   
-              $tab = array($request->nom,$request->Niveau,$request->observation);
+              $tab = array($request->Nom,$request->Niveau,$request->désignation);
               $info =  implode(" ",$tab);
   
         $dateSoum =  new DateTime( date('Y-m-d'));
@@ -974,7 +974,7 @@ class RequeteController extends Controller
                   'demande' => 'required',
               ]);
   
-              $tab = array($request->nom,$request->etablissement,$request->observation);
+              $tab = array($request->nom,$request->etablissement);
               $info =  implode(" ",$tab);
   
               $dateSoum =  new DateTime( date('Y-m-d'));

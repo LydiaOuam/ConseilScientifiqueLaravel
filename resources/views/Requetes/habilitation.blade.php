@@ -20,38 +20,38 @@
 
         <div class="mb-3">
         <label for="cv" class="form-label"><h6>Curriculum vitae:</h6></label>
-          <input type="file" class="form-control" name="cv">
+          <input type="file"  accept="application/pdf"class="form-control" name="cv">
         </div>
 
         <div class="mb-3">
         <label for="brevet" class="form-label"><h6>Les Brevets d'invention:</h6></label>
-          <input type="file" class="form-control" name="brevet[]" multiple>
+          <input type="file" accept="application/pdf" class="form-control" name="brevet[]" multiple>
         </div>
 
 
         <div class="mb-3">
         <label for="communication" class="form-label"><h6>Les Communications:</h6></label>
-          <input type="file" class="form-control" name="communication[]" multiple>
+          <input type="file" accept="application/pdf" class="form-control" name="communication[]" multiple>
         </div>
 
         <div class="mb-3">
         <label for="publication" class="form-label"><h6>Les Publications:</h6></label>
-          <input type="file" class="form-control" name="publication[]" multiple>
+          <input type="file" accept="application/pdf" class="form-control" name="publication[]" multiple>
         </div>
 
         <div class="mb-3">
         <label for="animation" class="form-label"><h6>Les Animations scientifiques:</h6></label>
-          <input type="file" class="form-control" name="animation[]" multiple>
+          <input type="file" accept="application/pdf" class="form-control" name="animation[]" multiple>
         </div>
 
         <div class="mb-3">
         <label for="responsabilités" class="form-label"><h6>Les Responsabilités:</h6></label>
-          <input type="file" class="form-control" name="responsabilités[]" multiple>
+          <input type="file" accept="application/pdf" class="form-control" name="responsabilités[]" multiple>
         </div>
 
         <div class="mb-3">
         <label for="revues" class="form-label"><h6>Les Revues:</h6></label>
-          <input type="file" class="form-control" name="revues[]" multiple>
+          <input type="file" accept="application/pdf" class="form-control" name="revues[]" multiple>
         </div>
 
   

@@ -14,7 +14,7 @@
 
         <div  class="mb-3">
                     <label for="demande" class="form-label"><h6>Une demande:</h6></label>
-                    <input  type="file"  class="form-control" name="demande">
+                    <input  type="file" accept="application/pdf"  class="form-control" name="demande">
             </div> 
 
             <div class="input-group input-group-sm mb-3" >

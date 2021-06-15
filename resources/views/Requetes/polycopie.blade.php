@@ -16,7 +16,7 @@
 
         <div class="mb-3">
         <label for="polycopié" class="form-label"><h6>Le polycopié:</h6></label>
-          <input type="file" class="form-control" name="polycopié">
+          <input type="file"  accept="application/pdf" class="form-control" name="polycopié">
         </div>
 
 

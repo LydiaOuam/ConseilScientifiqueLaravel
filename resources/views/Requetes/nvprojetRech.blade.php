@@ -26,7 +26,7 @@
         
         <div class="mb-3">
         <label for="rapport" class="form-label"><h6>Le rapport:</h6></label>
-          <input type="file" class="form-control" name="rapport">
+          <input type="file" accept="application/pdf" class="form-control" name="rapport">
         </div>
 
 

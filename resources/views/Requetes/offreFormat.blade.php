@@ -21,7 +21,7 @@
 
         <div class="mb-3">
         <label for="cahier" class="form-label"><h6>Le cahier de charge:</h6></label>
-          <input type="file" class="form-control" name="cahier">
+          <input type="file" accept="application/pdf" class="form-control" name="cahier">
         </div>
 
 

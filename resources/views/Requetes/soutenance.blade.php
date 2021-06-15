@@ -40,17 +40,17 @@
         </div>
         <div  class="mb-3">
                     <label for="rapport" class="form-label"> <h6>Rapport soutenance:</h6></label>
-                    <input  type="file"  class="form-control" name="rapport[]" multiple>
+                    <input  type="file"  accept="application/pdf" class="form-control" name="rapport[]" multiple>
             </div> 
             <div class="mb-3">
         <label for="rapport" class="form-label"> <h6>Brevet d'invention:</h6></label>
-          <input type="file" class="form-control" name="brevet[]" multiple>
+          <input type="file" accept="application/pdf" class="form-control" name="brevet[]" multiple>
         </div>
 
         
         <div class="mb-3">
         <label for="rapport" class="form-label"><h6>Publication:</h6></label>
-          <input type="file" class="form-control" name="publication[]" multiple>
+          <input type="file" accept="application/pdf" class="form-control" name="publication[]" multiple>
         </div>
 
 

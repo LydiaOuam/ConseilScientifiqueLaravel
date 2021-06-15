@@ -331,6 +331,13 @@ Route::get('/planifierCSD',function()
      return view('DSession');
  });
 
+ //---------------------------------------------------------------------------
+
+ Route::get('listItems/{id}',function()
+ {
+     return 'hello';
+ })->name('List');
+
 
 
 

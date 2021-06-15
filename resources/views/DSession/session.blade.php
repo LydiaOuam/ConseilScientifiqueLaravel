@@ -19,16 +19,16 @@
           <div class="accordion-body">
           @foreach($requetes as $requete)
             
-           @php  $champs = explode(' ',$requete->observation)@endphp
+           @php  $champs = explode(' ',$requete->observation);
+                $taille = count($champs) @endphp
             @if($requete->type == 1)
               @foreach($types as $type)
                 @if($type->id == $requete->type)
                   Requete : {{$type->nom}}<br>
-                  Intitulé de la thèse :  {{$champs[2]}} <br>
                   Nom et Prénom : {{$champs[0]}}  {{$champs[1]}} <br>
-                  Département : {{$champs[3]}}<br>
-                  Nom et Prénom de directeur : {{$champs[4]}}<br>
-                  Observation eventuelles : {{$champs[5]}}<br>
+                  Département :  {{$champs[2]}} <br>
+                  Nom et Prénom de directeur : {{$champs[3]}} {{$champs[4]}}<br>
+                  Observation eventuelles : @for($i = 5;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
                 @endif
                 @endforeach
                 
@@ -50,9 +50,7 @@
                     @if($type->id == $requete->type)
                       Requete : {{$type->nom}}<br>
                       Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                      Intitulé du sujet de thèse initiale : {{$champs[2]}}  <br>
-                      Intitulé du nouveau sujet de thèse : {{$champs[3]}} <br>
-                      Motif: {{$champs[4]}}<br>
+                      Intitulé du sujet de thèse initiale : @for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor  <br>
                       @endif
                 @endforeach
 
@@ -65,7 +63,7 @@
                       Directeur de thèse : {{$champs[3]}}  {{$champs[4]}}  <br>
                       Année de la première inscription:  {{$champs[5]}}<br>
                       Département: {{$champs[6]}}<br>
-                      Intitulé de la thèse:{{$champs[7]}}<br>
+                      Intitulé de la thèse: @for($i = 7;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
                       @endif
                 @endforeach
                     @elseif($requete->type == 5)
@@ -75,18 +73,69 @@
                           Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
                           Nom et Prénom de directeur de thèse actuel : {{$champs[2]}}  {{$champs[3]}}  <br>
                           Nom et Prénom de directeur : {{$champs[4]}} {{$champs[5]}}<br>
-                          Motif:{{$champs[6]}}<br>
+                          Motif:@for($i = 6;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
                           @endif
                     @endforeach
-                    
-                    @elseif($requete->type == 5)
+
+                    @elseif($requete->type == 7 || $requete->type == 10 )
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Type du Doctorat :{{$champs[0]}} <br>
+                          Département: {{$champs[1]}}<br>
+                          Nom et Prénom : {{$champs[2]}} {{$champs[3]}} <br>
+                          Nom et Prénom du directeur : {{$champs[4]}}  {{$champs[5]}}  <br>
+                          Nom et Prénom du co-directeur :  {{$champs[6]}} {{$champs[7]}}<br>
+                          Diplôme d’accès :{{$champs[8]}}<br>
+                          Intitulé de la thèse :@for($i = 9;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
+                          @endif
+                    @endforeach
+
+                    @elseif($requete->type == 8)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
                           Requete : {{$type->nom}}<br>
                           Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Nom et Prénom de directeur de thèse actuel : {{$champs[2]}}  {{$champs[3]}}  <br>
-                          Nom et Prénom de directeur : {{$champs[4]}} {{$champs[5]}}<br>
-                          Motif:{{$champs[6]}}<br>
+                          Motif:@for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
+                          @endif
+                    @endforeach
+
+                    @elseif($requete->type == 9)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                          Nom et Prénom du co-directeur :{{$champs[2]}} {{$champs[3]}}<br>
+                          Motif:@for($i = 4;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
+                          @endif
+                    @endforeach
+
+                    @elseif($requete->type == 11 || $requete->type == 12 )
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                          Grade actuel : {{$champs[2]}} {{$champs[3]}} {{$champs[4]}} <br>
+                          Promotion :@for($i = 5;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
+                          @endif
+                    @endforeach
+
+                    @elseif($requete->type == 13)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                          Département: {{$champs[2]}} <br>
+                          Observations :@for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
+                          @endif
+                    @endforeach
+
+                    @elseif($requete->type == 14||$requete->type == 20||$requete->type == 23||$requete->type == 18||$requete->type == 21||$requete->type == 24||$requete->type == 22)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                          Observations :@for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
                           @endif
                     @endforeach
             @endif

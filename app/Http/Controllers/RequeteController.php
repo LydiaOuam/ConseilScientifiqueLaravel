@@ -231,11 +231,12 @@ class RequeteController extends Controller
     {
         $request->validate([
             'Nom' => 'required',
-            'Intitulé' => 'required',
             'Département'=>'required',
             'Directeur'=>'required',
+            'Intitulé' => 'required',
+
         ]);
-        $tab = array($request->Nom,$request->Intitulé,$request->Département,$request->Directeur,$request->Observation);
+        $tab = array($request->Nom,$request->Département,$request->Directeur,$request->Intitulé);
         $info =  implode(" ",$tab);
         $dateSoum =  new DateTime( date('Y-m-d'));
         $requete = new Requete();
@@ -303,11 +304,9 @@ class RequeteController extends Controller
         $request->validate([
             'nom'=>'required',
             'IntituléInitial' => 'required',
-            'NouveauIntitulé' => 'required',
-            'Motif'=>'required',
         ]);
 
-        $tab = array($request->nom,$request->IntituléInitial,$request->NouveauIntitulé,$request->Motif);
+        $tab = array($request->nom,$request->IntituléInitial);
         $info =  implode(" ",$tab);
 
         $dateSoum =  new DateTime( date('Y-m-d'));
@@ -448,10 +447,11 @@ class RequeteController extends Controller
            $request->validate([
                
                'nom'=>'required',
+               'nomDirecteur'=>'required',
                'observation' => 'required',
            ]);
    
-           $tab = array($request->nom,$request->observation);
+           $tab = array($request->nom,$request->nomDirecteur,$request->observation);
            $info =  implode(" ",$tab);
    
         $dateSoum =  new DateTime( date('Y-m-d'));
@@ -521,11 +521,12 @@ class RequeteController extends Controller
        {
             // dd($request->all());
            $request->validate([
+               'Nom'=>'required',
                'GradeActuel' => 'required',
                'Grade' => 'required',
            ]);
    
-           $tab = array($request->GradeActuel,$request->Grade);
+           $tab = array($request->Nom,$request->GradeActuel,$request->Grade);
            $info =  implode(" ",$tab);
    
         $dateSoum =  new DateTime( date('Y-m-d'));
@@ -556,11 +557,12 @@ class RequeteController extends Controller
        {
             // dd($request->all());
            $request->validate([
+               'Nom'=>'required',
                'GradeActuel' => 'required',
                'Grade' => 'required',
            ]);
    
-           $tab = array($request->GradeActuel,$request->Grade);
+           $tab = array($request->Nom,$request->GradeActuel,$request->Grade);
            $info =  implode(" ",$tab);
    
         $dateSoum =  new DateTime( date('Y-m-d'));
@@ -1213,10 +1215,11 @@ class RequeteController extends Controller
                     {
                        //  dd($request->all());
                         $request->validate([
+                            'Nom'=>'required',
                             'cahier' => 'required',
                         ]);
             
-                        $tab = array($request->observation);
+                        $tab = array($request->Nom,$request->observation);
                         $info =  implode(" ",$tab);
                         $dateSoum =  new DateTime( date('Y-m-d'));
             

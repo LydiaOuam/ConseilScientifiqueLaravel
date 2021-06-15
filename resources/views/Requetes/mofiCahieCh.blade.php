@@ -5,6 +5,12 @@
 <form  method="POST" action="{{route('savemodifierCahier')}}" enctype="multipart/form-data" style="margin-top=20px;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
 @csrf
 
+
+      <div class="input-group input-group-sm mb-3" >
+      <span  style="margin-right:20px;">Nom et Prénom : </span>
+        <input type="text" class="form-control" name="Nom" >
+      </div>
+
         <div class="mb-3">
         <label for="cahier" class="form-label"> <h6>Le cahier de charge:</h6></label>
           <input type="file" accept="application/pdf" class="form-control" name="cahier">
@@ -13,7 +19,7 @@
 
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Observation: </span>
-        <textarea class="form-control" aria-label="With textarea" placeholder="Vous pouvez decrire ici les modifications apportées "></textarea>
+        <textarea class="form-control" aria-label="With textarea" name="observation" placeholder="Vous pouvez decrire ici les modifications apportées "></textarea>
         </div>
 
         <button type="submit" class="btn btn-success" style="margin-left:50px;">Soumettre</button>

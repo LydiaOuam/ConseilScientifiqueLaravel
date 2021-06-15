@@ -15,11 +15,6 @@
 
 
       <div class="input-group input-group-sm mb-3" ">
-      <span  style="margin-right:20px;">Intitulé de la thèse : </span>
-        <textarea type="text" class="form-control" name="Intitulé"></textarea>
-      </div>
-
-      <div class="input-group input-group-sm mb-3" ">
       <span  style="margin-right:20px;">Département : </span>
         <input type="text" class="form-control" name="Département" >
       </div>
@@ -30,10 +25,12 @@
         <input type="text" class="form-control" name="Directeur">
       </div>
 
-      <div class="input-group input-group-sm mb-3" >
-      <span  style="margin-right:20px;">Observation eventuelles: </span>
-      <textarea class="form-control" placeholder="Vous pouvez expliquer pourquoi vous voulez abandonner" name="Observation"></textarea>
+      
+      <div class="input-group input-group-sm mb-3" ">
+      <span  style="margin-right:20px;">Intitulé de la thèse : </span>
+        <textarea type="text" class="form-control" name="Intitulé"></textarea>
       </div>
+
 
 
   <button type="submit" class="btn btn-success" style="margin-left:50px;">Soumettre</button>

@@ -301,12 +301,13 @@ class RequeteController extends Controller
     {
         // dd($request->all());
         $request->validate([
+            'nom'=>'required',
             'IntituléInitial' => 'required',
             'NouveauIntitulé' => 'required',
             'Motif'=>'required',
         ]);
 
-        $tab = array($request->IntituléInitial,$request->NouveauIntitulé,$request->Motif);
+        $tab = array($request->nom,$request->IntituléInitial,$request->NouveauIntitulé,$request->Motif);
         $info =  implode(" ",$tab);
 
         $dateSoum =  new DateTime( date('Y-m-d'));
@@ -335,12 +336,13 @@ class RequeteController extends Controller
     {
         // dd($request->all());
         $request->validate([
+            'nom'=>'required',
             'NomDirecteurActuel' => 'required',
             'NomDirecteur' => 'required',
             'Motif'=>'required',
         ]);
 
-        $tab = array($request->NomDirecteurActuel,$request->NomDirecteur,$request->Motif);
+        $tab = array($request->nom,$request->NomDirecteurActuel,$request->NomDirecteur,$request->Motif);
         $info =  implode(" ",$tab);
 
         $dateSoum =  new DateTime( date('Y-m-d'));

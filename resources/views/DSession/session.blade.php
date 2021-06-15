@@ -22,15 +22,73 @@
            @php  $champs = explode(' ',$requete->observation)@endphp
             @if($requete->type == 1)
               @foreach($types as $type)
-                @if($type->id == 1)
+                @if($type->id == $requete->type)
                   Requete : {{$type->nom}}<br>
-                  Intitulé de la thèse :  {{$champs[1]}} <br>
-                  Nom et Prénom : {{$champs[0]}} <br>
-                  Département : {{$champs[2]}}<br>
-                  Nom et Prénom de directeur : {{$champs[3]}}<br>
-                  Observation eventuelles : {{$champs[4]}}<br>
+                  Intitulé de la thèse :  {{$champs[2]}} <br>
+                  Nom et Prénom : {{$champs[0]}}  {{$champs[1]}} <br>
+                  Département : {{$champs[3]}}<br>
+                  Nom et Prénom de directeur : {{$champs[4]}}<br>
+                  Observation eventuelles : {{$champs[5]}}<br>
                 @endif
                 @endforeach
+                
+              @elseif($requete->type == 2)
+              @foreach($types as $type)
+                @if($type->id == $requete->type)
+                  Requete : {{$type->nom}}<br>
+                  Nom et Prénom : {{$champs[0]}} {{$champs[1]}}<br>
+                  Pays de destination :  {{$champs[2]}} <br>
+                  Etablissement d'accueil : {{$champs[3]}} <br>
+                  Date début  de séjour : {{$champs[4]}}<br>
+                  Date fin de séjour : {{$champs[5]}}<br>
+                  Responasable de stage : {{$champs[6]}}<br>
+                @endif
+                @endforeach
+
+                  @elseif($requete->type == 3)
+                  @foreach($types as $type)
+                    @if($type->id == $requete->type)
+                      Requete : {{$type->nom}}<br>
+                      Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                      Intitulé du sujet de thèse initiale : {{$champs[2]}}  <br>
+                      Intitulé du nouveau sujet de thèse : {{$champs[3]}} <br>
+                      Motif: {{$champs[4]}}<br>
+                      @endif
+                @endforeach
+
+                  @elseif($requete->type == 4)
+                  @foreach($types as $type)
+                    @if($type->id == $requete->type)
+                      Requete : {{$type->nom}}<br>
+                      Type du Doctorat :{{$champs[0]}} <br>
+                      Nom et Prénom : {{$champs[1]}} {{$champs[2]}} <br>
+                      Directeur de thèse : {{$champs[3]}}  {{$champs[4]}}  <br>
+                      Année de la première inscription:  {{$champs[5]}}<br>
+                      Département: {{$champs[6]}}<br>
+                      Intitulé de la thèse:{{$champs[7]}}<br>
+                      @endif
+                @endforeach
+                    @elseif($requete->type == 5)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                          Nom et Prénom de directeur de thèse actuel : {{$champs[2]}}  {{$champs[3]}}  <br>
+                          Nom et Prénom de directeur : {{$champs[4]}} {{$champs[5]}}<br>
+                          Motif:{{$champs[6]}}<br>
+                          @endif
+                    @endforeach
+                    
+                    @elseif($requete->type == 5)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                          Requete : {{$type->nom}}<br>
+                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
+                          Nom et Prénom de directeur de thèse actuel : {{$champs[2]}}  {{$champs[3]}}  <br>
+                          Nom et Prénom de directeur : {{$champs[4]}} {{$champs[5]}}<br>
+                          Motif:{{$champs[6]}}<br>
+                          @endif
+                    @endforeach
             @endif
 
           </div>

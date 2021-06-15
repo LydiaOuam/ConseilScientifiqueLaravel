@@ -213,10 +213,10 @@
         <div style="margin-top:20px;">
         <h6   style="margin-top:20px;margin-left:20px;"> Donner un avis</h6>
             <select class="form-select" aria-label="Default select example" name="decision"  style="margin-top:20px;margin-left:20px;width:50%;">
-                <option value="1">Favorable</option>
-                <option value="2">Défavorable</option>
-                <option value="3">Différé</option>
-                <option value="3">Réserves</option>
+                <option value="Favorable">Favorable</option>
+                <option value="Défavorable">Défavorable</option>
+                <option value="Différé">Différé</option>
+                <option value="Réserves">Réserves</option>
 
             </select>
         </div >

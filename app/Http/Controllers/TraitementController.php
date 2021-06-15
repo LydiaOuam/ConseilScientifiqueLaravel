@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Requete;
 use App\Models\Point;
 use App\Models\Item;
+use App\Models\Decision;
 
 
 
@@ -31,8 +32,14 @@ class TraitementController extends Controller
     
     public function decision(Request $request,$id)
     {
-        dd($id);
-        dd($request->all());
+        $decision = new Decision();
+        $decision->idRequete = $id;
+        $decision->idPresident = 2;//session('user')->id;
+        $decision->avis = $request->decision;
+        $decision->observation = $request->observation;
+        $decision->save();
+        // dd($id);
+        // dd($request->all());
     }
 
 }

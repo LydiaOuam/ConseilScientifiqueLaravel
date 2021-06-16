@@ -36,7 +36,7 @@
   <div class="mb-3">
     <label for="email" class="form-label">Destinataire:</label>
     <!-- <input type="email" class="form-control typeahead" name="email" value="{{old('email')}}" >  -->
-    <input class="form-control" list="datalistOptions" id="exampleDataList" >
+    <input class="form-control" list="datalistOptions" id="exampleDataList" name="email" >
                     <datalist  id="datalistOptions">
                     @foreach($users as $user)
                         <option value="{{$user->login}}">{{$user->name}} {{$user->fname}}</option>

@@ -39,6 +39,7 @@ Route::get('/',function()
 
 Route::get('/modale',[ComptesController::class,"showRoleUser"])->name('ShowRoleUser');
 
+Route::post('modale/{id}',[ComptesController::class,"choisirRole"])->name('ChoisirRole');
 
 Route::get('/createMandat',[MandatController::class,"showPresident"])->name('Créer');
 
@@ -338,7 +339,8 @@ Route::get('/planifierCSD',function()
  //---------------------------------------------------------------------------
 
  Route::get('listItems/{id}',[TraitementController::class,"list"])->name('List');
-
+ 
+ 
 
 
 

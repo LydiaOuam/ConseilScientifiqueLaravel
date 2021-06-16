@@ -50,7 +50,7 @@ class MandatController extends Controller
 
         if(count($membre) > 0)
         {
-            return redirect (route('AfficherMember',[$compte->idDept]))->with('error','Membre déja existant');
+            return redirect (route('AfficherMember',[$compte->idDept]))->with('error','Membre déja ajouté');
         }
         else{
             
@@ -82,6 +82,11 @@ class MandatController extends Controller
                     ->orderBy('created_at', 'desc')
                     ->skip(1)->take(1)->first();
 
+        if($mandat == null)
+        {
+             return redirect (route('Accueil'))->with('success',"Il n'existe pas de mandat à classer");
+
+        }
          DB::update('update mandats set etat = 0 where idMandat = ?',
                     [$mandat->idMandat]);
         return redirect (route('classer'))->with('success','Mandat classé');

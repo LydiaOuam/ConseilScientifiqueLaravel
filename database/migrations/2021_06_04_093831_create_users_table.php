@@ -27,8 +27,8 @@ class CreateUsersTable extends Migration
             $table->string('TeNumber1')->nullable();
             $table->string('TeNumber2')->nullable();
             $table->string('email2')->nullable();
-            $table->enum('TeachGrade',['Maître assistant A','Maître assistant B','Maître de conférence A','Maître de conférence B','Professeur'])->nullable();
-            $table->enum('searchGrade',['Attaché de recherche','Chargé de recherche','Maître de recherche A','Maître de recherche B','Directeur de recherche'])->nullable();
+            $table->enum('TeachGrade',['Maître assistant A','Maître assistant B','Maître de conférence A','Maître de conférence B','Professeur','NULL'])->nullable();
+            $table->enum('searchGrade',['Attaché de recherche','Chargé de recherche','Maître de recherche','Directeur de recherche','NULL'])->nullable();
             $table->boolean('etat')->default(1);
             $table->boolean('supprim')->default(1); // 1 : n'est pas supprime
             $table->string('photo')->nullable();

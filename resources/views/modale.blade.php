@@ -18,19 +18,20 @@
                     
               <div class="modal-header">
                    
-                      <h5 class="modal-title"><i class="fa fa-bars" aria-hidden="true"></i>  Changer rôle</h5>
+                      <h5 class="modal-title"><i class="fa fa-bars" aria-hidden="true"></i>  Choisir un rôle</h5>
               </div>
                             
               @foreach($roles as $role)
                 @if(in_array($role->id,$user_roles))
-                  <a href="#" class="list-group-item list-group-item-action" aria-current="true" >
+<form method="POST" action="{{route('ChoisirRole',[$role->id])}}" >
+    @csrf
+                  <button type="submit" class="list-group-item list-group-item-action" aria-current="true" >
                     <div class="d-flex w-100 justify-content-between">
-                  
                       <h5 class="mb-1">{{$role->display_name}}</h5>
                       </div>
-                  </a>
+                  </button>
                     @endif
-
+</form>
                 @endforeach
                 <a href="{{route('Accueil')}}"  class="btn btn-primary" style="margin-top:30px;">Annuler</a>
             </div>

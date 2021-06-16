@@ -24,23 +24,26 @@ class AuthController extends Controller
             {
                 if($user->password == $request->password)
                 {
-                    // dd($user->hasRole('administrateur'));
+                   
                    
                    
                     
                     if($user->hasRole('administrateur'))
                     {
                         $request->session()->put('user',$user);
-                        return redirect(route('Accueil'));
+                        return redirect(route('ShowRoleUser'));
                     }
                     elseif($user->hasRole('etudiant-doctorant'))
                     {
-    
+                        $request->session()->put('user',$user);
+                        return redirect(route('ShowRoleUser'));
                         echo 'Session etudiant';
                     }
                     elseif($user->hasRole('enseignant-chercheur'))
                     {
     
+                        $request->session()->put('user',$user);
+                        return redirect(route('ShowRoleUser'));
                         echo 'Session enseignant-chercheur';
                     }
                     elseif($user->hasRole('chefProjetDeRecherche'))

@@ -35,8 +35,16 @@
  @csrf
   <div class="mb-3">
     <label for="email" class="form-label">Destinataire:</label>
-    <input type="email" class="form-control typeahead" name="email" value="{{old('email')}}" > 
-    
+    <!-- <input type="email" class="form-control typeahead" name="email" value="{{old('email')}}" >  -->
+    <input class="form-control" list="datalistOptions" id="exampleDataList" >
+                    <datalist  id="datalistOptions">
+                    @foreach($users as $user)
+                        <option value="{{$user->login}}">{{$user->name}} {{$user->fname}}</option>
+                        
+                    @endforeach
+                       
+                    </datalist>
+
   </div>
   <div class="mb-3">
     <label for="titre" class="form-label">Titre</label>

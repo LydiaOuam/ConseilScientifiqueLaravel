@@ -39,7 +39,30 @@ Gérer les comptes
                   @else
                     <td><a href="{{route('DebloquerCompte',[$compte->id])}}" class="btn btn-primary">Débloquer</a></td>
                   @endif
-                  <td><a href="{{route('SupprimerCompte',[$compte->id])}}" class="btn btn-danger">Supprimer</a></td>
+                  <td>
+
+
+                    <button type="button"  class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Supprimer
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Supprimer</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                          Etes-vous sûr de vouloir supprimer?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <a href="{{route('SupprimerCompte',[$compte->id])}}" class="btn btn-success" >Confirmer</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div></td>
 
                 </tr>
               @endforeach 

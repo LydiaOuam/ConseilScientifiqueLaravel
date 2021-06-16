@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 use App\Models\Message;
 
 
@@ -36,10 +37,14 @@ class MessagerieController extends Controller
 
     public function showMessages()
     {
+        $users = User::all();
 
-        $message = Message::where('destinataire',session('user')->login)->orderBy('id', 'desc')->get();
-        return view('/contact',['messages'=>$message]);
+
+
+        $messages = Message::where('destinataire',session('user')->login)->orderBy('id', 'desc')->get();
+        return view('/contact',compact('messages','users'));
     }
+
 
 
 

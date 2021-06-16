@@ -26,4 +26,7 @@
     </div>
 
 </form>
+
+<button  onclick="window.history.back();" class="btn btn-primary" type="button" style="margin-top:20px;margin-bottom:20px;">Revenir a l'accueil</button>
+
 @endsection

@@ -44,6 +44,7 @@
     </div>
     <a href="{{route('Repondre',[$content->id])}}" class="btn btn-primary" style="margin-top:10px;">Repondre</a>
 </div>
+<button  onclick="window.history.back();" class="btn btn-primary" type="button" style="margin-top:20px;margin-bottom:20px;">Revenir a l'accueil</button>
 
 
   @endsection

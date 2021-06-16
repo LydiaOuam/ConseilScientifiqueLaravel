@@ -11,6 +11,7 @@ use App\HTTP\Controllers\RequeteController;
 use App\HTTP\Controllers\RequeController;
 use App\HTTP\Controllers\SessionController;
 use App\HTTP\Controllers\TraitementController;
+use App\HTTP\Controllers\AccueilController;
 use App\Models\Compte;
 
 
@@ -355,6 +356,12 @@ Route::get('/planifierCSD',function()
 
 // Route::get('/detailMessage/{id}',[ContactController::class,"afficherMessage"])->name('DetailMessage');
 
+Route::get('/profile2',function()
+{
+    return view('Requetes.profile2');
+});
+
+Route::get('accueil',[AccueilController::class,"revenirAccueil"])->name('revenirAccueil');
 
 
 

@@ -1,10 +1,7 @@
-@extends('base')
+@extends('lien')
     @section('titre','Mon profile')
     @section('contenu')
         <!--  -----------------------------User Profile-------------------------------------- -->
-        @section('action')
-        {{route('Profile',[$compte->id])}}
-        @endsection
 
         <!-- 
             * Les champs: nom,prenom,userName,password,email,date de naissance,adresse

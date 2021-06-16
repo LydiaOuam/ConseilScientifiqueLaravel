@@ -1,12 +1,6 @@
+@extends('Requetes.accreq')
 
-@extends('lien')
-    @section('titre')
-    Message
-    @endsection
-
-    @section('contenu')
- <!------------------------------AJOUTER UN COMPTE--------------------------->
-
+@section('contenu')
    
 <nav class="list-group" style="float:left;width:30%;">
 <div class="list-group" style="overflow:hidden; overflow-y:scroll;height:200px;margin-top:30px;">
@@ -58,8 +52,3 @@
 
 
 @endsection
-
-
-
-
-

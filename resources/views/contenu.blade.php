@@ -1,14 +1,12 @@
 
 
-@extends('base')
+@extends('lien')
     @section('titre')
     Message
     @endsection
 
     @section('contenu')
- @section('action')
-        {{route('Contact')}}
-    @endsection
+ 
 
    
 <nav class="list-group" style="float:left;width:30%;">

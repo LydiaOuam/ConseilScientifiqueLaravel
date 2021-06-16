@@ -346,7 +346,14 @@ Route::get('/planifierCSD',function()
 
  Route::get('listItems/{id}',[TraitementController::class,"list"])->name('List');
  
- 
+
+// Route::post('/contact',[MessagerieController::class,"message"])->name('Envoyer');
+
+
+// Route::get('/contact',[MessagerieController::class,"showMessages"])->name('Contact');
+
+
+// Route::get('/detailMessage/{id}',[ContactController::class,"afficherMessage"])->name('DetailMessage');
 
 
 

@@ -1,4 +1,4 @@
-@extends('base')
+@extends('lien')
 
 @section('titre')
     Message | Répondre
@@ -6,9 +6,6 @@
 
     @section('contenu')
  <!------------------------------AJOUTER UN COMPTE--------------------------->
- @section('action')
-        {{route('Contact')}}
-    @endsection
 
 <form  method="POST" action="{{route('Envoyer')}}"  style="width:60%;margin-left:200px;margin-top:30px;border">
  @csrf

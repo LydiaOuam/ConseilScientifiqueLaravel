@@ -77,6 +77,23 @@ class ComptesController extends Controller
 
     public function choisirRole($id)
     {
+            if($id == 1)
+                return redirect(route('Accueil'));
+            if($id == 2)
+                return redirect(route('espaceEtudiant'));
+            if($id == 3)
+                return redirect(route('espaceEC'));
+            if($id == 4)
+                return redirect(route('espaceCP'));
+            if($id == 5)
+                return redirect(route('espaceRF'));
+            if($id == 6)
+                return redirect(route('espaceEC'));
+
+
+            if($id == 7)
+            dd($id);
+            if($id == 8)
             dd($id);
     }
 

@@ -21,10 +21,26 @@ class RequeteController extends Controller
     }
     public function showReqEC()
     {
-        $points = Point::where('id','<=',24)->get();
+        $points = Point::where('id','<=',22)->get();
         return view('Requetes.espacEC',compact('points'));
       
     }
+
+    public function showReqRF()
+    {
+        $points = Point::where('id','<=',24)->get();
+        return view('Requetes.espaceRespForm',compact('points'));
+      
+    }
+
+
+    public function showReqCP()
+    {
+        $points = Point::where('id','<=',23)->get();
+        return view('Requetes.espaceChefProjet',compact('points'));
+      
+    }
+
 
 
     public function choixReq(Request $req)

@@ -33,7 +33,7 @@
                     @endif
 </form>
                 @endforeach
-                <a href="{{route('Accueil')}}"  class="btn btn-primary" style="margin-top:30px;">Annuler</a>
+                <button type="button" class="btn btn-primary" onclick="window.history.back();" style="margin-top:20px;" >Annuler</button>
             </div>
 
 </body>

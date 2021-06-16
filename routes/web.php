@@ -117,7 +117,7 @@ Route::get('departement',[MandatController::class,"showDept"])->name('showDept')
 
 // --------------------------------------------------------------------------------------------------
 
-Route::get('espaceEt',function()
+Route::get('espaceEtudiant',function()
 {
     return view('/Requetes.accreq');
 })->name('espaceEtudiant');
@@ -209,6 +209,12 @@ Route::post('/promtionRech',[RequeteController::class,"savePromRech"])->name('Sa
 
 
 Route::get('/espaceEnseChe',[RequeteController::class,"showReqEC"])->name('espaceEC');
+
+Route::get('/ResponsableFormation',[RequeteController::class,"showReqRF"])->name('espaceRF');
+
+
+Route::get('/ChefDeProjet',[RequeteController::class,"showReqCP"])->name('espaceCP');
+
 
 Route::get('/habilitation',function()
 {

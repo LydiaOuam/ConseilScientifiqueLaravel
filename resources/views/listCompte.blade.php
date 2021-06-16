@@ -62,7 +62,8 @@ Gérer les comptes
                           </div>
                         </div>
                       </div>
-                    </div></td>
+                    </div>
+                  </td>
 
                 </tr>
               @endforeach 
@@ -72,7 +73,7 @@ Gérer les comptes
 </table>
 @endif
 <span>
-  {{$comptes->links()}}
+{{$comptes->links()}}
 </span>
 
 @endsection

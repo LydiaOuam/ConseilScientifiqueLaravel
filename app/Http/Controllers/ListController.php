@@ -18,9 +18,10 @@ class ListController extends Controller
             $search_text = $_GET['search'];
             $comptes = DB::table('users')
             ->where('login','LIKE','%'.$search_text.'%')
-            ->where('login','<>',session('user')->login)
+            ->where('login','!=',session('user')->login)
             ->where('supprim','!=',0)
-            ->paginate(5);
+            ->orderBy('id')->paginate(5);
+
             return view('/listCompte',['comptes'=>$comptes]); 
             /**
              * Remarque: ici -> ['comptes'=>$comptes]); 
@@ -29,9 +30,10 @@ class ListController extends Controller
              */
         }
         else{
-            $listCpt =  User::where('login','<>',session('user')->login)
+            $listCpt =  User::where('login','!=',session('user')->login)
                                 ->where('supprim','!=',0)
-                                ->paginate(5);
+                                ->orderBy('id')->paginate(5);
+                                // dd($listCpt);
             return view('/listCompte',['comptes'=>$listCpt]);
         }
 
@@ -54,7 +56,7 @@ class ListController extends Controller
 
 public function updatee(Request $request,$id)
    {
-dd($request->all());
+
     
     $compte = User :: find($id);
 

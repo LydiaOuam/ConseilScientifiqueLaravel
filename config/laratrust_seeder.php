@@ -29,7 +29,13 @@ return [
         'responsableDeFormation' => [
             'profile' => 'r,u',
         ],
-        'directeurDeThese' => [
+        'chefCSF' => [
+            'profile' => 'r,u',
+        ],
+        'chefCSD' => [
+            'profile' => 'r,u',
+        ],
+        'chefCFD' => [
             'profile' => 'r,u',
         ]
     ],

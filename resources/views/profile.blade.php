@@ -98,8 +98,8 @@
             </div>
 
             <div  class="mb-3">
-                    <label for="photo" class="form-label">Ajouter une photo</label>
-                    <input class="form-control" type="file" id="photo" name="photo" >
+                    <label for="photo" class="form-label"  >Ajouter une photo</label>
+                    <input class="form-control" type="file" id="photo" name="photo" accept="image/png, image/jpeg" >
             </div> 
             <label for="TeachGrade">Grade d'enseignement:</label>
                 <select  name="TeachGrade" class="form-control"  value="{{$compte->TeachGrade}}">
@@ -108,15 +108,18 @@
                     <option {{($compte->TeachGrade)=="Maître de conférence A" ? 'selected':''}} value="Maître de conférence A">Maître de conférence A</option>
                     <option {{($compte->TeachGrade)=="Maître de conférence B" ? 'selected':''}} value="Maître de conférence B">Maître de conférence B</option>
                     <option {{($compte->TeachGrade)=="Professeur" ? 'selected':''}} value="Professeur" >Professeur</option>
+                    <option {{($compte->TeachGrade)=="NULL" ? 'selected':''}} value="NULL" >NULL</option>
+
                 </select>
                 <br>
                 <label for="searchGrade">Grade de recherche:</label>
                 <select  name="searchGrade" class="form-control" value="{{$compte->searchGrade}}">
                     <option {{($compte->searchGrade)=="Attaché de recherche" ? 'selected':''}}  value="Attaché de recherche">Attaché de recherche</option>
                     <option {{($compte->searchGrade)=="Chargé de recherche" ? 'selected':''}} value="Chargé de recherche">Chargé de recherche</option>
-                    <option {{($compte->searchGrade)=="Maître de recherche A" ? 'selected':''}} value="Maître de recherche A">Maître de recherche A</option>
-                    <option {{($compte->searchGrade)=="Maître de recherche B" ? 'selected':''}} value="Maître de recherche B">Maître de recherche B</option>
+                    <option {{($compte->searchGrade)=="Maître de recherche A" ? 'selected':''}} value="Maître de recherche ">Maître de recherche </option>
                     <option {{($compte->searchGrade)=="Directeur de recherche" ? 'selected':''}} value="Directeur de recherche">Directeur de recherche</option>
+                    <option {{($compte->TeachGrade)=="NULL" ? 'selected':''}} value="NULL" >NULL</option>
+
                 </select>             
     </fieldset>
 

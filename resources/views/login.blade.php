@@ -13,8 +13,10 @@
 </head>
 @include('messages')
 
-<form  method="POST" action="{{route('Authentifier')}}" style="margin-top=20px; margin-top:40px ;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
+<form  method="POST" action="{{route('Authentifier')}}" style="padding: 10px;margin-top:40px;padding:10px 70px; 2px;padding: 5px;width: 60%;margin-left: 15%;">
  @csrf
+<img src="/imageLogo/téléchargement.png" alt="Logo USTHB" style="margin-left:100px;">
+
   <div class="mb-3">
     <label for="login" class="form-label">Login</label>
     <input type="email" class="form-control" name="login">
@@ -23,7 +25,9 @@
     <label for="password" class="form-label">Mot de passe</label>
     <input type="password" class="form-control" name="password">
   </div>
-  <button type="submit" class="btn btn-success">Se connecter</button>
+  <div class="d-grid gap-2">
+  <button class="btn btn-primary" type="submit">Se connecter</button>
+</div>
 
 </form>
 <!-- Button trigger modal -->

@@ -237,10 +237,14 @@ class RequeteController extends Controller
                
             }
         }
-        if($attach)
-      
-                return back()->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-                return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+       
+        echo '<script>
+            alert( "Votre requête  a été bien soumise")
+             </script>';
+        echo '<script type="text/javascript">'
+            , 'history.go(-2);'
+            , '</script>';
+
          
     
     }
@@ -281,11 +285,7 @@ class RequeteController extends Controller
             , 'history.go(-2);'
             , '</script>';
 
-    
-        
-        // $requete->session()->flash('success', "Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-        //  return back()->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-        // return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
     }
     /** Sejour scientifique */
     public function saveSejour(Request $request)
@@ -321,10 +321,14 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
+        
+        echo '<script>
+            alert( "Votre requête  a été bien soumise")
+             </script>';
+        echo '<script type="text/javascript">'
+            , 'history.go(-2);'
+            , '</script>';
 
-        if($attach)
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
     }
         /**Changement du theme */
     public function saveChanger(Request $request)
@@ -355,9 +359,14 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
-        if($attach)
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+        
+        echo '<script>
+            alert( "Votre requête  a été bien soumise")
+             </script>';
+        echo '<script type="text/javascript">'
+            , 'history.go(-2);'
+            , '</script>';
+
     }
     /**Changement du directeur */
     public function saveChangerDir(Request $request)
@@ -390,9 +399,13 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
-        if($attach)
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+        echo '<script>
+            alert( "Votre requête  a été bien soumise")
+             </script>';
+        echo '<script type="text/javascript">'
+            , 'history.go(-2);'
+            , '</script>';
     }
     /**s'inscrire */
     
@@ -430,9 +443,13 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
-        if($attach)
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+        echo '<script>
+            alert( "Votre requête  a été bien soumise")
+             </script>';
+        echo '<script type="text/javascript">'
+            , 'history.go(-2);'
+            , '</script>';
     }
     /**Geler inscription */
     public function saveGeler(Request $request)
@@ -464,9 +481,13 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
-        if($attach)
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+        echo '<script>
+            alert( "Votre requête  a été bien soumise")
+             </script>';
+        echo '<script type="text/javascript">'
+            , 'history.go(-2);'
+            , '</script>';
     }
 
        /**AJOUTER UN CO DIRECTER */
@@ -499,9 +520,13 @@ class RequeteController extends Controller
                $requete->idSession = $last_sessionCsd_object->idSessionCSD;
            }
            $requete->save();
-           if($attach)
-           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+           echo '<script>
+           alert( "Votre requête  a été bien soumise")
+            </script>';
+       echo '<script type="text/javascript">'
+           , 'history.go(-2);'
+           , '</script>';
        }
 
        /**Reinscription */
@@ -539,9 +564,13 @@ class RequeteController extends Controller
                $requete->idSession = $last_sessionCsd_object->idSessionCSD;
            }
            $requete->save();
-           if($attach)
-           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+           echo '<script>
+           alert( "Votre requête  a été bien soumise")
+            </script>';
+       echo '<script type="text/javascript">'
+           , 'history.go(-2);'
+           , '</script>';
        }
 
        /** promotion academique*/
@@ -574,9 +603,13 @@ class RequeteController extends Controller
                $requete->idSession = $last_sessionCsd_object->idSessionCSD;
            }
            $requete->save();
-           if($attach)
-           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+           echo '<script>
+           alert( "Votre requête  a été bien soumise")
+            </script>';
+       echo '<script type="text/javascript">'
+           , 'history.go(-2);'
+           , '</script>';
        }
 
        
@@ -610,9 +643,13 @@ class RequeteController extends Controller
                $requete->idSession = $last_sessionCsd_object->idSessionCSD;
            }
            $requete->save();
-           if($attach)
-           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-           return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+           echo '<script>
+           alert( "Votre requête  a été bien soumise")
+            </script>';
+       echo '<script type="text/javascript">'
+           , 'history.go(-2);'
+           , '</script>';
        }
 
          
@@ -743,9 +780,13 @@ class RequeteController extends Controller
                 }
                 }
             }
-            if($attach)
-            return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-            return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+            echo '<script>
+            alert( "Votre requête  a été bien soumise")
+             </script>';
+        echo '<script type="text/javascript">'
+            , 'history.go(-2);'
+            , '</script>';
        }
 
          /**Polycopie */
@@ -793,9 +834,13 @@ class RequeteController extends Controller
                        }
                     }
 
-                    if($attach)
-                    return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-                    return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+                    echo '<script>
+                    alert( "Votre requête  a été bien soumise")
+                     </script>';
+                echo '<script type="text/javascript">'
+                    , 'history.go(-2);'
+                    , '</script>';
         }
 
          /**Anne sabbatique */
@@ -830,9 +875,13 @@ class RequeteController extends Controller
                  $requete->idSession = $last_sessionCsd_object->idSessionCSD;
              }
              $requete->save();
-             if($attach)
-             return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-             return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+             echo '<script>
+             alert( "Votre requête  a été bien soumise")
+              </script>';
+         echo '<script type="text/javascript">'
+             , 'history.go(-2);'
+             , '</script>';
          }
 
             /**Rapport recherche */
@@ -880,9 +929,13 @@ class RequeteController extends Controller
                     $item->save();
                     }
                 }
-                if($attach)
-                return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-                return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+                echo '<script>
+                alert( "Votre requête  a été bien soumise")
+                 </script>';
+            echo '<script type="text/javascript">'
+                , 'history.go(-2);'
+                , '</script>';
             }
 
           
@@ -933,10 +986,13 @@ class RequeteController extends Controller
                   $item->save();
                  }
               }
-  
-              if($attach)
-              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+              echo '<script>
+              alert( "Votre requête  a été bien soumise")
+               </script>';
+          echo '<script type="text/javascript">'
+              , 'history.go(-2);'
+              , '</script>';
           }
 
           /**Titularisation */
@@ -986,9 +1042,12 @@ class RequeteController extends Controller
               }
   
  
-              if($attach)
-              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+              echo '<script>
+              alert( "Votre requête  a été bien soumise")
+               </script>';
+          echo '<script type="text/javascript">'
+              , 'history.go(-2);'
+              , '</script>';
           }
 
           
@@ -1040,11 +1099,13 @@ class RequeteController extends Controller
               }
   
  
-  
-             
-              if($attach)
-              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-              return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+              echo '<script>
+              alert( "Votre requête  a été bien soumise")
+               </script>';
+          echo '<script type="text/javascript">'
+              , 'history.go(-2);'
+              , '</script>';
           }
    /**Mutation */
    public function saveRappExper(Request $request)
@@ -1089,10 +1150,13 @@ class RequeteController extends Controller
            $item->save();
           }
        }
-                    
-       if($attach)
-       return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-       return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+       echo '<script>
+       alert( "Votre requête  a été bien soumise")
+        </script>';
+   echo '<script type="text/javascript">'
+       , 'history.go(-2);'
+       , '</script>';
    }
 
      /**Suspension de la RT */
@@ -1138,9 +1202,13 @@ class RequeteController extends Controller
              $item->save();
             }
          }
-         if($attach)
-         return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-         return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+         echo '<script>
+         alert( "Votre requête  a été bien soumise")
+          </script>';
+     echo '<script type="text/javascript">'
+         , 'history.go(-2);'
+         , '</script>';
      }
                /**Rapport recherche */
                public function saveRappRech(Request $request)
@@ -1187,9 +1255,13 @@ class RequeteController extends Controller
                    }
        
       
-                   if($attach)
-                   return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-                   return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+                   echo '<script>
+                   alert( "Votre requête  a été bien soumise")
+                    </script>';
+               echo '<script type="text/javascript">'
+                   , 'history.go(-2);'
+                   , '</script>';
                }
                 /**Rapport recherche synthese */
                 public function saveRappSyn(Request $request)
@@ -1234,9 +1306,13 @@ class RequeteController extends Controller
                         $item->save();
                        }
                     }
-                    if($attach)
-                    return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-                    return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+                    echo '<script>
+                    alert( "Votre requête  a été bien soumise")
+                     </script>';
+                echo '<script type="text/javascript">'
+                    , 'history.go(-2);'
+                    , '</script>';
                 }
 
                     /**Modifier cahier de charge d'une formation */
@@ -1281,9 +1357,13 @@ class RequeteController extends Controller
                             $item->save();
                            }
                         }
-                        if($attach)
-                        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-                        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+                        echo '<script>
+                        alert( "Votre requête  a été bien soumise")
+                         </script>';
+                    echo '<script type="text/javascript">'
+                        , 'history.go(-2);'
+                        , '</script>';
                     }
                 
 

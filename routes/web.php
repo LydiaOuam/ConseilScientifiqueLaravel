@@ -364,6 +364,12 @@ Route::get('/profile2',function()
 Route::get('accueil',[AccueilController::class,"revenirAccueil"])->name('revenirAccueil');
 
 
+Route::get('principale',function()
+{
+    return view('akeuy');
+});
+
+
 
 
 

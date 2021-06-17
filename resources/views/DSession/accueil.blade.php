@@ -28,12 +28,7 @@
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown" style="margin-left:30px;">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('Accueil')}}">
-                        <span ><i class="fa fa-home" aria-hidden="true"></i></span>
-                        <span >Accueil</span>
-            </a>
-          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span><i class="fa fa-hashtag" aria-hidden="true"></i></span>
@@ -72,7 +67,7 @@
             </a>
           </li>
           
-          <a class="nav-link" href="{{route('Contact')}}">
+          <a target="_blank"  class="nav-link" href="{{route('Contact')}}">
             <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
             <span>Contact</span>
           </a>

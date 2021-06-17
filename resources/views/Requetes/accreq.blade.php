@@ -38,7 +38,7 @@
             </a>
           </li>
           
-          <a class="nav-link" href="{{route('Contact')}}">
+          <a target="_blank"  class="nav-link" href="{{route('Contact')}}">
             <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
             <span>Contact</span>
           </a>

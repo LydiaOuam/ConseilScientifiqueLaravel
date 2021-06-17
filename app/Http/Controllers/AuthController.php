@@ -37,29 +37,30 @@ class AuthController extends Controller
                     {
                         $request->session()->put('user',$user);
                         return redirect(route('ShowRoleUser'));
-                        echo 'Session etudiant';
+                    
                     }
                     elseif($user->hasRole('enseignant-chercheur'))
                     {
     
                         $request->session()->put('user',$user);
                         return redirect(route('ShowRoleUser'));
-                        echo 'Session enseignant-chercheur';
                     }
                     elseif($user->hasRole('chefProjetDeRecherche'))
                     {
-    
-                        echo 'Session etudiant';
+                        $request->session()->put('user',$user);
+                        return redirect(route('ShowRoleUser'));
                     }
                     elseif($user->hasRole('responsableDeFormation'))
                     {
     
-                        echo 'Session etudiant';
+                        $request->session()->put('user',$user);
+                        return redirect(route('ShowRoleUser'));
                     }
                     elseif($user->hasRole('directeurDeThese'))
                     {
     
-                        echo 'Session directeurDeThese';
+                        $request->session()->put('user',$user);
+                        return redirect(route('ShowRoleUser'));
                     }
                 }
                 else echo 'Password incorrecte';

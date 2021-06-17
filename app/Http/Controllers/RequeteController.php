@@ -11,6 +11,7 @@ use App\Models\Item;
 use App\Models\SessionCSD;
 
 
+
 class RequeteController extends Controller
 {
     public function shoReq()
@@ -237,7 +238,8 @@ class RequeteController extends Controller
             }
         }
         if($attach)
-                return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+      
+                return back()->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
                 return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
          
     
@@ -270,9 +272,20 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
-        if($attach)
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
-        return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
+
+     
+        echo '<script>
+            alert( "Votre requête  a été bien soumise")
+             </script>';
+        echo '<script type="text/javascript">'
+            , 'history.go(-2);'
+            , '</script>';
+
+    
+        
+        // $requete->session()->flash('success', "Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+        //  return back()->with('success',"Votre requête  a été bien soumise, elle sera traitée le : $last_sessionCsd_object->dateSession");
+        // return redirect(route('ReqChoix'))->with('success',"Votre requête  a été bien soumise");
     }
     /** Sejour scientifique */
     public function saveSejour(Request $request)

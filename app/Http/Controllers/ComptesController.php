@@ -80,7 +80,7 @@ class ComptesController extends Controller
             if($id == 1)
                 return redirect(route('Accueil'));
             if($id == 2)
-                return redirect(route('espaceEtudiant'));
+                return redirect(route('ReqChoix'));
             if($id == 3)
                 return redirect(route('espaceEC'));
             if($id == 4)
@@ -90,7 +90,7 @@ class ComptesController extends Controller
             if($id == 6)
                 return redirect(route('SessionCSF'));
             if($id == 7)
-            return redirect(route('planiCsd'));
+            return redirect(route('planiCsd')); 
             if($id == 8)
             dd($id);
     }

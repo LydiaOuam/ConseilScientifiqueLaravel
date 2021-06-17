@@ -118,14 +118,14 @@ Route::get('departement',[MandatController::class,"showDept"])->name('showDept')
 
 // --------------------------------------------------------------------------------------------------
 
-Route::get('espaceEtudiant',function()
-{
-    return view('/Requetes.accreq');
-})->name('espaceEtudiant');
+// Route::get('espaceEtudiant',function()
+// {
+//     return view('/Requetes.accreq');
+// })->name('espaceEtudiant');
 
-Route::get('choisirType',[RequeteController::class,"shoReq"])->name('ReqChoix');
+Route::get('espaceEtudiant',[RequeteController::class,"shoReq"])->name('ReqChoix');
 
-Route::post('choisirType',[RequeteController::class,"choixReq"])->name('ChoixReq');
+Route::post('espaceEtudiant',[RequeteController::class,"choixReq"])->name('ChoixReq');
 
 Route::get('/soutenance',function()
 {

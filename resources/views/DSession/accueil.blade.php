@@ -35,10 +35,6 @@
             <span>Session</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li> <a class="dropdown-item" href="@yield('chemin')">
-              <span> Planifier une session</span>
-               </a>
-                   
               </li>
               <li><a class="dropdown-item" href="{{route('Comptes')}}">
               <span>Gérer le déroulement d'une session</span>

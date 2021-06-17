@@ -1,5 +1,6 @@
 @extends('Requetes.accreq')
 
+
 @section('contenu')
 <form action="{{route('ReqChoix')}}" method="POST">
 @csrf

@@ -60,35 +60,37 @@
 
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#">
-            <span><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
-            <span>Traitement des requêtes</span>
-            </a>
-          </li>
           
           <a target="_blank"  class="nav-link" href="{{route('Contact')}}">
             <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
             <span>Contact</span>
           </a>
 
-        <div class="Profil" style="margin-left:500px;">
+          <div class="Profil" style="margin-left:500px;">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           @if(session('user')->photo != null )
+           <img src="{{asset('/images/'.session('user')->photo)}}" 
+            class="img-responsive img-rounded" style="max-height: 40px; max-width: 40px; border-radius: 45%;">
+           @else
+           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+           @endif
+              <span class="title">{{session('user')->fname }} {{session('user')->name }}</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>
-                <a  class="dropdown-item" >
+                <a href="{{route('Profile',[session('user')->id])}}" class="dropdown-item" >
                     <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span> 
                     <span class="title">Mon profile</span>
                 </a>
               </li>
               <li>
-                <a href="{{'modale'}}" class="dropdown-item">
+                <a href="{{route('ShowRoleUser')}}" class="dropdown-item">
                   <span class="icon"><i class="fa fa-exchange" aria-hidden="true"></i></span> 
                   <span class="title">Changer rôle</span></a>
 
                 </a>    
-              </li>
+              </li><!--MODIFIER ET SUPPRIMER-->
               <li>
                 <a class="dropdown-item"  href="{{route('LogOut')}}">
                   <span class="icon"><i class="fa fa-power-off" aria-hidden="true"></i></span> 

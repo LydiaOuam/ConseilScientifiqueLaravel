@@ -26,10 +26,6 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown" style="margin-left:30px;">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="{{route('Accueil')}}">
-                        <span ><i class="fa fa-home" aria-hidden="true"></i></span>
-                        <span >Accueil</span>
-            </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

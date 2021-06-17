@@ -1,6 +1,6 @@
 @extends('DSession.accueil')
     @section('titre')
-        Planifier une session CSF
+        Planifier une session CSD
     @endsection
 
 

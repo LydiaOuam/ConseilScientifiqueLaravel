@@ -88,11 +88,9 @@ class ComptesController extends Controller
             if($id == 5)
                 return redirect(route('espaceRF'));
             if($id == 6)
-                return redirect(route('espaceEC'));
-
-
+                return redirect(route('SessionCSF'));
             if($id == 7)
-            dd($id);
+            return redirect(route('planiCsd'));
             if($id == 8)
             dd($id);
     }

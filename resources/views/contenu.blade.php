@@ -42,9 +42,11 @@
      <p  style="padding-left:10px;"> {{$content->contenu}}</p>
     </div>
     </div>
-    <a href="{{route('Repondre',[$content->id])}}" class="btn btn-primary" style="margin-top:10px;">Repondre</a>
+    <a href="{{route('Repondre',[$content->id])}}" class="btn btn-primary" style="margin-top:10px;">Répondre</a>
+    <button  onclick="window.history.back();"  class="btn btn-outline-secondary" type="button" style="margin-top:30px;margin-bottom:20px;">Précédent</button>
+
 </div>
-<button  onclick="window.history.back();" class="btn btn-primary" type="button" style="margin-top:20px;margin-bottom:20px;">Revenir a l'accueil</button>
+
 
 
   @endsection

@@ -15,7 +15,7 @@
   </div>
   <div class="mb-3">
     <label for="titre" class="form-label">Titre</label>
-    <input type="text" class="form-control" name="titre" value="Re: {{$content->titre}}">
+    <input type="text" class="form-control" name="titre" value="{{$content->titre}}">
   </div>
   <div>
       <textarea class="form-control" rows="6" name="contenu" ></textarea>
@@ -23,10 +23,10 @@
     <div class="d-grid gap-2">
       <button type="Submit" class="btn btn-success" style="margin-top:10px;">Répondre</button>
       <a href="{{route('Contact')}}"  class="btn btn-primary">Annuler</a>
+
     </div>
 
 </form>
 
-<button  onclick="window.history.back();" class="btn btn-primary" type="button" style="margin-top:20px;margin-bottom:20px;">Revenir a l'accueil</button>
 
 @endsection

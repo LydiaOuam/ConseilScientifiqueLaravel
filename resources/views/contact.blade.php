@@ -53,10 +53,10 @@
     <div class="d-grid gap-2">
       <button type="Submit" class="btn btn-primary" style="margin-top:10px;">Envoyer</button>
     </div>
+    <button  onclick="window.history.back();"  class="btn btn-outline-secondary" type="button" style="margin-top:20px;margin-bottom:20px;">Précédent</button>
 
 </form>
 
-<button  onclick="window.history.back();" class="btn btn-primary" type="button" style="margin-top:20px;margin-bottom:20px;">Revenir a l'accueil</button>
 
 @endsection
 

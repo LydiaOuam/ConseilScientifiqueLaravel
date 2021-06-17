@@ -9,19 +9,6 @@
 </head>
 
 
-<body>
-
-<nav class="navbar navbar-light bg-light">
-      <div class="container-fluid">
-        <form action="#" methode="GET" class="d-flex">
-          <input class="form-control me-2" type="search" name="search" placeholder="Chercher..." aria-label="Search">
-          <button class="btn btn-outline-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-        </form>
-      </div>
-</nav>
-
-<body>
-
 @include('messages')
 
     @yield('contenu')

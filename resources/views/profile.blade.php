@@ -7,10 +7,7 @@
             * Les champs: nom,prenom,userName,password,email,date de naissance,adresse
          -->
          
-         <div class="d-grid gap-2">
-  <button  onclick="window.history.back();" class="btn btn-primary" type="button" style="margin-top:20px;margin-bottom:20px;">Revenir a l'accueil</button>
 
-</div>
 
 <form  method="POST" action="{{route('UpdateCompte',[$compte->id])}}" enctype="multipart/form-data" style="margin-top=20px; margin-top:40px ;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
 @csrf
@@ -154,6 +151,11 @@
      <a href="{{route('Comptes')}}"  class="btn btn-primary">Annuler</a>
  
 </form>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+  <button  onclick="window.history.back();" class="btn btn-outline-primary" type="button" style="margin-top:20px;margin-bottom:20px;">Revenir a l'accueil</button>
+
+</div>
 
          <!--  ------------------------------------------------------------------------------------>
 

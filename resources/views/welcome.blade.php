@@ -16,9 +16,8 @@
 <div class="navbar">
 		<div class="navbar_items">
 			<ul>
-				<li><a href="#">Accueil</a></li>
-				<li><a href="#about">A propos</a></li>
-				<li><a href="#contactus">Se connecter</a></li>
+				<li><a href ="">Accueil</a></li>
+				<li><a href="{{route('Login')}}">Se connecter</a></li>
 			</ul>
 		</div>
 	</div>
@@ -26,8 +25,9 @@
 	<div class="banner_image">
 		<div class="banner_content">
 		<span>
-		<h2>Universite des sciences et technologie Houari Boumedien.</h2>
-			<h3>Conseil Scientifique.<br></h3>
+		<h2>Université des Sciences et de la Technologie Houari Boumediene</h2>
+			<h3>Conseil Scientifique<br></h3>
+			<h3> Faculté d’électronique et d’Informatique</h3>
 			<h3>Platforme pour la soumission online des dossiers</h3>
 		</span>
 
@@ -134,7 +134,7 @@
 	background: url('/imageLogo/usthb2.jpg') no-repeat top center;
 	background-size: cover;
 	width: 100%;
-	height: 350px;
+	height: 300px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

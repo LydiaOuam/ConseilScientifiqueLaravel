@@ -25,10 +25,13 @@
     
 	<div class="banner_image">
 		<div class="banner_content">
-		
+		<span>
+		<h2>Universite des sciences et technologie Houari Boumedien.</h2>
+			<h3>Conseil Scientifique.<br></h3>
+			<h3>Platforme pour la soumission online des dossiers</h3>
+		</span>
 
-			<h1>Conseil Scientifique.<br></h1>
-			<h4>Universite des sciences et technologie Houari Boumedien.</h4>
+
 		</div>	
 	</div>
 </header>
@@ -151,7 +154,7 @@
 
 }
 
-.banner_content h1 span{
+.banner_content h2 {
 	color: black;
 }
 

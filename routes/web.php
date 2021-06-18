@@ -366,7 +366,7 @@ Route::get('accueil',[AccueilController::class,"revenirAccueil"])->name('revenir
 
 Route::get('principale',function()
 {
-    return view('akeuy');
+    return view('welcome');
 });
 
 

@@ -316,19 +316,10 @@ Route::get('/session',[TraitementController::class,"traiter"])->name('traiterReq
 
 Route::get('/traiter',[TraitementController::class,"traiter2"])->name('sessionCSD');
 
+Route::get('/traiterCFD',[TraitementController::class,"traiter3"])->name('sessionCFD');
+
+
 Route::post('/session/{id}',[TraitementController::class,"decision"])->name('deciderRequete');
-
-
-/**
- * 
- * Route::get('/accueil',function()
- *      {
- *           return view('/DSession.accueil');
- *      })->name('AccueilCS');
- *  
- */
-
-
 
 Route::get('/planifier',[SessionController::class,"allPoint"])->name('SessionCSF');
 
@@ -381,6 +372,11 @@ Route::get('/accueilCSD',function()
 {
     return view('DSession.accueilCSD');
 })->name('CSD');
+
+Route::get('/accueilCFD',function()
+{
+    return view('DSession.accueilCFD');
+})->name('CFD');
 
 
 

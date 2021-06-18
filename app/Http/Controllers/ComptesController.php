@@ -90,9 +90,10 @@ class ComptesController extends Controller
             if($id == 6)
                 return redirect(route('CSF'));
             if($id == 7)
-            return redirect(route('CSD')); 
+                return redirect(route('CSD')); 
             if($id == 8)
-            dd($id);
+                return redirect(route('CFD')); 
+
     }
 
 

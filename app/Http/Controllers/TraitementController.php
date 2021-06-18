@@ -22,6 +22,17 @@ class TraitementController extends Controller
         return view('/DSession.session',compact('requetes','types','items'));
     }
 
+    public function traiter2()
+    {
+
+    
+        $requetes = Requete::paginate(1);
+        $items = Item::all();
+        $types = Point::all();
+        return view('/DSession.sessionCSD',compact('requetes','types','items'));
+    }
+
+
     public function list( $id)
     {
         $items = Item::where('idItem',$id)->get();

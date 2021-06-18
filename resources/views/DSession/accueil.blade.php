@@ -5,17 +5,8 @@
     <title>@yield('titre','Accueil')</title> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    
-    
-    
-
-    <!-- <script src='main.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="jquery-3.6.0.min.js"><\/script>')
-    </script> -->
 <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-
+</head>
 <header>
 <nav class="navbar navbar-dark navbar-expand-lg" style="background-color:rgb(17, 17, 124); color:white;">
   <div  class="navbar-brand" style=" margin-top: 5px;"> 
@@ -37,15 +28,14 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               </li>
               <li><a class="dropdown-item" href="{{route('Comptes')}}">
-              <span>Gérer le déroulement d'une session</span>
+              <span>Gérer session</span>
               <span><i class="fa fa-caret-right" aria-hidden="true"></i></span>
               </a>
                      <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Initier une session</a></li>
+                     @yield('creer')
+                     @yield('initier')
+
                       <li><a class="dropdown-item" href="#">Fermer une session</a></li>
-                      <li><a class="dropdown-item" href="#">Reporter une session</a></li>
-                      <li><a class="dropdown-item" href="#">Verrouiler une session</a></li>
-                      <li><a class="dropdown-item" href="#">Déverrouiller une session</a></li>
                       </ul>
               </li>
 

@@ -311,7 +311,10 @@ Route::post('/modifierCahier',[RequeteController::class,"saveModif"])->name('sav
  * Sessions
  * --------------------------------------------------------------------------------------
  */
+
 Route::get('/session',[TraitementController::class,"traiter"])->name('traiterRequete');
+
+Route::get('/traiter',[TraitementController::class,"traiter2"])->name('sessionCSD');
 
 Route::post('/session/{id}',[TraitementController::class,"decision"])->name('deciderRequete');
 
@@ -368,6 +371,18 @@ Route::get('principale',function()
 {
     return view('welcome');
 });
+
+Route::get('/accueilCSF',function()
+{
+    return view('DSession.accueilCSF');
+})->name('CSF');
+
+Route::get('/accueilCSD',function()
+{
+    return view('DSession.accueilCSD');
+})->name('CSD');
+
+
 
 
 

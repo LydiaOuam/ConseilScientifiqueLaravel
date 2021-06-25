@@ -1,4 +1,4 @@
-@extends('DSession.accueilCSD')
+@extends('DSession.accueilCFD')
 
   @section('titre')
         Traitement des requêtes

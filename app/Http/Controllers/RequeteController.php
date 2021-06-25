@@ -609,7 +609,7 @@ class RequeteController extends Controller
 
         $detail->idRequete = $req_last->idRequete;
         $detail->nomprenomCandidat = $request->nom;
-        $detail->nomPrenomDirecteur	= $request->nomDirecteur;
+        $detail->nomPrenomResSecondaire	= $request->nomDirecteur;
         $detail->observation = $request->observation;
 
         $detail->save();

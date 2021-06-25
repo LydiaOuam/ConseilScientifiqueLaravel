@@ -17,167 +17,250 @@
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show " aria-labelledby="panelsStayOpen-headingOne">
           <div class="accordion-body">
           @foreach($requetes as $requete)
-            
-           @php  $champs = explode(' ',$requete->observation);
-                $taille = count($champs) @endphp
             @if($requete->type == 1)
               @foreach($types as $type)
                 @if($type->id == $requete->type)
-                  Requete : {{$type->nom}}<br>
-                  Nom et Prénom : {{$champs[0]}}  {{$champs[1]}} <br>
-                  Département :  {{$champs[2]}} <br>
-                  Nom et Prénom de directeur : {{$champs[3]}} {{$champs[4]}}<br>
-                  Observation eventuelles : @for($i = 5;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
+                  @foreach($details as $detail)
+                        @if($detail->idRequete == $requete->idRequete)
+                          Requête : {{$type->nom}}<br>
+                          Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                          Département :  {{$detail->departement}}<br>
+                          Nom et Prénom de directeur :  {{$detail->nomPrenomDirecteur}}<br>
+                        @endif
+                    @endforeach
                 @endif
-                @endforeach
+              @endforeach
+              
+
                 
               @elseif($requete->type == 2)
               @foreach($types as $type)
                 @if($type->id == $requete->type)
-                  Requete : {{$type->nom}}<br>
-                  Nom et Prénom : {{$champs[0]}} {{$champs[1]}}<br>
-                  Pays de destination :  {{$champs[2]}} <br>
-                  Etablissement d'accueil : {{$champs[3]}} <br>
-                  Date début  de séjour : {{$champs[4]}}<br>
-                  Date fin de séjour : {{$champs[5]}}<br>
-                  Responasable de stage : {{$champs[6]}}<br>
-                @endif
+                    @foreach($details as $detail)
+                            @if($detail->idRequete == $requete->idRequete)
+                              Requête : {{$type->nom}}<br>
+                              Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                              Pays de destination :  {{$detail->paysDestination}}<br>
+                              Etablissement d'accueil :{{$detail->etablissementaAccueil}}  <br>
+                              Date début  de séjour : {{$detail->dateDeb}} <br>
+                              Date fin de séjour : {{$detail->dateFin}} <br>
+                              Responasable de stage : {{$detail->nomPrenomDirecteur}} <br>
+                            @endif
+                        @endforeach
+                  @endif
                 @endforeach
 
-                  @elseif($requete->type == 3)
+                @elseif($requete->type == 3)
                   @foreach($types as $type)
                     @if($type->id == $requete->type)
-                      Requete : {{$type->nom}}<br>
-                      Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                      Intitulé du sujet de thèse initiale : @for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor  <br>
-                      @endif
-                @endforeach
+                      @foreach($details as $detail)
+                              @if($detail->idRequete == $requete->idRequete)
+                                Requête : {{$type->nom}}<br>
+                                Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                Intitulé du sujet de thèse initiale :  {{$detail->intituleDesign}}<br>
+                              @endif
+                          @endforeach
+                    @endif
+                  @endforeach
+                     
 
                   @elseif($requete->type == 4)
                   @foreach($types as $type)
                     @if($type->id == $requete->type)
-                      Requete : {{$type->nom}}<br>
-                      Type du Doctorat :{{$champs[0]}} <br>
-                      Nom et Prénom : {{$champs[1]}} {{$champs[2]}} <br>
-                      Directeur de thèse : {{$champs[3]}}  {{$champs[4]}}  <br>
-                      Année de la première inscription:  {{$champs[5]}}<br>
-                      Département: {{$champs[6]}}<br>
-                      Intitulé de la thèse: @for($i = 7;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
+                      @foreach($details as $detail)
+                                @if($detail->idRequete == $requete->idRequete)
+                                  Requête : {{$type->nom}}<br>
+                                  Type du Doctorat : {{$detail->typeDoctorat}} <br>
+                                  Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                  Directeur de thèse :  {{$detail->nomPrenomDirecteur}}  <br>
+                                  Année de la première inscription:   {{$detail->annee}}<br>
+                                  Département:  {{$detail->	departement}}<br>
+                                  Intitulé de la thèse:  {{$detail->intituleDesign}}<br>
+                                @endif
+                            @endforeach
                       @endif
-                @endforeach
+                    @endforeach
+
                     @elseif($requete->type == 5)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Nom et Prénom de directeur de thèse actuel : {{$champs[2]}}  {{$champs[3]}}  <br>
-                          Nom et Prénom de directeur : {{$champs[4]}} {{$champs[5]}}<br>
-                          Motif:@for($i = 6;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
+                            @foreach($details as $detail)
+                                    @if($detail->idRequete == $requete->idRequete)
+                                      Requête : {{$type->nom}}<br>
+                                      Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                      Nom et Prénom de directeur de thèse actuel :  {{$detail->	nomPrenomDirecteur}}  <br>
+                                      Nom et Prénom de directeur : {{$detail->nomPrenomResSecondaire}}<br>
+                                      Motif : {{$detail->observation}}<br>
+                                    @endif
+                                @endforeach
                           @endif
-                    @endforeach
+                        @endforeach
+                        
 
                     @elseif($requete->type == 7 || $requete->type == 10 )
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Type du Doctorat :{{$champs[0]}} <br>
-                          Département: {{$champs[1]}}<br>
-                          Nom et Prénom : {{$champs[2]}} {{$champs[3]}} <br>
-                          Nom et Prénom du directeur : {{$champs[4]}}  {{$champs[5]}}  <br>
-                          Nom et Prénom du co-directeur :  {{$champs[6]}} {{$champs[7]}}<br>
-                          Diplôme d’accès :{{$champs[8]}}<br>
-                          Intitulé de la thèse :@for($i = 9;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
-                          @endif
-                    @endforeach
+                        
+                            @foreach($details as $detail)
+                                        @if($detail->idRequete == $requete->idRequete)
+                                          Requête : {{$type->nom}}<br>
+                                          Type du Doctorat : {{$detail->typeDoctorat}} <br>
+                                          Département:  {{$detail->departement}}<br>
+                                          Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                          Nom et Prénom du directeur :  {{$detail->nomPrenomDirecteur}} <br>
+                                          Nom et Prénom du co-directeur :   {{$detail->	nomPrenomResSecondaire}}<br>
+                                          Diplôme d’accès : {{$detail->diplomeAcc}}<br>
+                                          Intitulé de la thèse : {{$detail->intituleDesign}}<br>
+                                        @endif
+                                    @endforeach
+                              @endif
+                            @endforeach
+                     
 
                     @elseif($requete->type == 8)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Motif:@for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
-                          @endif
-                    @endforeach
+
+                        @foreach($details as $detail)
+                                        @if($detail->idRequete == $requete->idRequete)
+                                          Requête : {{$type->nom}}<br>
+                                          Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                          Motif : {{$detail->observation}} <br>
+                                        @endif
+                                    @endforeach
+                              @endif
+                            @endforeach
+                          
 
                     @elseif($requete->type == 9)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Nom et Prénom du co-directeur :{{$champs[2]}} {{$champs[3]}}<br>
-                          Motif:@for($i = 4;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
-                          @endif
-                    @endforeach
+
+                          @foreach($details as $detail)
+                                          @if($detail->idRequete == $requete->idRequete)
+                                            Requête : {{$type->nom}}<br>
+                                            Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                            Nom et Prénom du co-directeur : {{$detail->nomPrenomResSecondaire}}<br>
+                                            Motif : {{$detail->observation}} <br>
+                                          @endif
+                                      @endforeach
+                                @endif
+                              @endforeach
+                        
+                       
 
                     @elseif($requete->type == 11 || $requete->type == 12 )
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Grade actuel : {{$champs[2]}} {{$champs[3]}} {{$champs[4]}} <br>
-                          Promotion :@for($i = 5;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
-                          @endif
-                    @endforeach
 
+                        
+                            @foreach($details as $detail)
+                                              @if($detail->idRequete == $requete->idRequete)
+                                                Requête : {{$type->nom}}<br>
+                                                Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                                Grade actuel : {{$detail->gradeActuel}} <br>
+                                                Promotion : {{$detail->promotion}}<br>
+                                              @endif
+                                          @endforeach
+                                    @endif
+                                  @endforeach
+                          
                     @elseif($requete->type == 13)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Département: {{$champs[2]}} <br>
-                          Observations :@for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
-                          @endif
-                    @endforeach
+
+                            @foreach($details as $detail)
+                                                  @if($detail->idRequete == $requete->idRequete)
+                                                    Requête : {{$type->nom}}<br>
+                                                    Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                                    Département: {{$detail->departement}} <br>
+                                                    Observations : {{$detail->	observation}}<br>
+                                                  @endif
+                                              @endforeach
+                                        @endif
+                                      @endforeach
+                      
 
                     @elseif($requete->type == 14||$requete->type == 20||$requete->type == 23||$requete->type == 18||$requete->type == 21||$requete->type == 24||$requete->type == 22)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Observations :@for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
-                          @endif
-                    @endforeach
-                    
+
+                            @foreach($details as $detail)
+                                                      @if($detail->idRequete == $requete->idRequete)
+                                                        Requête : {{$type->nom}}<br>
+                                                        Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                                        Observations : {{$detail->	observation}}<br>
+                                                      @endif
+                                                  @endforeach
+                                            @endif
+                                          @endforeach
+                       
                     @elseif($requete->type == 15)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Pays de detisnation : {{$champs[2]}} <br>
-                          Date début de séjour: {{$champs[3]}} <br>
-                          Date fin de séjour: {{$champs[4]}} <br>
-                          Etablissement d'accueil :@for($i = 5;$i<$taille;$i++) {{$champs[$i]}}@endfor<br>
-                          @endif
-                    @endforeach
 
+                        @foreach($details as $detail)
+                                                      @if($detail->idRequete == $requete->idRequete)
+                                                        Requête : {{$type->nom}}<br>
+                                                        Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                                        Pays de detisnation :  {{$detail->paysDestination}}  <br>
+                                                        Date début de séjour: {{$detail->dateDeb}}  <br>
+                                                        Date fin de séjour: {{$detail->dateFin}}  <br>
+                                                        Etablissement d'accueil : {{$detail->etablissementaAccueil}} <br>
+                                                      @endif
+                                                  @endforeach
+                                            @endif
+                                          @endforeach
+                  
                     @elseif($requete->type == 16)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Chef du projet: {{$champs[0]}} {{$champs[1]}} <br>
-                          Intitulé du projet:@for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
-                          @endif
-                    @endforeach
 
+                        @foreach($details as $detail)
+                                                      @if($detail->idRequete == $requete->idRequete)
+                                                        Requête : {{$type->nom}}<br>
+                                                        Chef du projet : {{$detail->nomPrenomCandidat}} <br>
+                                                        Intitulé du projet : {{$detail->intituleDesign}}  <br>
+
+                                                      @endif
+                                                  @endforeach
+                                            @endif
+                                          @endforeach
+                          
                     @elseif($requete->type == 17)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Niveau :  {{$champs[2]}}<br>
-                         Désignation :@for($i = 3;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
-                          @endif
-                    @endforeach
+
+                        @foreach($details as $detail)
+                                                        @if($detail->idRequete == $requete->idRequete)
+                                                          Requête : {{$type->nom}}<br>
+                                                          Nom et Prénom :  {{$detail->nomPrenomCandidat}} <br>
+                                                          Niveau :  {{$detail->diplomeAcc}}<br>
+                                                          Désignation :{{$detail->intituleDesign}} <br>
+
+                                                        @endif
+                                                    @endforeach
+                                              @endif
+                                            @endforeach  
+                    
 
                     @elseif($requete->type == 19)
                       @foreach($types as $type)
                         @if($type->id == $requete->type)
-                          Requete : {{$type->nom}}<br>
-                          Nom et Prénom : {{$champs[0]}} {{$champs[1]}} <br>
-                          Etablissement d’accueil : @for($i = 2;$i<$taille;$i++) {{$champs[$i]}}@endfor <br>
-                          @endif
-                    @endforeach
+
+                        @foreach($details as $detail)
+                                                        @if($detail->idRequete == $requete->idRequete)
+                                                          Requête : {{$type->nom}}<br>
+                                                          Nom et Prénom :  {{$detail->nomPrenomCandidat}} <br>
+                                                          Etablissement d’accueil : {{$detail->etablissementaAccueil}}  <br>
+                                                        @endif
+                                                    @endforeach
+                                              @endif
+                                            @endforeach  
+                        
             @endif
+
+                
 
           </div>
         </div>

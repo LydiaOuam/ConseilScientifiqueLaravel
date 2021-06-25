@@ -9,6 +9,7 @@ use DateTime;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\SessionCSD;
+use App\Models\Detail;
 
 
 
@@ -140,16 +141,12 @@ class RequeteController extends Controller
         ]);
 
 
-        $tab = array($request->typedoc,$request->nomPren,$request->direct,$request->annee,$request->dep,$request->intit);
-        $info =  implode(" ",$tab);
-
-
+    
         
         $dateSoum =  new DateTime( date('Y-m-d'));
         $requete = new Requete();
         $requete->dateSoumission =  $dateSoum;
         $requete->type = 4;
-        $requete->observation = $info;
         
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -162,7 +159,21 @@ class RequeteController extends Controller
         }
         $requete->save();
 
-     
+        // dd($request->all());
+
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->typeDoctorat = $request->typedoc;
+        $detail->nomprenomCandidat = $request->nomPren;
+        $detail->nomPrenomDirecteur = $request->direct;
+        $detail->annee = $request->annee;
+        $detail->departement = $request->dep;
+        $detail->intituleDesign = $request->intit;
+
+        $detail->save();
 
         $data = DB::table('requetes')->select('idRequete')
                                     ->orderBy('idRequete','desc')
@@ -258,13 +269,11 @@ class RequeteController extends Controller
             'Intitulé' => 'required',
 
         ]);
-        $tab = array($request->Nom,$request->Département,$request->Directeur,$request->Intitulé);
-        $info =  implode(" ",$tab);
+        
         $dateSoum =  new DateTime( date('Y-m-d'));
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
         $requete->type = 1;
-        $requete->observation = $info;
                 
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -276,6 +285,18 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
+
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->nomprenomCandidat = $request->Nom;
+        $detail->nomPrenomDirecteur = $request->Directeur;
+        $detail->departement = $request->Département;
+        $detail->intituleDesign = $request->Intitulé;
+
+        $detail->save();
 
      
         echo '<script>
@@ -300,15 +321,13 @@ class RequeteController extends Controller
             'Responsable'=>'required',
         ]);
 
-        $tab = array($request->Nom,$request->Pays,$request->Etablissement,$request->Début,$request->Fin,$request->Responsable);
-        $info =  implode(" ",$tab);
+     
 
         $dateSoum =  new DateTime( date('Y-m-d'));
 
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
         $requete->type = 2;
-        $requete->observation = $info;
 
                 
         $session = SessionCSD::all();
@@ -321,6 +340,21 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
+
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->nomprenomCandidat = $request->Nom;
+        $detail->paysDestination = $request->Pays;
+        $detail->etablissementaAccueil = $request->Etablissement;
+        $detail->dateDeb = $request->Début;
+        $detail->dateFin = $request->Fin;
+        $detail->nomPrenomDirecteur = $request->Responsable;
+
+        $detail->save();
+
         
         echo '<script>
             alert( "Votre requête  a été bien soumise")
@@ -339,14 +373,11 @@ class RequeteController extends Controller
             'IntituléInitial' => 'required',
         ]);
 
-        $tab = array($request->nom,$request->IntituléInitial);
-        $info =  implode(" ",$tab);
 
         $dateSoum =  new DateTime( date('Y-m-d'));
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
         $requete->type = 3;
-        $requete->observation = $info;
 
                         
         $session = SessionCSD::all();
@@ -359,6 +390,20 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
+
+        
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+ 
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->nomprenomCandidat = $request->nom;
+        $detail->intituleDesign = $request->IntituléInitial;
+
+
+        $detail->save();
         
         echo '<script>
             alert( "Votre requête  a été bien soumise")
@@ -379,15 +424,12 @@ class RequeteController extends Controller
             'Motif'=>'required',
         ]);
 
-        $tab = array($request->nom,$request->NomDirecteurActuel,$request->NomDirecteur,$request->Motif);
-        $info =  implode(" ",$tab);
-
+    
         $dateSoum =  new DateTime( date('Y-m-d'));
 
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum ;
         $requete->type = 5;
-        $requete->observation = $info;
                                 
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -399,6 +441,20 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
+
+             
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->nomprenomCandidat = $request->nom;
+        $detail->nomPrenomDirecteur = $request->NomDirecteurActuel;
+        $detail->nomPrenomResSecondaire = $request->NomDirecteur;
+        $detail->observation = $request->Motif;
+
+        $detail->save();
 
         echo '<script>
             alert( "Votre requête  a été bien soumise")
@@ -423,15 +479,13 @@ class RequeteController extends Controller
 
         ]);
 
-        $tab = array($request->type,$request->Département,$request->Nom,$request->NomDirecteur,$request->NomCoDirecteur,$request->Diplôme,$request->Intitulé);
-        $info =  implode(" ",$tab);
+
 
         $dateSoum =  new DateTime( date('Y-m-d'));
 
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
         $requete->type = 7;
-        $requete->observation = $info;
                                         
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -443,6 +497,25 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
+
+                     
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->typeDoctorat = $request->type;
+        $detail->departement = $request->Département;
+        $detail->nomprenomCandidat = $request->Nom;
+        $detail->nomPrenomDirecteur = $request->NomDirecteur;
+        $detail->nomPrenomResSecondaire = $request->NomCoDirecteur;
+        $detail->diplomeAcc = $request->Diplôme;
+        $detail->intituleDesign = $request->Intitulé;
+
+
+        $detail->save();
+
 
         echo '<script>
             alert( "Votre requête  a été bien soumise")
@@ -461,15 +534,13 @@ class RequeteController extends Controller
             'observation' => 'required',
         ]);
 
-        $tab = array($request->Nom,$request->observation);
-        $info =  implode(" ",$tab);
+    
 
         $dateSoum =  new DateTime( date('Y-m-d'));
 
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
         $requete->type = 8;
-        $requete->observation = $info;
 
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -481,6 +552,18 @@ class RequeteController extends Controller
             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
         }
         $requete->save();
+
+                          
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->nomprenomCandidat = $request->Nom;
+        $detail->observation = $request->observation;
+
+        $detail->save();
 
         echo '<script>
             alert( "Votre requête  a été bien soumise")
@@ -500,16 +583,14 @@ class RequeteController extends Controller
                'nomDirecteur'=>'required',
                'observation' => 'required',
            ]);
-   
-           $tab = array($request->nom,$request->nomDirecteur,$request->observation);
-           $info =  implode(" ",$tab);
-   
+
         $dateSoum =  new DateTime( date('Y-m-d'));
 
            $requete = new Requete();
            $requete->dateSoumission = $dateSoum;
            $requete->type = 9;
-           $requete->observation = $info;
+
+
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
            $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -520,6 +601,18 @@ class RequeteController extends Controller
                $requete->idSession = $last_sessionCsd_object->idSessionCSD;
            }
            $requete->save();
+
+                                    
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->nomprenomCandidat = $request->nom;
+        $detail->nomPrenomDirecteur	= $request->nomDirecteur;
+        $detail->observation = $request->observation;
+
+        $detail->save();
 
            echo '<script>
            alert( "Votre requête  a été bien soumise")
@@ -544,16 +637,14 @@ class RequeteController extends Controller
                'Intitulé'=>'required',
    
            ]);
-   
-           $tab = array($request->type,$request->Département,$request->Nom,$request->NomDirecteur,$request->NomCoDirecteur,$request->Diplôme,$request->Intitulé);
-           $info =  implode(" ",$tab);
+
    
         $dateSoum =  new DateTime( date('Y-m-d'));
 
            $requete = new Requete();
            $requete->dateSoumission = $dateSoum;
            $requete->type = 10;
-           $requete->observation = $info;
+
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
            $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -564,6 +655,24 @@ class RequeteController extends Controller
                $requete->idSession = $last_sessionCsd_object->idSessionCSD;
            }
            $requete->save();
+
+                          
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->typeDoctorat = $request->type;
+        $detail->departement = $request->Département;
+        $detail->nomprenomCandidat = $request->Nom;
+        $detail->nomPrenomDirecteur = $request->NomDirecteur;
+        $detail->nomPrenomResSecondaire = $request->NomCoDirecteur;
+        $detail->diplomeAcc = $request->Diplôme;
+        $detail->intituleDesign = $request->Intitulé;
+
+
+        $detail->save();
 
            echo '<script>
            alert( "Votre requête  a été bien soumise")
@@ -583,16 +692,13 @@ class RequeteController extends Controller
                'GradeActuel' => 'required',
                'Grade' => 'required',
            ]);
-   
-           $tab = array($request->Nom,$request->GradeActuel,$request->Grade);
-           $info =  implode(" ",$tab);
-   
+ 
         $dateSoum =  new DateTime( date('Y-m-d'));
 
            $requete = new Requete();
            $requete->dateSoumission =  $dateSoum;
            $requete->type = 11;
-           $requete->observation = $info;
+
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
            $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -603,6 +709,18 @@ class RequeteController extends Controller
                $requete->idSession = $last_sessionCsd_object->idSessionCSD;
            }
            $requete->save();
+
+                                     
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->nomprenomCandidat = $request->Nom;
+        $detail->gradeActuel = $request->GradeActuel;
+        $detail->promotion = $request->Grade;
+
+        $detail->save();
 
            echo '<script>
            alert( "Votre requête  a été bien soumise")
@@ -624,15 +742,14 @@ class RequeteController extends Controller
                'Grade' => 'required',
            ]);
    
-           $tab = array($request->Nom,$request->GradeActuel,$request->Grade);
-           $info =  implode(" ",$tab);
+   
    
         $dateSoum =  new DateTime( date('Y-m-d'));
 
            $requete = new Requete();
            $requete->dateSoumission =  $dateSoum;
            $requete->type = 12;
-           $requete->observation = $info;
+
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
            $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -643,6 +760,18 @@ class RequeteController extends Controller
                $requete->idSession = $last_sessionCsd_object->idSessionCSD;
            }
            $requete->save();
+
+                                                
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->nomprenomCandidat = $request->Nom;
+        $detail->gradeActuel = $request->GradeActuel;
+        $detail->promotion = $request->Grade;
+
+        $detail->save();
 
            echo '<script>
            alert( "Votre requête  a été bien soumise")
@@ -664,15 +793,14 @@ class RequeteController extends Controller
                'cv'=>'required',
            ]);
    
-           $tab = array($request->nom,$request->département,$request->observation);
-           $info =  implode(" ",$tab);
-   
+  
         $dateSoum =  new DateTime( date('Y-m-d'));
 
            $requete = new Requete();
            $requete->dateSoumission =  $dateSoum;
            $requete->type = 13;
-           $requete->observation = $info;
+
+
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
            $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -685,6 +813,18 @@ class RequeteController extends Controller
          
         
            $requete->save();
+
+                                                          
+        $detail = new Detail();
+        $req = Requete::all();
+        $req_last  = collect($req)->last();
+
+        $detail->idRequete = $req_last->idRequete;
+        $detail->nomprenomCandidat = $request->nom;
+        $detail->departement = $request->département;
+        $detail->observation = $request->observation;
+
+        $detail->save();
 
            $data = DB::table('requetes')->select('idRequete')
            ->orderBy('idRequete','desc')
@@ -797,16 +937,13 @@ class RequeteController extends Controller
                 'nom' => 'required',
                 'polycopié' => 'required',
             ]);
-           
-            $tab = array($request->nom,$request->observation);
-            $info =  implode(" ",$tab);
-
+  
         $dateSoum =  new DateTime( date('Y-m-d'));
 
             $requete = new Requete();
             $requete->dateSoumission =  $dateSoum;
             $requete->type = 14;
-            $requete->observation = $info;
+
             $session = SessionCSD::all();
             $last_sessionCsd_object = collect($session)->last();
             $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -818,6 +955,16 @@ class RequeteController extends Controller
             }
           
             $requete->save();
+
+            $detail = new Detail();
+            $req = Requete::all();
+            $req_last  = collect($req)->last();
+    
+            $detail->idRequete = $req_last->idRequete;
+            $detail->nomprenomCandidat = $request->nom;
+            $detail->observation = $request->observation;
+    
+            $detail->save();
 
             $data = DB::table('requetes')->select('idRequete')
                     ->orderBy('idRequete','desc')
@@ -856,15 +1003,13 @@ class RequeteController extends Controller
 
              ]);
  
-             $tab = array($request->nom,$request->detisnation,$request->DateDébut,$request->DateFin,$request->etablissement);
-             $info =  implode(" ",$tab);
  
         $dateSoum =  new DateTime( date('Y-m-d'));
 
              $requete = new Requete();
              $requete->dateSoumission = $dateSoum;
              $requete->type = 15;
-             $requete->observation = $info;
+
              $session = SessionCSD::all();
              $last_sessionCsd_object = collect($session)->last();
              $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -875,6 +1020,20 @@ class RequeteController extends Controller
                  $requete->idSession = $last_sessionCsd_object->idSessionCSD;
              }
              $requete->save();
+
+             
+            $detail = new Detail();
+            $req = Requete::all();
+            $req_last  = collect($req)->last();
+
+    
+            $detail->idRequete = $req_last->idRequete;
+            $detail->nomprenomCandidat = $request->nom;
+            $detail->paysDestination = $request->detisnation;
+            $detail->dateDeb = $request->DateDébut;
+            $detail->dateFin = $request->DateFin;
+            $detail->etablissementaAccueil = $request->etablissement;
+            $detail->save();
 
              echo '<script>
              alert( "Votre requête  a été bien soumise")
@@ -894,15 +1053,13 @@ class RequeteController extends Controller
                     'rapport' => 'required',
                 ]);
 
-                $tab = array($request->Chef,$request->Intitulé);
-                $info =  implode(" ",$tab);
 
         $dateSoum =  new DateTime( date('Y-m-d'));
 
                 $requete = new Requete();
                 $requete->dateSoumission = $dateSoum;
                 $requete->type = 16;
-                $requete->observation = $info;
+
                 $session = SessionCSD::all();
                 $last_sessionCsd_object = collect($session)->last();
                 $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -914,6 +1071,16 @@ class RequeteController extends Controller
                 }
              
                 $requete->save();
+
+                $detail = new Detail();
+                $req = Requete::all();
+                $req_last  = collect($req)->last();
+
+                $detail->idRequete = $req_last->idRequete;
+                $detail->nomprenomCandidat = $request->Chef;
+                $detail->intituleDesign = $request->Intitulé;
+                $detail->save();
+    
 
                 $data = DB::table('requetes')->select('idRequete')
                 ->orderBy('idRequete','desc')
@@ -950,15 +1117,13 @@ class RequeteController extends Controller
                   'cahier' => 'required',
               ]);
   
-              $tab = array($request->Nom,$request->Niveau,$request->désignation);
-              $info =  implode(" ",$tab);
-  
+        
         $dateSoum =  new DateTime( date('Y-m-d'));
 
               $requete = new Requete();
               $requete->dateSoumission = $dateSoum;
               $requete->type = 17;
-              $requete->observation = $info;
+
               $session = SessionCSD::all();
               $last_sessionCsd_object = collect($session)->last();
               $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -971,6 +1136,19 @@ class RequeteController extends Controller
            
   
               $requete->save();
+
+              
+              $detail = new Detail();
+              $req = Requete::all();
+              $req_last  = collect($req)->last();
+
+
+              $detail->idRequete = $req_last->idRequete;
+              $detail->nomprenomCandidat = $request->Nom;
+              $detail->diplomeAcc = $request->Niveau;
+              $detail->intituleDesign = $request->désignation;
+              $detail->save();
+  
 
               $data = DB::table('requetes')->select('idRequete')
               ->orderBy('idRequete','desc')
@@ -1004,15 +1182,14 @@ class RequeteController extends Controller
                   'demande' => 'required',
               ]);
   
-              $tab = array($request->nom,$request->observation);
-              $info =  implode(" ",$tab);
+        
 
               $dateSoum =  new DateTime( date('Y-m-d'));
   
               $requete = new Requete();
               $requete->dateSoumission = $dateSoum;
               $requete->type = 18;
-              $requete->observation = $info;
+
               $session = SessionCSD::all();
               $last_sessionCsd_object = collect($session)->last();
               $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1025,6 +1202,19 @@ class RequeteController extends Controller
            
               
               $requete->save();
+
+                            
+              $detail = new Detail();
+              $req = Requete::all();
+              $req_last  = collect($req)->last();
+
+   
+
+              $detail->idRequete = $req_last->idRequete;
+              $detail->nomprenomCandidat = $request->nom;
+              $detail->observation = $request->observation;
+              $detail->save();
+  
 
               $data = DB::table('requetes')->select('idRequete')
               ->orderBy('idRequete','desc')
@@ -1062,15 +1252,14 @@ class RequeteController extends Controller
                   'demande' => 'required',
               ]);
   
-              $tab = array($request->nom,$request->etablissement);
-              $info =  implode(" ",$tab);
+             
   
               $dateSoum =  new DateTime( date('Y-m-d'));
 
               $requete = new Requete();
               $requete->dateSoumission =  $dateSoum;
               $requete->type = 19;
-              $requete->observation = $info;
+
               $session = SessionCSD::all();
               $last_sessionCsd_object = collect($session)->last();
               $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1082,6 +1271,17 @@ class RequeteController extends Controller
               }
            
               $requete->save();
+
+                            
+              $detail = new Detail();
+              $req = Requete::all();
+              $req_last  = collect($req)->last();
+
+
+              $detail->idRequete = $req_last->idRequete;
+              $detail->nomprenomCandidat = $request->nom;
+              $detail->etablissementaAccueil = $request->etablissement;
+              $detail->save();
 
               $data = DB::table('requetes')->select('idRequete')
               ->orderBy('idRequete','desc')
@@ -1116,14 +1316,13 @@ class RequeteController extends Controller
            'rapport' => 'required',
        ]);
 
-       $tab = array($request->nom,$request->observation);
-       $info =  implode(" ",$tab);
+
        $dateSoum =  new DateTime( date('Y-m-d'));
 
        $requete = new Requete();
        $requete->dateSoumission = $dateSoum;
        $requete->type = 20;
-       $requete->observation = $info;
+
        $session = SessionCSD::all();
        $last_sessionCsd_object = collect($session)->last();
        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1135,6 +1334,16 @@ class RequeteController extends Controller
        }
     
        $requete->save();
+                                   
+       $detail = new Detail();
+       $req = Requete::all();
+       $req_last  = collect($req)->last();
+
+
+       $detail->idRequete = $req_last->idRequete;
+       $detail->nomprenomCandidat = $request->nom;
+       $detail->observation = $request->observation;
+       $detail->save();
 
        $data = DB::table('requetes')->select('idRequete')
        ->orderBy('idRequete','desc')
@@ -1168,14 +1377,13 @@ class RequeteController extends Controller
              'demande' => 'required',
          ]);
   
-         $tab = array($request->nom,$request->observation);
-         $info =  implode(" ",$tab);
+ 
          $dateSoum =  new DateTime( date('Y-m-d'));
   
          $requete = new Requete();
          $requete->dateSoumission = $dateSoum;
          $requete->type = 21;
-         $requete->observation = $info;
+
          $session = SessionCSD::all();
          $last_sessionCsd_object = collect($session)->last();
          $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1187,6 +1395,17 @@ class RequeteController extends Controller
          }
       
          $requete->save();
+
+         $detail = new Detail();
+         $req = Requete::all();
+         $req_last  = collect($req)->last();
+  
+  
+         $detail->idRequete = $req_last->idRequete;
+         $detail->nomprenomCandidat = $request->nom;
+         $detail->observation = $request->observation;
+         $detail->save();
+  
   
          $data = DB::table('requetes')->select('idRequete')
          ->orderBy('idRequete','desc')
@@ -1218,16 +1437,13 @@ class RequeteController extends Controller
                        'nom' => 'required',
                        'rapport' => 'required',
                    ]);
-       
-                   $tab = array($request->nom,$request->observation);
-                   $info =  implode(" ",$tab);
+
                    $dateSoum =  new DateTime( date('Y-m-d'));
        
                    $requete = new Requete();
                    $requete->dateSoumission =  $dateSoum;
                    $requete->type = 22;
-                   $requete->observation = $info;
-                   $requete->observation = $info;
+
                    $session = SessionCSD::all();
                    $last_sessionCsd_object = collect($session)->last();
                    $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1238,6 +1454,17 @@ class RequeteController extends Controller
                        $requete->idSession = $last_sessionCsd_object->idSessionCSD;
                    }
                    $requete->save();
+
+                            
+                    $detail = new Detail();
+                    $req = Requete::all();
+                    $req_last  = collect($req)->last();
+            
+            
+                    $detail->idRequete = $req_last->idRequete;
+                    $detail->nomprenomCandidat = $request->nom;
+                    $detail->observation = $request->observation;
+                    $detail->save();
      
                    $data = DB::table('requetes')->select('idRequete')
                    ->orderBy('idRequete','desc')
@@ -1271,16 +1498,13 @@ class RequeteController extends Controller
                         'nom' => 'required',
                         'rapport' => 'required',
                     ]);
-        
-                    $tab = array($request->nom,$request->observation);
-                    $info =  implode(" ",$tab);
+
                     $dateSoum =  new DateTime( date('Y-m-d'));
         
                     $requete = new Requete();
                     $requete->dateSoumission = $dateSoum ;
                     $requete->type = 23;
-                    $requete->observation = $info;
-                    $requete->observation = $info;
+
                     $session = SessionCSD::all();
                     $last_sessionCsd_object = collect($session)->last();
                     $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1291,6 +1515,18 @@ class RequeteController extends Controller
                         $requete->idSession = $last_sessionCsd_object->idSessionCSD;
                     }
                     $requete->save();
+
+                    
+                            
+                    $detail = new Detail();
+                    $req = Requete::all();
+                    $req_last  = collect($req)->last();
+            
+            
+                    $detail->idRequete = $req_last->idRequete;
+                    $detail->nomprenomCandidat = $request->nom;
+                    $detail->observation = $request->observation;
+                    $detail->save();
       
                     $data = DB::table('requetes')->select('idRequete')
                     ->orderBy('idRequete','desc')
@@ -1324,14 +1560,12 @@ class RequeteController extends Controller
                             'cahier' => 'required',
                         ]);
             
-                        $tab = array($request->Nom,$request->observation);
-                        $info =  implode(" ",$tab);
                         $dateSoum =  new DateTime( date('Y-m-d'));
             
                         $requete = new Requete();
                         $requete->dateSoumission =  $dateSoum;
                         $requete->type = 24;
-                        $requete->observation = $info;
+
                         $session = SessionCSD::all();
                         $last_sessionCsd_object = collect($session)->last();
                         $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1342,6 +1576,16 @@ class RequeteController extends Controller
                             $requete->idSession = $last_sessionCsd_object->idSessionCSD;
                         }
                         $requete->save();
+
+                        $detail = new Detail();
+                        $req = Requete::all();
+                        $req_last  = collect($req)->last();
+                
+                
+                        $detail->idRequete = $req_last->idRequete;
+                        $detail->nomprenomCandidat = $request->Nom;
+                        $detail->observation = $request->observation;
+                        $detail->save();
           
                         $data = DB::table('requetes')->select('idRequete')
                         ->orderBy('idRequete','desc')

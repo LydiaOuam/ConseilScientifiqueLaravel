@@ -35,7 +35,7 @@ Route::get('/',function()
     {
         return view('base');
     }
-    return view('/login');
+    return view('/welcome');
 })->name('Accueil');
 
 Route::get('/modale',[ComptesController::class,"showRoleUser"])->name('ShowRoleUser');

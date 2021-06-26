@@ -12,6 +12,7 @@ use App\HTTP\Controllers\RequeController;
 use App\HTTP\Controllers\SessionController;
 use App\HTTP\Controllers\TraitementController;
 use App\HTTP\Controllers\AccueilController;
+use App\HTTP\Controllers\PvController;
 use App\Models\Compte;
 
 
@@ -377,6 +378,12 @@ Route::get('/accueilCFD',function()
 {
     return view('DSession.accueilCFD');
 })->name('CFD');
+
+
+Route::get('/decision',[PvController::class,"decision"])->name('decision');
+
+Route::get('/decision.pdf',[PvController::class,"downdecision"])->name('downdecision');
+
 
 
 

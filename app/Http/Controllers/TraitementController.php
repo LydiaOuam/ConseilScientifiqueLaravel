@@ -63,12 +63,12 @@ class TraitementController extends Controller
     {
         $decision = new Decision();
         $decision->idRequete = $id;
-        $decision->idPresident = 2;//session('user')->id;
+        $user = session('user');
+        $decision->idPresident = $user->id;//session('user')->id;
         $decision->avis = $request->decision;
         $decision->observation = $request->observation;
         $decision->save();
-        // dd($id);
-        // dd($request->all());
+        return redirect()->back()->with('success','La décision a été bien enregistrée');
     }
 
 }

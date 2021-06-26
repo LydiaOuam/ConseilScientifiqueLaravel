@@ -24,7 +24,7 @@ class CreateDecisionsTable extends Migration
                   ->references('id')->on('users')
                   ->onDelete('cascade');
             $table->string('avis');
-            $table->text('observation');
+            $table->text('observation')->nullable();
             $table->timestamps();
         });
     }

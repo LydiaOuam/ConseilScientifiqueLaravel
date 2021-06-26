@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Requete extends Model
 {
-    
+    use HasFactory;
 }

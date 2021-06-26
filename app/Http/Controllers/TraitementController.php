@@ -7,6 +7,7 @@ use App\Models\Requete;
 use App\Models\Point;
 use App\Models\Item;
 use App\Models\Decision;
+use Illuminate\Support\Facades\DB;
 use App\Models\Detail;
 
 
@@ -16,9 +17,11 @@ class TraitementController extends Controller
 {
     public function traiter()
     {
-
+     
     
-        $requetes = Requete::paginate(1);
+        $requetes = DB::table('requetes')
+                         ->where('etat','=','en attente')
+                         ->paginate(1);
         $details = Detail::all();
         $items = Item::all();
         $types = Point::all();

@@ -20,7 +20,7 @@ class AuthController extends Controller
         $user = User::where('login',$request->login)->first();
         if($user != null)
         {
-            if($user->etat != 0)
+            if($user->etat != 0 && $user->supprim != 0)
             {
                 if($user->password == $request->password)
                 {
@@ -63,11 +63,15 @@ class AuthController extends Controller
                         return redirect(route('ShowRoleUser'));
                     }
                 }
-                else echo 'Password incorrecte';
+                else return redirect(route('Login'))->with('error','Mot de passe incorrecte') ;
                
             }
+        else return redirect(route('Login'))->with('error','Les informations saisies sont incorrectes') ;
+
             
         }
+        else return redirect(route('Login'))->with('error','Login incorrecte') ;
+        
         // dd($user->password);
         // else echo 'j';
         // dd($user['password']);

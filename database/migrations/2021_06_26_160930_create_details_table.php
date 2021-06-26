@@ -14,6 +14,7 @@ class CreateDetailsTable extends Migration
     public function up()
     {
         Schema::create('details', function (Blueprint $table) {
+           
             $table->id();
             $table->unsignedBigInteger('idRequete'); 
             $table->foreign('idRequete')

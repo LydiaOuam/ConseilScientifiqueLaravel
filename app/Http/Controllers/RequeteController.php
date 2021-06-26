@@ -147,6 +147,8 @@ class RequeteController extends Controller
         $requete = new Requete();
         $requete->dateSoumission =  $dateSoum;
         $requete->type = 4;
+        $user=session('user');
+        $requete->idUser = $user->id;
         
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -273,7 +275,9 @@ class RequeteController extends Controller
         $dateSoum =  new DateTime( date('Y-m-d'));
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
-        $requete->type = 1;
+        $requete->type = 1; 
+        $user=session('user');
+        $requete->idUser = $user->id;
                 
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -328,7 +332,8 @@ class RequeteController extends Controller
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
         $requete->type = 2;
-
+        $user=session('user');
+        $requete->idUser = $user->id;
                 
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -378,7 +383,8 @@ class RequeteController extends Controller
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
         $requete->type = 3;
-
+        $user=session('user');
+        $requete->idUser = $user->id;
                         
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -430,7 +436,9 @@ class RequeteController extends Controller
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum ;
         $requete->type = 5;
-                                
+        $user=session('user');
+        $requete->idUser = $user->id;
+
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
         $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -486,7 +494,9 @@ class RequeteController extends Controller
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
         $requete->type = 7;
-                                        
+        $user=session('user');
+        $requete->idUser = $user->id;
+
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
         $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -541,6 +551,8 @@ class RequeteController extends Controller
         $requete = new Requete();
         $requete->dateSoumission = $dateSoum;
         $requete->type = 8;
+        $user=session('user');
+        $requete->idUser = $user->id;
 
         $session = SessionCSD::all();
         $last_sessionCsd_object = collect($session)->last();
@@ -589,7 +601,8 @@ class RequeteController extends Controller
            $requete = new Requete();
            $requete->dateSoumission = $dateSoum;
            $requete->type = 9;
-
+           $user=session('user');
+            $requete->idUser = $user->id;
 
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
@@ -644,6 +657,8 @@ class RequeteController extends Controller
            $requete = new Requete();
            $requete->dateSoumission = $dateSoum;
            $requete->type = 10;
+           $user=session('user');
+           $requete->idUser = $user->id;
 
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
@@ -698,6 +713,8 @@ class RequeteController extends Controller
            $requete = new Requete();
            $requete->dateSoumission =  $dateSoum;
            $requete->type = 11;
+            $user=session('user');
+            $requete->idUser = $user->id;
 
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
@@ -749,7 +766,8 @@ class RequeteController extends Controller
            $requete = new Requete();
            $requete->dateSoumission =  $dateSoum;
            $requete->type = 12;
-
+            $user=session('user');
+            $requete->idUser = $user->id;
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
            $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -799,7 +817,8 @@ class RequeteController extends Controller
            $requete = new Requete();
            $requete->dateSoumission =  $dateSoum;
            $requete->type = 13;
-
+           $user=session('user');
+           $requete->idUser = $user->id;
 
            $session = SessionCSD::all();
            $last_sessionCsd_object = collect($session)->last();
@@ -943,6 +962,8 @@ class RequeteController extends Controller
             $requete = new Requete();
             $requete->dateSoumission =  $dateSoum;
             $requete->type = 14;
+            $user=session('user');
+            $requete->idUser = $user->id;
 
             $session = SessionCSD::all();
             $last_sessionCsd_object = collect($session)->last();
@@ -1009,6 +1030,8 @@ class RequeteController extends Controller
              $requete = new Requete();
              $requete->dateSoumission = $dateSoum;
              $requete->type = 15;
+  $user=session('user');
+        $requete->idUser = $user->id;
 
              $session = SessionCSD::all();
              $last_sessionCsd_object = collect($session)->last();
@@ -1059,7 +1082,8 @@ class RequeteController extends Controller
                 $requete = new Requete();
                 $requete->dateSoumission = $dateSoum;
                 $requete->type = 16;
-
+  $user=session('user');
+        $requete->idUser = $user->id;
                 $session = SessionCSD::all();
                 $last_sessionCsd_object = collect($session)->last();
                 $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1123,6 +1147,8 @@ class RequeteController extends Controller
               $requete = new Requete();
               $requete->dateSoumission = $dateSoum;
               $requete->type = 17;
+              $user=session('user');
+              $requete->idUser = $user->id;
 
               $session = SessionCSD::all();
               $last_sessionCsd_object = collect($session)->last();
@@ -1189,7 +1215,8 @@ class RequeteController extends Controller
               $requete = new Requete();
               $requete->dateSoumission = $dateSoum;
               $requete->type = 18;
-
+  $user=session('user');
+        $requete->idUser = $user->id;
               $session = SessionCSD::all();
               $last_sessionCsd_object = collect($session)->last();
               $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1259,7 +1286,8 @@ class RequeteController extends Controller
               $requete = new Requete();
               $requete->dateSoumission =  $dateSoum;
               $requete->type = 19;
-
+              $user=session('user');
+              $requete->idUser = $user->id;
               $session = SessionCSD::all();
               $last_sessionCsd_object = collect($session)->last();
               $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1322,7 +1350,8 @@ class RequeteController extends Controller
        $requete = new Requete();
        $requete->dateSoumission = $dateSoum;
        $requete->type = 20;
-
+       $user=session('user');
+       $requete->idUser = $user->id;
        $session = SessionCSD::all();
        $last_sessionCsd_object = collect($session)->last();
        $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1383,7 +1412,8 @@ class RequeteController extends Controller
          $requete = new Requete();
          $requete->dateSoumission = $dateSoum;
          $requete->type = 21;
-
+         $user=session('user');
+         $requete->idUser = $user->id;
          $session = SessionCSD::all();
          $last_sessionCsd_object = collect($session)->last();
          $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1443,7 +1473,8 @@ class RequeteController extends Controller
                    $requete = new Requete();
                    $requete->dateSoumission =  $dateSoum;
                    $requete->type = 22;
-
+                   $user=session('user');
+                   $requete->idUser = $user->id;
                    $session = SessionCSD::all();
                    $last_sessionCsd_object = collect($session)->last();
                    $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1504,7 +1535,8 @@ class RequeteController extends Controller
                     $requete = new Requete();
                     $requete->dateSoumission = $dateSoum ;
                     $requete->type = 23;
-
+                    $user=session('user');
+                    $requete->idUser = $user->id;
                     $session = SessionCSD::all();
                     $last_sessionCsd_object = collect($session)->last();
                     $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 
@@ -1565,7 +1597,8 @@ class RequeteController extends Controller
                         $requete = new Requete();
                         $requete->dateSoumission =  $dateSoum;
                         $requete->type = 24;
-
+                        $user=session('user');
+                        $requete->idUser = $user->id;
                         $session = SessionCSD::all();
                         $last_sessionCsd_object = collect($session)->last();
                         $result = $dateSoum->format('Y-m-d');  // Trasnformation en string 

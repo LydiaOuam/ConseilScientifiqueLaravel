@@ -17,6 +17,10 @@ class CreateRequetesTable extends Migration
             $table->id('idRequete');
             $table->string('dateSoumission');
             $table->enum('etat',['en attente','en cours de traitement','traité'])->default('en attente');
+            $table->unsignedBigInteger('idUser'); 
+            $table->foreign('idUser')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
             $table->unsignedBigInteger('type'); 
             $table->foreign('type')
                   ->references('id')->on('points')
@@ -24,6 +28,7 @@ class CreateRequetesTable extends Migration
             $table->string('idSession')->nullable();
             $table->string('observation')->nullable();
             $table->timestamps();
+
         });
     }
 

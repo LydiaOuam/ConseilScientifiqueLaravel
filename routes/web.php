@@ -384,7 +384,9 @@ Route::get('/decision',[PvController::class,"decision"])->name('decision');
 
 Route::get('/decision.pdf',[PvController::class,"downdecision"])->name('downdecision');
 
-
+Route::get('/phpinfo', function() {
+    return phpinfo();
+});
 
 
 

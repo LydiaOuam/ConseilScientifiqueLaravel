@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\SessionCSD;
 use App\Models\Detail;
+use App\Models\Publication;
+use App\Models\Communication;
 
 
 
@@ -130,16 +132,33 @@ class RequeteController extends Controller
         /** Soumettre dossier soutenance */
     public function saveRequete(Request $request)
     {
+
+        // dd($request->all());
         $request->validate([
             'typedoc' => 'required',
             'direct'=>'required',
             'annee'=>'required',
             'intit'=>'required',
             'rapport'=>'required',
+            'ListeAuteurs.*'=>'required',
+            'TitrePublication.*'=>'required',
+            'NomRevue.*'=>'required',
+            'ImpactFactor.*'=>'required_without:sjr',
+            'SJR.*'=>'required_without:impact',
+            'DateSoumission.*'=>'required',
+            'DateAcceptation.*'=>'required|after:datesOum',
+            'DateApparution.*'=>'after:dateAcc',
+            'URL_Revue.*'=>'required',
+            'ListeAuteurCom.*'=>'required',
+            'TitreCom.*'=>'required',
+            'NomCom.*'=>'required',
+            'DateDebCom.*'=>'required',
+            'DateFinCom.*'=>'required|after:dateFinCom',
+            'LieuCom.*'=>'required',
+
         ]);
 
 
-    
         
         $dateSoum =  new DateTime( date('Y-m-d'));
         $requete = new Requete();
@@ -173,6 +192,47 @@ class RequeteController extends Controller
 
         $detail->save();
 
+        $nombrePub = count($request->ListeAuteurs);
+
+       
+    
+        for($i = 0; $i<$nombrePub;$i++)
+        {
+        $publications = new Publication();
+          
+            $publications->idRequete =  $req_last->idRequete;
+            $publications->listeAuteurs =  $request->ListeAuteurs[$i]; 
+            $publications->titrePub =  $request->TitrePublication[$i]; 
+            $publications->nomRevue =  $request->NomRevue[$i]; 
+            $publications->impact =  $request->ImpactFactor[$i]; 
+            $publications->sjr =  $request->SJR[$i]; 
+            $publications->datesOum =  $request->DateSoumission[$i]; 
+            $publications->dateAcc =  $request->DateAcceptation[$i]; 
+            $publications->dateParu =  $request->DateApparution[$i]; 
+            $publications->urlrevue =  $request->URL_Revue[$i]; 
+            $publications->urlpapier =  $request->URL_papier[$i]; 
+            $publications->save();
+        }
+
+
+        $nombreCom = count($request->TitreCom);
+            
+    
+        for($i = 0; $i<$nombreCom;$i++)
+        {
+        $communication = new Communication();
+          
+            $communication->idRequete =  $req_last->idRequete;
+            $communication->listeAuteurs =  $request->ListeAuteurCom[$i]; 
+            $communication->titreCom =  $request->TitreCom[$i]; 
+            $communication->intitCom =  $request->NomCom[$i]; 
+            $communication->dateDebCom =  $request->DateDebCom[$i]; 
+            $communication->dateFinCom =  $request->DateFinCom[$i]; 
+            $communication->lieuCom =  $request->LieuCom[$i]; 
+            $communication->urlCom =  $request->URLCom[$i]; 
+            $communication->save();
+        }
+
         $data = DB::table('requetes')->select('idRequete')
                                     ->orderBy('idRequete','desc')
                                     ->first();
@@ -180,10 +240,9 @@ class RequeteController extends Controller
     
         if($request->hasFile('rapport')){
             $files = $request->rapport;
-            foreach($files as $rapp)
-            {
-                $name = $rapp->getClientOriginalName();
-                if( $rapp->move('upload',$name))
+           
+                $name =  $files->getClientOriginalName();
+                if(  $files ->move('upload',$name))
                 {
                     $item = new Item();
                     $item->idRequete = $data->idRequete;
@@ -192,7 +251,23 @@ class RequeteController extends Controller
                 }
                
                
-            }
+        }
+
+                                        
+    
+        if($request->hasFile('rapportC')){
+            $files = $request->rapportC;
+           
+                $name =  $files->getClientOriginalName();
+                if(  $files->move('upload',$name))
+                {
+                    $item = new Item();
+                    $item->idRequete = $data->idRequete;
+                    $item->fichier = $name;
+                    $item->save();
+                }
+               
+               
         }
 
         
@@ -213,39 +288,7 @@ class RequeteController extends Controller
             }
         }
         
-        if($request->hasFile('communication')){
-            $files = $request->communication;
-            foreach($files as $rapp)
-            {
-                $name = $rapp->getClientOriginalName();
-                if( $rapp->move('upload',$name))
-                {
-                    $item = new Item();
-                    $item->idRequete = $data->idRequete;
-                    $item->fichier = $name;
-                    $item->save();
-                }
-               
-               
-            }
-        }
-        
-        if($request->hasFile('publication')){
-            $files = $request->publication;
-            foreach($files as $rapp)
-            {
-                $name = $rapp->getClientOriginalName();
-                if( $rapp->move('upload',$name))
-                {
-                    $item = new Item();
-                    $item->idRequete = $data->idRequete;
-                    $item->fichier = $name;
-                    $item->save();
-                }
-               
-               
-            }
-        }
+
        
         echo '<script>
             alert( "Votre requête  a été bien soumise")

@@ -39,11 +39,72 @@
           <input type="file" accept="application/pdf" class="form-control" name="brevet[]" multiple>
         </div>
 
-        
         <div class="mb-3">
-        <label for="rapport" class="form-label"><h6>Publication:</h6></label>
-          <input type="file" accept="application/pdf" class="form-control" name="publication[]" multiple>
+        <label for="rapport" class="form-label"> <h6>Publications:</h6></label>
+          <input type="file" accept="application/pdf" class="form-control" name="brevet[]" multiple>
         </div>
+
+        <div class="card">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+  
+<div class="input-group">
+  <span class="input-group-text">Liste des Auteurs: (dans l'ordre)</span>
+  <textarea class="form-control" aria-label="With textarea" placeholder="......"></textarea>
+</div>
+  <div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Titre de la publication:</span>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Nom de la revue:</span>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Impact factor:</span>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">SJR:</span>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Date de soumission:</span>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Date d'acceptation:</span>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Date de parution:</span>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon3">URL de la revue:</span>
+  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon3">URL du papier:</span>
+  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+</div>
+
+
+
+  </div>
+</div>
 
 
      <button  type="submit" class="btn btn-success">Envoyer</button>

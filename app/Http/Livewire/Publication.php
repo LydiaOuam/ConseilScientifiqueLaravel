@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class Publication extends Component
 {
+    
 
     public $publications = [];
 
@@ -15,6 +16,7 @@ class Publication extends Component
             []
         ];
     }
+
 
     public function render()
     {

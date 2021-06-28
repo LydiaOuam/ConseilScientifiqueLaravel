@@ -132,10 +132,8 @@ class RequeteController extends Controller
     {
         $request->validate([
             'typedoc' => 'required',
-            'nomPren' => 'required',
             'direct'=>'required',
             'annee'=>'required',
-            'dep'=>'required',
             'intit'=>'required',
             'rapport'=>'required',
         ]);
@@ -169,10 +167,8 @@ class RequeteController extends Controller
 
         $detail->idRequete = $req_last->idRequete;
         $detail->typeDoctorat = $request->typedoc;
-        $detail->nomprenomCandidat = $request->nomPren;
         $detail->nomPrenomDirecteur = $request->direct;
         $detail->annee = $request->annee;
-        $detail->departement = $request->dep;
         $detail->intituleDesign = $request->intit;
 
         $detail->save();
@@ -265,8 +261,6 @@ class RequeteController extends Controller
     public function saveAbondon(Request $request)
     {
         $request->validate([
-            'Nom' => 'required',
-            'Département'=>'required',
             'Directeur'=>'required',
             'Intitulé' => 'required',
 
@@ -295,9 +289,7 @@ class RequeteController extends Controller
         $req_last  = collect($req)->last();
 
         $detail->idRequete = $req_last->idRequete;
-        $detail->nomprenomCandidat = $request->Nom;
         $detail->nomPrenomDirecteur = $request->Directeur;
-        $detail->departement = $request->Département;
         $detail->intituleDesign = $request->Intitulé;
 
         $detail->save();
@@ -317,7 +309,6 @@ class RequeteController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'Nom' => 'required',
             'Pays' => 'required',
             'Etablissement'=>'required',
             'Début'=>'required',
@@ -351,7 +342,6 @@ class RequeteController extends Controller
         $req_last  = collect($req)->last();
 
         $detail->idRequete = $req_last->idRequete;
-        $detail->nomprenomCandidat = $request->Nom;
         $detail->paysDestination = $request->Pays;
         $detail->etablissementaAccueil = $request->Etablissement;
         $detail->dateDeb = $request->Début;
@@ -405,7 +395,6 @@ class RequeteController extends Controller
  
 
         $detail->idRequete = $req_last->idRequete;
-        $detail->nomprenomCandidat = $request->nom;
         $detail->intituleDesign = $request->IntituléInitial;
 
 
@@ -424,7 +413,6 @@ class RequeteController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'nom'=>'required',
             'NomDirecteurActuel' => 'required',
             'NomDirecteur' => 'required',
             'Motif'=>'required',
@@ -457,7 +445,6 @@ class RequeteController extends Controller
 
 
         $detail->idRequete = $req_last->idRequete;
-        $detail->nomprenomCandidat = $request->nom;
         $detail->nomPrenomDirecteur = $request->NomDirecteurActuel;
         $detail->nomPrenomResSecondaire = $request->NomDirecteur;
         $detail->observation = $request->Motif;
@@ -478,8 +465,6 @@ class RequeteController extends Controller
         //  dd($request->all());
         $request->validate([
             'type' => 'required',
-            'Département' => 'required',
-            'Nom'=>'required',
             'NomDirecteur'=>'required',
             'NomCoDirecteur'=>'required',
             'Diplôme'=>'required',
@@ -516,8 +501,6 @@ class RequeteController extends Controller
 
         $detail->idRequete = $req_last->idRequete;
         $detail->typeDoctorat = $request->type;
-        $detail->departement = $request->Département;
-        $detail->nomprenomCandidat = $request->Nom;
         $detail->nomPrenomDirecteur = $request->NomDirecteur;
         $detail->nomPrenomResSecondaire = $request->NomCoDirecteur;
         $detail->diplomeAcc = $request->Diplôme;
@@ -540,7 +523,6 @@ class RequeteController extends Controller
         //  dd($request->all());
         $request->validate([
             
-            'Nom'=>'required',
             'observation' => 'required',
         ]);
 
@@ -572,7 +554,6 @@ class RequeteController extends Controller
 
 
         $detail->idRequete = $req_last->idRequete;
-        $detail->nomprenomCandidat = $request->Nom;
         $detail->observation = $request->observation;
 
         $detail->save();
@@ -591,7 +572,6 @@ class RequeteController extends Controller
             // dd($request->all());
            $request->validate([
                
-               'nom'=>'required',
                'nomDirecteur'=>'required',
                'observation' => 'required',
            ]);
@@ -621,7 +601,6 @@ class RequeteController extends Controller
         $req_last  = collect($req)->last();
 
         $detail->idRequete = $req_last->idRequete;
-        $detail->nomprenomCandidat = $request->nom;
         $detail->nomPrenomResSecondaire	= $request->nomDirecteur;
         $detail->observation = $request->observation;
 
@@ -642,8 +621,6 @@ class RequeteController extends Controller
             // dd($request->all());
            $request->validate([
                'type' => 'required',
-               'Département' => 'required',
-               'Nom'=>'required',
                'NomDirecteur'=>'required',
                'NomCoDirecteur'=>'required',
                'Diplôme'=>'required',
@@ -679,8 +656,6 @@ class RequeteController extends Controller
 
         $detail->idRequete = $req_last->idRequete;
         $detail->typeDoctorat = $request->type;
-        $detail->departement = $request->Département;
-        $detail->nomprenomCandidat = $request->Nom;
         $detail->nomPrenomDirecteur = $request->NomDirecteur;
         $detail->nomPrenomResSecondaire = $request->NomCoDirecteur;
         $detail->diplomeAcc = $request->Diplôme;
@@ -703,7 +678,6 @@ class RequeteController extends Controller
        {
             // dd($request->all());
            $request->validate([
-               'Nom'=>'required',
                'GradeActuel' => 'required',
                'Grade' => 'required',
            ]);
@@ -733,7 +707,6 @@ class RequeteController extends Controller
         $req_last  = collect($req)->last();
 
         $detail->idRequete = $req_last->idRequete;
-        $detail->nomprenomCandidat = $request->Nom;
         $detail->gradeActuel = $request->GradeActuel;
         $detail->promotion = $request->Grade;
 
@@ -754,7 +727,6 @@ class RequeteController extends Controller
        {
             // dd($request->all());
            $request->validate([
-               'Nom'=>'required',
                'GradeActuel' => 'required',
                'Grade' => 'required',
            ]);
@@ -806,8 +778,6 @@ class RequeteController extends Controller
        {
             // dd($request->all());
            $request->validate([
-               'nom' => 'required',
-               'département' => 'required',
                'cv'=>'required',
            ]);
    
@@ -839,8 +809,6 @@ class RequeteController extends Controller
         $req_last  = collect($req)->last();
 
         $detail->idRequete = $req_last->idRequete;
-        $detail->nomprenomCandidat = $request->nom;
-        $detail->departement = $request->département;
         $detail->observation = $request->observation;
 
         $detail->save();
@@ -953,7 +921,6 @@ class RequeteController extends Controller
         {
             // dd($request->all());
             $request->validate([
-                'nom' => 'required',
                 'polycopié' => 'required',
             ]);
   
@@ -982,7 +949,6 @@ class RequeteController extends Controller
             $req_last  = collect($req)->last();
     
             $detail->idRequete = $req_last->idRequete;
-            $detail->nomprenomCandidat = $request->nom;
             $detail->observation = $request->observation;
     
             $detail->save();
@@ -1016,7 +982,6 @@ class RequeteController extends Controller
          {
             //  dd($request->all());
              $request->validate([
-                 'nom' => 'required',
                  'detisnation' => 'required',
                  'etablissement' => 'required',
                  'DateDébut' => 'required',
@@ -1051,7 +1016,6 @@ class RequeteController extends Controller
 
     
             $detail->idRequete = $req_last->idRequete;
-            $detail->nomprenomCandidat = $request->nom;
             $detail->paysDestination = $request->detisnation;
             $detail->dateDeb = $request->DateDébut;
             $detail->dateFin = $request->DateFin;
@@ -1101,7 +1065,6 @@ class RequeteController extends Controller
                 $req_last  = collect($req)->last();
 
                 $detail->idRequete = $req_last->idRequete;
-                $detail->nomprenomCandidat = $request->Chef;
                 $detail->intituleDesign = $request->Intitulé;
                 $detail->save();
     
@@ -1135,7 +1098,6 @@ class RequeteController extends Controller
           {
             //   dd($request->all());
               $request->validate([
-                'Nom' => 'required',
                   'désignation' => 'required',
                   'Niveau' => 'required',
                   'cahier' => 'required',
@@ -1170,7 +1132,6 @@ class RequeteController extends Controller
 
 
               $detail->idRequete = $req_last->idRequete;
-              $detail->nomprenomCandidat = $request->Nom;
               $detail->diplomeAcc = $request->Niveau;
               $detail->intituleDesign = $request->désignation;
               $detail->save();
@@ -1204,7 +1165,6 @@ class RequeteController extends Controller
           {
             //   dd($request->all());
               $request->validate([
-                  'nom' => 'required',
                   'demande' => 'required',
               ]);
   
@@ -1238,7 +1198,6 @@ class RequeteController extends Controller
    
 
               $detail->idRequete = $req_last->idRequete;
-              $detail->nomprenomCandidat = $request->nom;
               $detail->observation = $request->observation;
               $detail->save();
   
@@ -1274,7 +1233,6 @@ class RequeteController extends Controller
           {
             //   dd($request->all());
               $request->validate([
-                  'nom' => 'required',
                   'etablissement'=>'required',
                   'demande' => 'required',
               ]);
@@ -1307,7 +1265,6 @@ class RequeteController extends Controller
 
 
               $detail->idRequete = $req_last->idRequete;
-              $detail->nomprenomCandidat = $request->nom;
               $detail->etablissementaAccueil = $request->etablissement;
               $detail->save();
 
@@ -1340,7 +1297,6 @@ class RequeteController extends Controller
    {
      //   dd($request->all());
        $request->validate([
-           'nom' => 'required',
            'rapport' => 'required',
        ]);
 
@@ -1370,7 +1326,6 @@ class RequeteController extends Controller
 
 
        $detail->idRequete = $req_last->idRequete;
-       $detail->nomprenomCandidat = $request->nom;
        $detail->observation = $request->observation;
        $detail->save();
 
@@ -1402,7 +1357,6 @@ class RequeteController extends Controller
      {
        //   dd($request->all());
          $request->validate([
-             'nom' => 'required',
              'demande' => 'required',
          ]);
   
@@ -1432,7 +1386,6 @@ class RequeteController extends Controller
   
   
          $detail->idRequete = $req_last->idRequete;
-         $detail->nomprenomCandidat = $request->nom;
          $detail->observation = $request->observation;
          $detail->save();
   
@@ -1464,7 +1417,6 @@ class RequeteController extends Controller
                {
                   //  dd($request->all());
                    $request->validate([
-                       'nom' => 'required',
                        'rapport' => 'required',
                    ]);
 
@@ -1493,7 +1445,6 @@ class RequeteController extends Controller
             
             
                     $detail->idRequete = $req_last->idRequete;
-                    $detail->nomprenomCandidat = $request->nom;
                     $detail->observation = $request->observation;
                     $detail->save();
      
@@ -1526,7 +1477,6 @@ class RequeteController extends Controller
                 {
                    //  dd($request->all());
                     $request->validate([
-                        'nom' => 'required',
                         'rapport' => 'required',
                     ]);
 
@@ -1556,7 +1506,6 @@ class RequeteController extends Controller
             
             
                     $detail->idRequete = $req_last->idRequete;
-                    $detail->nomprenomCandidat = $request->nom;
                     $detail->observation = $request->observation;
                     $detail->save();
       
@@ -1588,7 +1537,6 @@ class RequeteController extends Controller
                     {
                        //  dd($request->all());
                         $request->validate([
-                            'Nom'=>'required',
                             'cahier' => 'required',
                         ]);
             
@@ -1616,7 +1564,6 @@ class RequeteController extends Controller
                 
                 
                         $detail->idRequete = $req_last->idRequete;
-                        $detail->nomprenomCandidat = $request->Nom;
                         $detail->observation = $request->observation;
                         $detail->save();
           

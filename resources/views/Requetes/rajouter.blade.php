@@ -8,11 +8,6 @@
 
 
         <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Nom et Prénom: </span>
-          <input type="text" class="form-control" name="nom">
-        </div>
-
-        <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Nom et Prénom du co-directeur : </span>
           <input type="text" class="form-control" name="nomDirecteur">
         </div>

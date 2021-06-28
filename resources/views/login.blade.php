@@ -15,7 +15,7 @@
 
 <form  method="POST" action="{{route('Authentifier')}}" style="padding: 10px;margin-top:40px;padding:10px 70px; 2px;padding: 5px;width: 60%;margin-left: 15%;">
  @csrf
-<img src="/imageLogo/téléchargement.png" alt="Logo USTHB" style="margin-left:100px;">
+<img src="/imageLogo/telech.png" alt="Logo USTHB" style="margin-left:100px;">
 
   <div class="mb-3">
     <label for="login" class="form-label">Login</label>

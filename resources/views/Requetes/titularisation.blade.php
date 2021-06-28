@@ -8,17 +8,10 @@
 
 
 
-        <div class="input-group input-group-sm mb-3" ">
-        <span  style="margin-right:20px;">Nom et Prénom: </span>
-          <input type="text" class="form-control" name="nom">
-        </div>
-
         <div  class="mb-3">
                     <label for="demande" class="form-label"> <h6>Demande:</h6></label>
                     <input  type="file" accept="application/pdf" class="form-control" name="demande">
-            </div> 
-
-          
+        </div> 
 
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Observation: </span>

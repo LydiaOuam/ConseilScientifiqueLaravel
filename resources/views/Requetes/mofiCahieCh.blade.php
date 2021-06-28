@@ -6,10 +6,6 @@
 @csrf
 
 
-      <div class="input-group input-group-sm mb-3" >
-      <span  style="margin-right:20px;">Nom et Prénom : </span>
-        <input type="text" class="form-control" name="Nom" >
-      </div>
 
         <div class="mb-3">
         <label for="cahier" class="form-label"> <h6>Le cahier de charge:</h6></label>

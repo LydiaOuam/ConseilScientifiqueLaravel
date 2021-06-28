@@ -15,25 +15,17 @@
           <input type="radio" id="contactChoice3" name="typedoc" value="Cotutelle">
           <label for="contactChoice3">Cotutelle</label>
 
-          <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Nom et Prénom : </span>
-          <input type="text" class="form-control" name="nomPren" >
-        </div>
 
-
-        <div class="input-group input-group-sm mb-3" ">
+        <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Directeur de thèse : </span>
           <input type="text" class="form-control" name="direct">
         </div>
 
-        <div class="input-group input-group-sm mb-3" ">
+        <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Année de la première inscription: </span>
           <input type="text" class="form-control" name="annee">
         </div>
-        <div class="input-group input-group-sm mb-3" ">
-        <span  style="margin-right:20px;">Département: </span>
-          <input type="text" class="form-control" name="dep">
-        </div>
+  
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Intitulé de la thèse: </span>
         <textarea class="form-control" name="intit"></textarea>

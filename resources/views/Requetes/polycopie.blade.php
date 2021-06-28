@@ -7,13 +7,7 @@
 @csrf
      
 
-        
-        <div class="input-group input-group-sm mb-3" >
-          <span  style="margin-right:20px;">Nom et prénom : </span>
-          <input type="text" class="form-control" name="nom" >
-        </div>
-
-
+     
         <div class="mb-3">
         <label for="polycopié" class="form-label"><h6>Le polycopié:</h6></label>
           <input type="file"  accept="application/pdf" class="form-control" name="polycopié">

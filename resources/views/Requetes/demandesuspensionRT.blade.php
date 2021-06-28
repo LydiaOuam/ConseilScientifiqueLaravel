@@ -7,10 +7,6 @@
 @csrf
 
 
-      <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Nom et Prénom: </span>
-          <input type="text" class="form-control" name="nom">
-        </div>
 
         <div  class="mb-3">
                     <label for="demande" class="form-label"><h6>Une demande:</h6></label>

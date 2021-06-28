@@ -21,16 +21,7 @@
           <label class="form-check-label" for="inlineRadio3">Cotutelle</label>
         </div>
 
-        <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Département : </span>
-          <input type="text" class="form-control" name="Département" value="{{old('Département')}}">
-        </div>
-
-        <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Nom et Prénom : </span>
-          <input type="text" class="form-control" name="Nom" value="{{old('Nom')}}" >
-        </div>
-
+ 
         
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Nom et Prénom du directeur : </span>

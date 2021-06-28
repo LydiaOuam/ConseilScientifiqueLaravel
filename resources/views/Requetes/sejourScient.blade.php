@@ -5,17 +5,11 @@
   @csrf
 
 
-  <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;">Nom et Prénom : </span>
-          <input type="text" class="form-control" name="Nom"  value="{{old('Nom')}}">
-        </div>
-
-
-        <div class="input-group input-group-sm mb-3" ">
+        <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Pays de destination : </span>
           <input type="text" class="form-control" name="Pays"  value="{{old('Pays')}}">
         </div>
-        <div class="input-group input-group-sm mb-3" ">
+        <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Etablissement d'accueil : </span>
           <input type="text" class="form-control" name="Etablissement"  value="{{old('Etablissement')}}">
         </div>

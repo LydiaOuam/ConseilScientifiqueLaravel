@@ -6,28 +6,54 @@
 <form  method="POST" action="{{route('SaveSoutenance')}}" enctype="multipart/form-data" style="margin-top=20px; margin-top:40px ;padding:10px 70px;border-style: solid;border-color: lightgray;border-width: 2px;padding: 5px;width: 70%;margin-left: 15%;">
 @csrf
 
+  @foreach($details as $detail)
+        @if($detail->typeDoctorat = 'LMD')
           <span style="margin-right:20px;" >Type du Doctorat :</span>
-          <input type="radio" id="contactChoice1" name="typedoc" value="LMD">
+          <input type="radio" id="contactChoice1" name="typedoc" value="LMD" checked>
           <label for="contactChoice1">LMD</label>
-
-          <input type="radio" id="contactChoice2"name="typedoc" value="Doctorat 98">
+          <input type="radio" id="contactChoice2"name="typedoc" value="Doctorat 98" >
           <label for="contactChoice2">Doctorat 98</label>
+        @elseif($detail->typeDoctorat = '98')
+          <span style="margin-right:20px;" >Type du Doctorat :</span>
+          <input type="radio" id="contactChoice1" name="typedoc" value="LMD" >
+          <label for="contactChoice1">LMD</label>
+          <input type="radio" id="contactChoice2"name="typedoc" value="Doctorat 98" checked>
+          <label for="contactChoice2">Doctorat 98</label>
+        @else
+          <span style="margin-right:20px;" >Type du Doctorat :</span>
+          <input type="radio" id="contactChoice1" name="typedoc" value="LMD" >
+          <label for="contactChoice1">LMD</label>
+          <input type="radio" id="contactChoice2"name="typedoc" value="Doctorat 98" >
+          <label for="contactChoice2">Doctorat 98</label>
+          @endif
+
 
 
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Directeur de thèse : </span>
-          <input type="text" class="form-control" name="direct">
+          <input type="text" class="form-control" name="direct" value="{{$detail->nomPrenomDirecteur}}">
         </div>
 
+                        
+        <div class="input-group input-group-sm mb-3" >
+        <span  style="margin-right:20px;">Nom et Prénom du co-directeur : </span>
+          <input type="text" class="form-control" name="NomCoDirecteur" value="{{$detail->nomPrenomResSecondaire}}" >
+        </div>
+
+        
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Année de la première inscription: </span>
-          <input type="text" class="form-control" name="annee">
+          <input type="text" class="form-control" name="annee" value="{{$detail->annee}}">
         </div>
-  
+
+          
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Intitulé de la thèse: </span>
-        <textarea class="form-control" name="intit"></textarea>
+        <textarea class="form-control" name="intit" >{{$detail->intituleDesign}}</textarea>
         </div>
+  @endforeach
+
+
         <div  class="mb-3">
                     <label for="rapport" class="form-label"> <h6>Rapport soutenance [Long]:</h6></label>
                     <input  type="file"  accept="application/pdf" class="form-control" name="rapport" >

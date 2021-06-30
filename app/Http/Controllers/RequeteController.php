@@ -187,7 +187,7 @@ class RequeteController extends Controller
         $detail->idRequete = $req_last->idRequete;
         $detail->typeDoctorat = $request->typedoc;
         $detail->nomPrenomDirecteur = $request->direct;
-        $detail->annee = $request->annee;
+        // $detail->annee = $request->annee;
         $detail->intituleDesign = $request->intit;
 
         $detail->save();
@@ -510,7 +510,7 @@ class RequeteController extends Controller
             'type' => 'required',
             'NomDirecteur'=>'required',
             'NomCoDirecteur'=>'required',
-            'Diplôme'=>'required',
+            'annee'=>'required',
             'Intitulé'=>'required',
 
         ]);
@@ -546,7 +546,7 @@ class RequeteController extends Controller
         $detail->typeDoctorat = $request->type;
         $detail->nomPrenomDirecteur = $request->NomDirecteur;
         $detail->nomPrenomResSecondaire = $request->NomCoDirecteur;
-        $detail->diplomeAcc = $request->Diplôme;
+        $detail->annee = $request->annee;
         $detail->intituleDesign = $request->Intitulé;
 
 
@@ -821,7 +821,22 @@ class RequeteController extends Controller
        {
             // dd($request->all());
            $request->validate([
-               'cv'=>'required',
+                'cv'=>'required',
+                'ListeAuteurs.*'=>'required',
+                'TitrePublication.*'=>'required',
+                'NomRevue.*'=>'required',
+                'ImpactFactor.*'=>'required_without:sjr',
+                'SJR.*'=>'required_without:impact',
+                'DateSoumission.*'=>'required',
+                'DateAcceptation.*'=>'required|after:datesOum',
+                'DateApparution.*'=>'after:dateAcc',
+                'URL_Revue.*'=>'required',
+                'ListeAuteurCom.*'=>'required',
+                'TitreCom.*'=>'required',
+                'NomCom.*'=>'required',
+                'DateDebCom.*'=>'required',
+                'DateFinCom.*'=>'required|after:dateFinCom',
+                'LieuCom.*'=>'required',
            ]);
    
   
@@ -856,6 +871,48 @@ class RequeteController extends Controller
 
         $detail->save();
 
+        $nombrePub = count($request->ListeAuteurs);
+
+       
+    
+        for($i = 0; $i<$nombrePub;$i++)
+        {
+        $publications = new Publication();
+          
+            $publications->idRequete =  $req_last->idRequete;
+            $publications->listeAuteurs =  $request->ListeAuteurs[$i]; 
+            $publications->titrePub =  $request->TitrePublication[$i]; 
+            $publications->nomRevue =  $request->NomRevue[$i]; 
+            $publications->impact =  $request->ImpactFactor[$i]; 
+            $publications->sjr =  $request->SJR[$i]; 
+            $publications->datesOum =  $request->DateSoumission[$i]; 
+            $publications->dateAcc =  $request->DateAcceptation[$i]; 
+            $publications->dateParu =  $request->DateApparution[$i]; 
+            $publications->urlrevue =  $request->URL_Revue[$i]; 
+            $publications->urlpapier =  $request->URL_papier[$i]; 
+            $publications->save();
+        }
+
+
+        $nombreCom = count($request->TitreCom);
+            
+    
+        for($i = 0; $i<$nombreCom;$i++)
+        {
+        $communication = new Communication();
+          
+            $communication->idRequete =  $req_last->idRequete;
+            $communication->listeAuteurs =  $request->ListeAuteurCom[$i]; 
+            $communication->titreCom =  $request->TitreCom[$i]; 
+            $communication->intitCom =  $request->NomCom[$i]; 
+            $communication->dateDebCom =  $request->DateDebCom[$i]; 
+            $communication->dateFinCom =  $request->DateFinCom[$i]; 
+            $communication->lieuCom =  $request->LieuCom[$i]; 
+            $communication->urlCom =  $request->URLCom[$i]; 
+            $communication->save();
+        }
+
+
            $data = DB::table('requetes')->select('idRequete')
            ->orderBy('idRequete','desc')
            ->first();
@@ -876,50 +933,21 @@ class RequeteController extends Controller
                 }
             }
 
-            if($request->hasFile('communication')){
-                $files = $request->communication;
-                foreach($files as $rapp)
-                {
-                    $name = $rapp->getClientOriginalName();
-                if( $rapp->move('upload',$name))
-                {
-                    $item = new Item();
-                    $item->idRequete = $data->idRequete;
-                    $item->fichier = $name;
-                    $item->save();
-                }
-                }
-            }
 
-            if($request->hasFile('publication')){
-                $files = $request->publication;
-                foreach($files as $rapp)
-                {
-                    $name = $rapp->getClientOriginalName();
-                if( $rapp->move('upload',$name))
-                {
-                    $item = new Item();
-                    $item->idRequete = $data->idRequete;
-                    $item->fichier = $name;
-                    $item->save();
-                }
-                }
-            }
-
-            if($request->hasFile('animation')){
-                $files = $request->animation;
-                foreach($files as $rapp)
-                {
-                    $name = $rapp->getClientOriginalName();
-                if( $rapp->move('upload',$name))
-                {
-                    $item = new Item();
-                    $item->idRequete = $data->idRequete;
-                    $item->fichier = $name;
-                    $item->save();
-                }
-                }
-            }
+            // if($request->hasFile('animation')){
+            //     $files = $request->animation;
+            //     foreach($files as $rapp)
+            //     {
+            //         $name = $rapp->getClientOriginalName();
+            //     if( $rapp->move('upload',$name))
+            //     {
+            //         $item = new Item();
+            //         $item->idRequete = $data->idRequete;
+            //         $item->fichier = $name;
+            //         $item->save();
+            //     }
+            //     }
+            // }
 
             if($request->hasFile('responsabilités')){
                 $files = $request->responsabilités;

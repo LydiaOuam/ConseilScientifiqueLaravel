@@ -16,10 +16,10 @@
           <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="98">
           <label class="form-check-label" for="inlineRadio2">98</label>
         </div>
-        <div class="form-check form-check-inline">
+        <!-- <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="Cotutelle" >
           <label class="form-check-label" for="inlineRadio3">Cotutelle</label>
-        </div>
+        </div> -->
 
  
         
@@ -34,11 +34,13 @@
           <input type="text" class="form-control" name="NomCoDirecteur" value="{{old('NomCoDirecteur')}}" >
         </div>
 
-        <div class="input-group input-group-sm mb-3" >
-        <span  style="margin-right:20px;"> Diplôme d’accès : </span>
-          <input type="text" class="form-control" name="Diplôme" value="{{old('Diplôme')}}">
-        </div>
 
+
+        <div class="input-group input-group-sm mb-3" >
+        <span  style="margin-right:20px;">Année de la première inscription: </span>
+          <input type="text" class="form-control" name="annee">
+        </div>
+  
        
 
 

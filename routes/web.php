@@ -129,10 +129,7 @@ Route::get('espaceEtudiant',[RequeteController::class,"shoReq"])->name('ReqChoix
 
 Route::post('espaceEtudiant',[RequeteController::class,"choixReq"])->name('ChoixReq');
 
-Route::get('/soutenance',function()
-{
-    return view('Requetes.soutenance');
-})->name('Soutenance');
+Route::get('/soutenance',[PaysController::class,"souten"])->name('Soutenance');
 
 Route::post('/soutenance',[RequeteController::class,"saveRequete"])->name('SaveSoutenance');
 

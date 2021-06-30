@@ -1025,7 +1025,7 @@ class RequeteController extends Controller
          {
             //  dd($request->all());
              $request->validate([
-                 'detisnation' => 'required',
+                 'destination' => 'required',
                  'etablissement' => 'required',
                  'DateDébut' => 'required',
                  'DateFin' => 'required',
@@ -1059,7 +1059,7 @@ class RequeteController extends Controller
 
     
             $detail->idRequete = $req_last->idRequete;
-            $detail->paysDestination = $request->detisnation;
+            $detail->paysDestination = $request->destination;
             $detail->dateDeb = $request->DateDébut;
             $detail->dateFin = $request->DateFin;
             $detail->etablissementaAccueil = $request->etablissement;

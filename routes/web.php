@@ -13,6 +13,7 @@ use App\HTTP\Controllers\SessionController;
 use App\HTTP\Controllers\TraitementController;
 use App\HTTP\Controllers\AccueilController;
 use App\HTTP\Controllers\PvController;
+use App\HTTP\Controllers\PaysController;
 use App\Models\Compte;
 
 
@@ -142,10 +143,7 @@ Route::get('/abondon',function()
 
 Route::post('/abondon',[RequeteController::class,"saveAbondon"])->name('saveAbondon');
 
-Route::get('/sejourS',function()
-{
-    return view('Requetes.sejourScient');
-})->name('SejSc');
+Route::get('/sejourS',[PaysController::class,"pays"])->name('SejSc');
 
 Route::post('/sejourS',[RequeteController::class,"saveSejour"])->name('SaveSej');
 
@@ -233,9 +231,7 @@ Route::get('/polycopie',function()
 
 Route::post('/polycopie',[RequeteController::class,"savePolycopie"])->name('savePol');
 
-Route::get('/annsabb',function(){
-    return view('Requetes.annesabb');
-})->name('anneesabb');
+Route::get('/annsabb',[PaysController::class,"paysAnn"])->name('anneesabb');
 
 Route::post('/annsabb',[RequeteController::class,"saveAnnee"])->name('saveAnneeSab');
 

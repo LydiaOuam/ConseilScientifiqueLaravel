@@ -7,7 +7,14 @@
 
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Pays de destination : </span>
-          <input type="text" class="form-control" name="Pays"  value="{{old('Pays')}}">
+        <div class="input-group input-group-sm mb-3" >
+
+        <select name="Pays" class="form-select form-select-sm" >
+          @foreach($pays as $pay)
+              <option value="{{$pay->nom_fr_fr}} ">{{$pay->nom_fr_fr}}</option>
+          @endforeach
+          </select>
+
         </div>
         <div class="input-group input-group-sm mb-3" >
         <span  style="margin-right:20px;">Etablissement d'accueil : </span>

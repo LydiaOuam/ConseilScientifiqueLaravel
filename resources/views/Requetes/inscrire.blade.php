@@ -16,6 +16,7 @@
           <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="98">
           <label class="form-check-label" for="inlineRadio2">98</label>
         </div>
+        
         <!-- <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="Cotutelle" >
           <label class="form-check-label" for="inlineRadio3">Cotutelle</label>

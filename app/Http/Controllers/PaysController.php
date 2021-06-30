@@ -32,7 +32,6 @@ class PaysController extends Controller
                      ->where('type','=','7')
                      ->select('idRequete')
                      ->get();
-// dd($requete);
                      foreach($requete as $req)
                         $idRequete = $req->idRequete;
 
@@ -40,7 +39,6 @@ class PaysController extends Controller
         $details = DB::table('details')
                 ->where('id','=',"$idRequete")
                 ->get();
-                // dd($details);
 
                 return view('Requetes.soutenance',compact('details'));
 

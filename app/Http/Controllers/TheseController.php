@@ -109,21 +109,42 @@ class TheseController extends Controller
     
     $jury->save();
 
-    
-    // for($i = 0; $i<$nombreCom;$i++)
-    // {
-    // $communication = new Communication();
+    $nombreExaminateur = count($request->nomExaminateur);
+            
+    // dd($nombreExaminateur);
+    for($i = 0; $i<$nombreExaminateur;$i++)
+    {
+            $examinateur = new Jury();
       
-    //     $communication->idRequete =  $req_last->idRequete;
-    //     $communication->listeAuteurs =  $request->ListeAuteurCom[$i]; 
-    //     $communication->titreCom =  $request->TitreCom[$i]; 
-    //     $communication->intitCom =  $request->NomCom[$i]; 
-    //     $communication->dateDebCom =  $request->DateDebCom[$i]; 
-    //     $communication->dateFinCom =  $request->DateFinCom[$i]; 
-    //     $communication->lieuCom =  $request->LieuCom[$i]; 
-    //     $communication->urlCom =  $request->URLCom[$i]; 
-    //     $communication->save();
-    // }
+        $examinateur->nom = $request->nomExaminateur[$i];
+        $examinateur->idRequete = $id;
+        $examinateur->prenom = $request->prenomExaminateur[$i];            
+        $examinateur->qualite = "Examinateur";            
+        $examinateur->grade = $request->gradeExaminateur[$i];            
+        $examinateur->organisme = $request->organismeExaminateur[$i];    
+        $examinateur->save();
+    }
+
+    
+    $nombreInvites = count($request->nomInvite);
+            
+    // dd($nombreExaminateur);
+    for($i = 0; $i < $nombreInvites;$i++)
+    {
+        if($request->nomInvite[$i] != null)
+        {
+            $invite = new Jury();
+      
+            $invite->nom = $request->nomInvite[$i];
+            $invite->idRequete = $id;
+            $invite->prenom = $request->prenomInvite[$i];            
+            $invite->qualite = "Invité";            
+            $invite->grade = $request->gradeInvite[$i];            
+            $invite->organisme = $request->organismeInvite[$i];    
+            $invite->save();
+        }
+            
+    }
 
 
    }

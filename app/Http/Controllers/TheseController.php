@@ -46,6 +46,11 @@ class TheseController extends Controller
 
    }
 
+   public function postDossier($id)
+   {
+       return view('Requetes.soutenanceDirecteur');
+   }
+
    
 
 }

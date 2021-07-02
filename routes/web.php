@@ -390,6 +390,7 @@ Route::get('/selection',[TheseController::class,"searchDossier"])->name('dossier
 
 Route::post('/selection/{id}',[TheseController::class,"postDossier"])->name('selectDossier');
 
+Route::post('/save/{idRequete}',[TheseController::class,"saveJury"])->name('saveJury');
 
 
 

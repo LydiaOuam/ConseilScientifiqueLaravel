@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Jury;
 
 class TheseController extends Controller
 {
@@ -65,7 +66,64 @@ class TheseController extends Controller
 
         }
             return "pas de dossier soutenance";
+
+   }
+
+   public function saveJury(Request $request,$id)
+   {
+    // dd($request->all());
+
+    //    dd($id);
+
+    $jury = new Jury();
+
+    $jury->nom = $request->nompresident;
+    $jury->idRequete = $id;
+    $jury->prenom = $request->prenomPresident;            
+    $jury->qualite = "Président";            
+    $jury->grade = $request->GradePresident;            
+    $jury->organisme = $request->organismePresident;    
+    
+    $jury->save();
+
+    
+    $jury = new Jury();
+
+    $jury->nom = $request->nomDirecteur;
+    $jury->idRequete = $id;
+    $jury->prenom = $request->prenomDirecteur;            
+    $jury->qualite = "Directeur de thèse";            
+    $jury->grade = $request->GradeDirecteur;            
+    $jury->organisme = $request->organismeDirecteur;    
+    
+    $jury->save();
+
+    $jury = new Jury();
+
+    $jury->nom = $request->nomCoDirecteur;
+    $jury->idRequete = $id;
+    $jury->prenom = $request->prenomCoDirecteur;            
+    $jury->qualite = "Co-directeur de thèse";            
+    $jury->grade = $request->GradeCoDirecteur;            
+    $jury->organisme = $request->organismeCoDirecteur;    
+    
+    $jury->save();
+
+    
+    // for($i = 0; $i<$nombreCom;$i++)
+    // {
+    // $communication = new Communication();
       
+    //     $communication->idRequete =  $req_last->idRequete;
+    //     $communication->listeAuteurs =  $request->ListeAuteurCom[$i]; 
+    //     $communication->titreCom =  $request->TitreCom[$i]; 
+    //     $communication->intitCom =  $request->NomCom[$i]; 
+    //     $communication->dateDebCom =  $request->DateDebCom[$i]; 
+    //     $communication->dateFinCom =  $request->DateFinCom[$i]; 
+    //     $communication->lieuCom =  $request->LieuCom[$i]; 
+    //     $communication->urlCom =  $request->URLCom[$i]; 
+    //     $communication->save();
+    // }
 
 
    }

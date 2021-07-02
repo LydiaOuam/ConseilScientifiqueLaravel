@@ -1,9 +1,10 @@
 @extends('Requetes.directeurThese')
 
 @section('contenu')
-<form  method="POST" action="{{route('saveCSD')}}" enctype="multipart/form-data"style="margin-top:40px ;padding:10px 70px;border-style: solid;border-color: white;border-width: 2px;padding: 5px;width: 80%;margin-left: 10%;">
+@foreach($details as $detail)
+<form  method="POST" action="{{route('saveJury',$detail->idRequete)}}" enctype="multipart/form-data"style="margin-top:40px ;padding:10px 70px;border-style: solid;border-color: white;border-width: 2px;padding: 5px;width: 80%;margin-left: 10%;">
   @csrf
-
+@endforeach
     </div>
   </div>
   <div class="accordion-item">
@@ -28,18 +29,18 @@
                     <tr id="jury">
                         <td>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Nom" >
+                        <input name="nompresident" type="text" class="form-control">
                         </div>
                                                     
                         </td>
                         <td>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Prénom">
+                        <input name="prenomPresident" type="text" class="form-control" >
                         </div>
                         </td>
                         <td>
                         <div class="input-group mb-3">
-                        <select  name="searchGrade" class="form-control">
+                        <select  name="GradePresident" class="form-control">
                             <option  value="Maître assistant A" >Maître assistant A</option>
                             <option  value="Maître assistant B">Maître assistant B</option>
                             <option value="Maître de conférence A">Maître de conférence A</option>
@@ -55,7 +56,7 @@
                         </td>
                         <td>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control">
+                        <input name="organismePresident" type="text" class="form-control">
                         </div>
                         </td>
 
@@ -64,18 +65,18 @@
                     <tr id="product0">
                         <td>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Nom" >
+                        <input name="nomDirecteur" type="text" class="form-control" >
                         </div>
                                                     
                         </td>
                         <td>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Prénom">
+                        <input name="prenomDirecteur" type="text" class="form-control" >
                         </div>
                         </td>
                         <td>
                         <div class="input-group mb-3">
-                        <select  name="searchGrade" class="form-control">
+                        <select  name="GradeDirecteur" class="form-control">
                         <option  value="Maître assistant A" >Maître assistant A</option>
                         <option  value="Maître assistant B">Maître assistant B</option>
                         <option value="Maître de conférence A">Maître de conférence A</option>
@@ -86,13 +87,13 @@
                         </div>
                         </td>
                         <td>
-                        <div class="input-group mb-3">
+                        <div name = "Directeur de thèse" class="input-group mb-3">
                             Directeur de thèse  *
                         </div>
                         </td>
                         <td>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" >
+                        <input name="organismeDirecteur" type="text" class="form-control" >
                         </div>
                         </td>
 
@@ -101,18 +102,18 @@
                     <tr id="product0">
                         <td>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Nom" >
+                        <input name="nomCoDirecteur" type="text" class="form-control" >
                         </div>
                                                     
                         </td>
                         <td>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Prénom">
+                        <input name="prenomCoDirecteur" type="text" class="form-control" >
                         </div>
                         </td>
                         <td>
                         <div class="input-group mb-3">
-                        <select  name="searchGrade" class="form-control">
+                        <select  name="GradeCoDirecteur" class="form-control">
                         <option  value="Maître assistant A" >Maître assistant A</option>
                         <option  value="Maître assistant B">Maître assistant B</option>
                         <option value="Maître de conférence A">Maître de conférence A</option>
@@ -129,7 +130,7 @@
                         </td>
                         <td>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" >
+                        <input name="organismeCoDirecteur" type="text" class="form-control" >
                         </div>
                         <div class="card">
                  </td>
@@ -157,18 +158,18 @@
                                 <tr id="examinateur0">
                                     <td>
                                     <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Nom" >
+                                    <input name="nomExaminateur[]" type="text" class="form-control"  >
                                     </div>
                                                                 
                                     </td>
                                     <td>
                                     <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Prénom">
+                                    <input name="prenomExaminateur[]" type="text" class="form-control" >
                                     </div>
                                     </td>
                                     <td>
                                     <div class="input-group mb-3">
-                                    <select  name="searchGrade" class="form-control">
+                                    <select name="gradeExaminateur[]" class="form-control">
                                     <option  value="Maître assistant A" >Maître assistant A</option>
                                     <option  value="Maître assistant B">Maître assistant B</option>
                                     <option value="Maître de conférence A">Maître de conférence A</option>
@@ -185,27 +186,27 @@
                                     </td>
                                     <td>
                                     <div class="input-group mb-3">
-                                    <input type="text" class="form-control" >
+                                    <input name="organismeExaminateur[]" type="text" class="form-control" >
                                     </div>
                                     </td>
 
                                 </tr>
             
                                 <tr id="examinateur1">
-                                    <td>
+                                <td>
                                     <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Nom" >
+                                    <input name="nomExaminateur[]" type="text" class="form-control" >
                                     </div>
                                                                 
                                     </td>
                                     <td>
                                     <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Prénom">
+                                    <input name="prenomExaminateur[]" type="text" class="form-control">
                                     </div>
                                     </td>
                                     <td>
                                     <div class="input-group mb-3">
-                                    <select  name="searchGrade" class="form-control">
+                                    <select name="gradeExaminateur[]" class="form-control">
                                     <option  value="Maître assistant A" >Maître assistant A</option>
                                     <option  value="Maître assistant B">Maître assistant B</option>
                                     <option value="Maître de conférence A">Maître de conférence A</option>
@@ -222,7 +223,7 @@
                                     </td>
                                     <td>
                                     <div class="input-group mb-3">
-                                    <input type="text" class="form-control" >
+                                    <input name="organismeExaminateur[]" type="text" class="form-control" >
                                     </div>
                                     </td>
 
@@ -238,8 +239,8 @@
                                                     
             <div class="row">
                 <div class="col-md-12">
-                    <button id="add_row" class="btn btn-primary pull-left">+ Ajouter un examinateur </button>
-                    <button id='delete_row' class="pull-right btn btn-danger">- Supprimer un examinateur </button>
+                    <button  style="margin:10px;"  id="add_row" class="btn btn-primary pull-left">+ Ajouter un examinateur </button>
+                    <button   style="margin:10px;"  id='delete_row' class="pull-right btn btn-danger">- Supprimer un examinateur </button>
                 </div>
             </div>
             </div>
@@ -261,18 +262,18 @@
                                 <tr id="invite0">
                                     <td>
                                     <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Nom" >
+                                    <input name="nomInvite[]" type="text" class="form-control"  >
                                     </div>
                                                                 
                                     </td>
                                     <td>
                                     <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Prénom">
+                                    <input name="prenomInvite[]" type="text" class="form-control" >
                                     </div>
                                     </td>
                                     <td>
                                     <div class="input-group mb-3">
-                                    <select  name="searchGrade" class="form-control">
+                                    <select  name="gradeInvite[]" class="form-control">
                                     <option  value="Maître assistant A" >Maître assistant A</option>
                                     <option  value="Maître assistant B">Maître assistant B</option>
                                     <option value="Maître de conférence A">Maître de conférence A</option>
@@ -289,7 +290,7 @@
                                     </td>
                                     <td>
                                     <div class="input-group mb-3">
-                                    <input type="text" class="form-control" >
+                                    <input name="organismeInvite[]" type="text" class="form-control" >
                                     </div>
                                     </td>
 
@@ -301,15 +302,19 @@
             </table>
             <div class="row">
                 <div class="col-md-12">
-                    <button id="add_com" class="btn btn-primary pull-left">+ Ajouter un invite </button>
-                    <button id='delete_com' class="pull-right btn btn-danger">- Supprimer un invite </button>
+                    <button style="margin:10px;"  id="add_com" class="btn btn-primary pull-left">+ Ajouter un invite </button>
+                    <button style="margin:10px;"  id='delete_com' class="pull-right btn btn-danger">- Supprimer un invite </button>
                 </div>
             </div>
 </div>
-
+            <div class="d-grid gap-2">
+            <button style="margin-top:30px;" class="btn btn-outline-success" type="submit">Enregistrer</button>
+            </div>
         </div>
     </div>
+
     <div>
+
     </div>
     </div>
   </form>

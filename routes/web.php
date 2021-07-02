@@ -14,6 +14,7 @@ use App\HTTP\Controllers\TraitementController;
 use App\HTTP\Controllers\AccueilController;
 use App\HTTP\Controllers\PvController;
 use App\HTTP\Controllers\PaysController;
+use App\HTTP\Controllers\TheseController;
 use App\Models\Compte;
 
 
@@ -377,11 +378,15 @@ Route::get('/decision',[PvController::class,"decision"])->name('decision');
 
 Route::get('/decision.pdf',[PvController::class,"downdecision"])->name('downdecision');
 
-Route::get('/phpinfo', function() {
-    return phpinfo();
-});
+// --------------------------------------------------------------------------------------
+
+Route::get('espaceDirecteurThese',function()
+{
+    return view('Requetes.directeurThese');
+})->name('espaceDirecteurThese');
 
 
+Route::get('/selection',[TheseController::class,"searchDossier"])->name('dossier');
 
 
 

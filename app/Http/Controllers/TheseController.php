@@ -48,8 +48,28 @@ class TheseController extends Controller
 
    public function postDossier($id)
    {
-       return view('Requetes.soutenanceDirecteur');
+
+        $requete = DB::table('requetes')
+        ->where('idUser','=',$id)
+        ->where('type','=','7')
+        ->select('idRequete')
+        ->get();
+        if(count($requete)>0){
+            foreach($requete as $req)
+            $idRequete = $req->idRequete;
+                
+            $details = DB::table('details')
+            ->where('id','=',$idRequete)
+            ->get();
+            return view('Requetes.soutenanceDirecteur',compact('details'));
+
+        }
+            return "pas de dossier soutenance";
+      
+
+
    }
+ 
 
    
 

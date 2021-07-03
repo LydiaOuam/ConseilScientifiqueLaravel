@@ -28,7 +28,6 @@
   <div class="d-grid gap-2">
   <button class="btn btn-primary" type="submit">Se connecter</button>
 </div>
-<a href="#" class="link-primary">Mot de passe oublié ?</a>
 
 </form>
 

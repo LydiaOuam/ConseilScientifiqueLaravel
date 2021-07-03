@@ -133,18 +133,21 @@
             <input type="email" class="form-control" placeholder="Nom d'utilisateur *" name="userName" value="{{$compte->login}}"  >
             <input type="text" class="form-control" placeholder="Mot de passe *"  name="password" value="{{$compte->password}}" >
             </div>
+            @if(session('user')->hasRole('administrateur'))
             <legend>Rôles</legend>
-       @foreach($roles as $role)                
-                        @if(in_array($role->id,$user_roles))
-                            <input type="checkbox" name="choix[]" value="{{$role->id}}" checked>
-                            <label  id="role">{{$role->display_name}}</label>
-                            <br>
-                        @else
-                            <input type="checkbox" name="choix[]" value="{{$role->id}}" >
-                            <label  id="role">{{$role->display_name}}</label>
-                            <br>
-                        @endif
-                   @endforeach
+                @foreach($roles as $role)                
+                            @if(in_array($role->id,$user_roles))
+                                <input type="checkbox" name="choix[]" value="{{$role->id}}" checked>
+                                <label  id="role">{{$role->display_name}}</label>
+                                <br>
+                            @else
+                                <input type="checkbox" name="choix[]" value="{{$role->id}}" >
+                                <label  id="role">{{$role->display_name}}</label>
+                                <br>
+                            @endif
+                    @endforeach
+                @endif
+
 
      </fieldset>
      <button  type="submit" class="btn btn-success">Valider les modifications</button>

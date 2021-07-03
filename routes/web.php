@@ -388,6 +388,8 @@ Route::get('espaceDirecteurThese',function()
 
 Route::get('/selection',[TheseController::class,"searchDossier"])->name('dossier');
 
+Route::get('/selection/{id}',[TheseController::class,"postDossier"])->name('select');
+
 Route::post('/selection/{id}',[TheseController::class,"postDossier"])->name('selectDossier');
 
 Route::post('/save/{idRequete}',[TheseController::class,"saveJury"])->name('saveJury');

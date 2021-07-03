@@ -71,6 +71,29 @@ class TheseController extends Controller
 
    public function saveJury(Request $request,$id)
    {
+
+
+    $request->validate([
+         
+        'nompresident' => 'required',
+        'prenomPresident' => 'required',            
+        'GradePresident' => 'required',            
+        'organismePresident' => 'required',   
+        'nomDirecteur'=>'required',
+        'prenomDirecteur'=>'required',            
+        'GradeDirecteur'=>'required',        
+        'organismeDirecteur'=>'required',  
+        'nomCoDirecteur'=>'required',
+        'prenomCoDirecteur'=>'required',            
+        'GradeCoDirecteur'=>'required',            
+        'organismeCoDirecteur'=>'required', 
+        'nomExaminateur.*'=>'required',
+        'prenomExaminateur.*'=>'required',            
+        'gradeExaminateur.*'=>'required',            
+        'organismeExaminateur.*'=>'required',    
+    ]);
+    
+
     // dd($request->all());
 
     //    dd($id);
@@ -145,6 +168,14 @@ class TheseController extends Controller
         }
             
     }
+
+        echo '<script>
+        alert( "Les jurys ont été bien enregistré ")
+        </script>';
+        echo '<script type="text/javascript">'
+            , 'history.go(-3);'
+            , '</script>';
+
 
 
    }

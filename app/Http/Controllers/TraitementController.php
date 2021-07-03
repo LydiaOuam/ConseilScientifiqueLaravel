@@ -34,7 +34,14 @@ class TraitementController extends Controller
     {
 
     
-        $requetes = Requete::paginate(1);
+        // $requetes = Requete::paginate(1);
+
+        $requetes = DB::table('requetes')
+                    ->join('users','requetes.idUser','=','users.id')
+                    ->join('departements','users.idDept','=','departements.idDept')
+                    ->paginate(1);
+
+
         $details = Detail::all();
         $items = Item::all();
         $types = Point::all();
@@ -52,8 +59,6 @@ class TraitementController extends Controller
                     ->where('details.typeDoctorat','=','LMD')
                     ->paginate(1);
 
-        // $requetes = Requete::where('type',4)
-        //                 ->paginate(1);
         $details = Detail::all();
         $users = User::all();
         $items = Item::all();

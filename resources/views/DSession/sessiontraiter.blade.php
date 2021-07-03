@@ -23,8 +23,8 @@
                   @foreach($details as $detail)
                         @if($detail->idRequete == $requete->idRequete)
                           Requête : {{$type->nom}}<br>
-                          Nom et Prénom :  <br>
-                          Département :  {{$detail->departement}}<br>
+                          Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
+                          Département : {{$requete->dname}} <br>
                           Nom et Prénom de directeur :  {{$detail->nomPrenomDirecteur}}<br>
                         @endif
                     @endforeach
@@ -39,7 +39,7 @@
                     @foreach($details as $detail)
                             @if($detail->idRequete == $requete->idRequete)
                               Requête : {{$type->nom}}<br>
-                              Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                              Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
                               Pays de destination :  {{$detail->paysDestination}}<br>
                               Etablissement d'accueil :{{$detail->etablissementaAccueil}}  <br>
                               Date début  de séjour : {{$detail->dateDeb}} <br>
@@ -56,7 +56,7 @@
                       @foreach($details as $detail)
                               @if($detail->idRequete == $requete->idRequete)
                                 Requête : {{$type->nom}}<br>
-                                Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                Nom et Prénom :{{$requete->name}} {{$requete->fname}}  <br>
                                 Intitulé du sujet de thèse initiale :  {{$detail->intituleDesign}}<br>
                               @endif
                           @endforeach
@@ -87,7 +87,7 @@
                             @foreach($details as $detail)
                                     @if($detail->idRequete == $requete->idRequete)
                                       Requête : {{$type->nom}}<br>
-                                      Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                      Nom et Prénom :  {{$requete->name}} {{$requete->fname}} <br>
                                       Nom et Prénom de directeur de thèse actuel :  {{$detail->	nomPrenomDirecteur}}  <br>
                                       Nom et Prénom de directeur : {{$detail->nomPrenomResSecondaire}}<br>
                                       Motif : {{$detail->observation}}<br>
@@ -105,11 +105,10 @@
                                         @if($detail->idRequete == $requete->idRequete)
                                           Requête : {{$type->nom}}<br>
                                           Type du Doctorat : {{$detail->typeDoctorat}} <br>
-                                          Département:  {{$detail->departement}}<br>
-                                          Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                          Département:   {{$requete->dname}}<br>
+                                          Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
                                           Nom et Prénom du directeur :  {{$detail->nomPrenomDirecteur}} <br>
                                           Nom et Prénom du co-directeur :   {{$detail->	nomPrenomResSecondaire}}<br>
-                                          Diplôme d’accès : {{$detail->diplomeAcc}}<br>
                                           Intitulé de la thèse : {{$detail->intituleDesign}}<br>
                                         @endif
                                     @endforeach
@@ -124,7 +123,7 @@
                         @foreach($details as $detail)
                                         @if($detail->idRequete == $requete->idRequete)
                                           Requête : {{$type->nom}}<br>
-                                          Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                          Nom et Prénom :  {{$requete->name}} {{$requete->fname}}<br>
                                           Motif : {{$detail->observation}} <br>
                                         @endif
                                     @endforeach
@@ -139,7 +138,7 @@
                           @foreach($details as $detail)
                                           @if($detail->idRequete == $requete->idRequete)
                                             Requête : {{$type->nom}}<br>
-                                            Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                            Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
                                             Nom et Prénom du co-directeur : {{$detail->nomPrenomResSecondaire}}<br>
                                             Motif : {{$detail->observation}} <br>
                                           @endif
@@ -157,7 +156,7 @@
                             @foreach($details as $detail)
                                               @if($detail->idRequete == $requete->idRequete)
                                                 Requête : {{$type->nom}}<br>
-                                                Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                                Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
                                                 Grade actuel : {{$detail->gradeActuel}} <br>
                                                 Promotion : {{$detail->promotion}}<br>
                                               @endif
@@ -172,8 +171,8 @@
                             @foreach($details as $detail)
                                                   @if($detail->idRequete == $requete->idRequete)
                                                     Requête : {{$type->nom}}<br>
-                                                    Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
-                                                    Département: {{$detail->departement}} <br>
+                                                    Nom et Prénom :  {{$requete->name}} {{$requete->fname}} <br>
+                                                    Département:  {{$requete->dname}} <br>
                                                     Observations : {{$detail->	observation}}<br>
                                                   @endif
                                               @endforeach
@@ -188,7 +187,7 @@
                             @foreach($details as $detail)
                                                       @if($detail->idRequete == $requete->idRequete)
                                                         Requête : {{$type->nom}}<br>
-                                                        Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                                        Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
                                                         Observations : {{$detail->	observation}}<br>
                                                       @endif
                                                   @endforeach
@@ -202,7 +201,7 @@
                         @foreach($details as $detail)
                                                       @if($detail->idRequete == $requete->idRequete)
                                                         Requête : {{$type->nom}}<br>
-                                                        Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                                        Nom et Prénom :  {{$requete->name}} {{$requete->fname}} <br>
                                                         Pays de detisnation :  {{$detail->paysDestination}}  <br>
                                                         Date début de séjour: {{$detail->dateDeb}}  <br>
                                                         Date fin de séjour: {{$detail->dateFin}}  <br>
@@ -219,7 +218,7 @@
                         @foreach($details as $detail)
                                                       @if($detail->idRequete == $requete->idRequete)
                                                         Requête : {{$type->nom}}<br>
-                                                        Chef du projet : {{$detail->nomPrenomCandidat}} <br>
+                                                        Chef du projet :  {{$requete->name}} {{$requete->fname}} <br>
                                                         Intitulé du projet : {{$detail->intituleDesign}}  <br>
 
                                                       @endif
@@ -234,7 +233,7 @@
                         @foreach($details as $detail)
                                                         @if($detail->idRequete == $requete->idRequete)
                                                           Requête : {{$type->nom}}<br>
-                                                          Nom et Prénom :  {{$detail->nomPrenomCandidat}} <br>
+                                                          Nom et Prénom :   {{$requete->name}} {{$requete->fname}} <br>
                                                           Niveau :  {{$detail->diplomeAcc}}<br>
                                                           Désignation :{{$detail->intituleDesign}} <br>
 
@@ -251,7 +250,7 @@
                         @foreach($details as $detail)
                                                         @if($detail->idRequete == $requete->idRequete)
                                                           Requête : {{$type->nom}}<br>
-                                                          Nom et Prénom :  {{$detail->nomPrenomCandidat}} <br>
+                                                          Nom et Prénom :   {{$requete->name}} {{$requete->fname}} <br>
                                                           Etablissement d’accueil : {{$detail->etablissementaAccueil}}  <br>
                                                         @endif
                                                     @endforeach

@@ -93,6 +93,8 @@ class ComptesController extends Controller
                 return redirect(route('CSD')); 
             if($id == 8)
                 return redirect(route('CFD')); 
+            if($id == 9)
+                return redirect(route('espaceDirecteurThese')); 
 
     }
 

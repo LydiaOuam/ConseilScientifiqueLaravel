@@ -5,8 +5,7 @@
 <form  method="POST" action="{{route('saveJury',$detail->idRequete)}}" enctype="multipart/form-data"style="margin-top:40px ;padding:10px 70px;border-style: solid;border-color: white;border-width: 2px;padding: 5px;width: 80%;margin-left: 10%;">
   @csrf
 @endforeach
-    </div>
-  </div>
+
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
@@ -306,18 +305,32 @@
                     <button style="margin:10px;"  id='delete_com' class="pull-right btn btn-danger">- Supprimer un invite </button>
                 </div>
             </div>
-</div>
-            <div class="d-grid gap-2">
-            <button style="margin-top:30px;" class="btn btn-outline-success" type="submit">Enregistrer</button>
             </div>
+            
+            </div>
+    </div>
+    </div>
+        <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+            Upload rapport soutenance
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+            <div class="mb-3">
+            <input type="file" accept="application/pdf" class="form-control" style="margin-top:20px;" name="rapport" >
+            </div>
+
         </div>
-    </div>
-
-    <div>
 
     </div>
-    </div>
+
+                <div class="d-grid gap-2">
+                <button style="margin-top:30px;" class="btn btn-outline-success" type="submit">Enregistrer</button>
+                </div>
   </form>
+
+  
 
 <script>
 $(document).ready(function(){

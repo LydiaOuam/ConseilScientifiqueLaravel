@@ -37,6 +37,9 @@ return [
         ],
         'chefCFD' => [
             'profile' => 'r,u',
+        ],
+        'directeurThese' => [
+            'profile' => 'r,u',
         ]
     ],
 

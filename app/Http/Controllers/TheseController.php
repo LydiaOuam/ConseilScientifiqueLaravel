@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Jury;
+use App\Models\Item;
+
 
 class TheseController extends Controller
 {
@@ -20,30 +22,36 @@ class TheseController extends Controller
         ->select('idRequete')
         ->get();
 
-        foreach($resultats as $resultat)
+// dd(count($resultats));
+        if(count($resultats) != 0)
         {
-            $requetes = DB::table('requetes')
-            ->where('idRequete',$resultat->idRequete)
-            ->where('type','=','4')
-            ->get();
-            foreach ($requetes as $requete)
+            foreach($resultats as $resultat)
             {
-                $users = DB::table('users')
-                ->where('id',$requete->idUser)
-                ->select('id','name','fname')
+                $requetes = DB::table('requetes')
+                ->where('idRequete',$resultat->idRequete)
+                ->where('type','=','4')
                 ->get();
-                foreach($users as $u)
-                     $user[] = (array)$u;
+                foreach ($requetes as $requete)
+                {
+                    $users = DB::table('users')
+                    ->where('id',$requete->idUser)
+                    ->select('id','name','fname')
+                    ->get();
+                    foreach($users as $u)
+                         $user[] = (array)$u;
+                }
+        
             }
-    
-        }
-       
-
-
         return view('Requetes.selectionnerDossier',compact('user'));
 
-
-
+        }
+          
+            echo '<script>
+            alert( "Vous n\'avez pas de dossier de soutenance")
+            </script>';
+            echo '<script type="text/javascript">'
+                , 'history.go(-1);'
+                , '</script>';
 
    }
 
@@ -71,6 +79,7 @@ class TheseController extends Controller
 
    public function saveJury(Request $request,$id)
    {
+    // dd($request->all());
 
 
     $request->validate([
@@ -94,7 +103,6 @@ class TheseController extends Controller
     ]);
     
 
-    // dd($request->all());
 
     //    dd($id);
 
@@ -168,6 +176,18 @@ class TheseController extends Controller
         }
             
     }
+
+        if($file = $request->rapport)
+        {
+            $name = $file->getClientOriginalName();
+            if($file->move('upload',$name)){
+            $item = new Item();
+            $item->idRequete = $id;
+            $item->fichier = $name;
+            $item->save();
+            }
+        }
+
 
         echo '<script>
         alert( "Les jurys ont été bien enregistré ")

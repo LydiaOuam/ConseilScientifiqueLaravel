@@ -56,7 +56,25 @@ class AuthController extends Controller
                         $request->session()->put('user',$user);
                         return redirect(route('ShowRoleUser'));
                     }
-                    elseif($user->hasRole('directeurDeThese'))
+                    elseif($user->hasRole('chefCSF'))
+                    {
+    
+                        $request->session()->put('user',$user);
+                        return redirect(route('ShowRoleUser'));
+                    }
+                    elseif($user->hasRole('chefCSD'))
+                    {
+    
+                        $request->session()->put('user',$user);
+                        return redirect(route('ShowRoleUser'));
+                    }
+                    elseif($user->hasRole('chefCFD'))
+                    {
+    
+                        $request->session()->put('user',$user);
+                        return redirect(route('ShowRoleUser'));
+                    }
+                    elseif($user->hasRole('directeurThese'))
                     {
     
                         $request->session()->put('user',$user);

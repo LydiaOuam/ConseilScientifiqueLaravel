@@ -16,34 +16,20 @@ class TheseController extends Controller
     $currentUser = session('user')->name." ".session('user')->fname;
     $currentUser2 = session('user')->fname." ".session('user')->name;
 
-        $resultats = DB::table('details')
-        ->where('nomPrenomDirecteur',$currentUser)
+
+        $resultats = DB::table('requetes')
+        ->join('details','requetes.idRequete','=','details.idRequete')
+        ->join('users','requetes.idUser','=','users.id')
+        ->where('requetes.type','=','4')
+        ->where('nomPrenomDirecteur','LIKE',$currentUser)
         ->orWhere('nomPrenomDirecteur',$currentUser2)
-        ->select('idRequete')
+        ->where('requetes.type','=','4')
         ->get();
 
-// dd(count($resultats));
+// dd($resultats);
         if(count($resultats) != 0)
         {
-            foreach($resultats as $resultat)
-            {
-                $requetes = DB::table('requetes')
-                ->where('idRequete',$resultat->idRequete)
-                ->where('type','=','4')
-                ->get();
-                foreach ($requetes as $requete)
-                {
-                    $users = DB::table('users')
-                    ->where('id',$requete->idUser)
-                    ->select('id','name','fname')
-                    ->get();
-                    foreach($users as $u)
-                         $user[] = (array)$u;
-                }
-        
-            }
-        return view('Requetes.selectionnerDossier',compact('user'));
-
+            return view('Requetes.selectionnerDossier',compact('resultats'));
         }
           
             echo '<script>

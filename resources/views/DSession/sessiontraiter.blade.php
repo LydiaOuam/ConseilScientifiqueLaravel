@@ -267,15 +267,326 @@
 
         @if($requete->type == 4)
           <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-              Accordion Item #3
+          <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              Jury
             </button>
           </h2>
-          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+          <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
             <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+
+
+            <table class="table" id="jury">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Grade</th>
+                        <th>Qualité</th>
+                        <th>Organisme</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($juries as $jurie)
+                          @if($jurie->idRequete == $requete->idRequete && $jurie->qualite == 'Président')
+                    <tr id="jury">
+                        <td>
+                        <div class="input-group mb-3">
+                        <input name="nompresident" type="text" class="form-control" value="{{$jurie->nom}}" >
+                        </div>
+                                                    
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        <input name="prenomPresident" type="text" class="form-control"  value="{{$jurie->prenom}}" >
+                        </div>
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        <select  name="GradePresident" class="form-control">
+                            <option  value="Maître assistant A" >Maître assistant A</option>
+                            <option  value="Maître assistant B">Maître assistant B</option>
+                            <option value="Maître de conférence A">Maître de conférence A</option>
+                            <option  value="Maître de conférence B">Maître de conférence B</option>
+                            <option  value="Professeur" >Professeur</option>
+                        </select>     
+                        </div>
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        Président *
+                        </div>
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        <input name="organismePresident" type="text" class="form-control" value="{{$jurie->organisme}}">
+                        </div>
+                          
+                        </td>
+                     
+                    </tr>
+                          @endif
+                          @endforeach
+
+                @foreach($juries as $jurie)
+                  @if($jurie->idRequete == $requete->idRequete && $jurie->qualite == 'Directeur de thèse')
+                    <tr id="product0">
+                        <td>
+                        <div class="input-group mb-3">
+                        <input name="nomDirecteur" type="text" class="form-control" value="{{$jurie->nom}}" >
+                        </div>
+                                                    
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        <input name="prenomDirecteur" type="text" class="form-control" value="{{$jurie->prenom}}" >
+                        </div>
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        <select  name="GradeDirecteur" class="form-control">
+                        <option  value="Maître assistant A" >Maître assistant A</option>
+                        <option  value="Maître assistant B">Maître assistant B</option>
+                        <option value="Maître de conférence A">Maître de conférence A</option>
+                        <option  value="Maître de conférence B">Maître de conférence B</option>
+                        <option  value="Professeur" >Professeur</option>
+
+                        </select>     
+                        </div>
+                        </td>
+                        <td>
+                        <div name = "Directeur de thèse" class="input-group mb-3">
+                            Directeur de thèse  *
+                        </div>
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        <input name="organismeDirecteur" type="text" class="form-control" value="{{$jurie->organisme}}">
+                        </div>
+                        </td>
+
+                    </tr>
+                          @endif
+                          @endforeach
+
+                          @foreach($juries as $jurie)
+                         @if($jurie->idRequete == $requete->idRequete && $jurie->qualite == 'Co-directeur de thèse')
+                    <tr id="product0">
+                        <td>
+                        <div class="input-group mb-3">
+                        <input name="nomCoDirecteur" type="text" class="form-control"  value="{{$jurie->nom}}"  >
+                        </div>
+                                                    
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        <input name="prenomCoDirecteur" type="text" class="form-control"   value="{{$jurie->prenom}}" >
+                        </div>
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        <select  name="GradeCoDirecteur" class="form-control">
+                        <option  value="Maître assistant A" >Maître assistant A</option>
+                        <option  value="Maître assistant B">Maître assistant B</option>
+                        <option value="Maître de conférence A">Maître de conférence A</option>
+                        <option  value="Maître de conférence B">Maître de conférence B</option>
+                        <option  value="Professeur" >Professeur</option>
+
+                        </select>     
+                        </div>
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                            Co-directeur de thèse *
+                        </div>
+                        </td>
+                        <td>
+                        <div class="input-group mb-3">
+                        <input name="organismeCoDirecteur" type="text" class="form-control"  value="{{$jurie->organisme}}"  >
+                        </div>
+                        <div class="card">
+                 </td>
+                  </tr>
+                  @endif
+                          @endforeach
+
+                    <tr id="product1"></tr>
+
+                </tbody>
+            </table>
+                        <div class="card ">
+            <div class="card-header">
+            <h5>Examinateurs</h5> 
             </div>
+            <table class="table" id="examinateurs_table">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Grade</th>
+                                    <th>Qualité</th>
+                                    <th>Organisme</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="examinateur0">
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <input name="nomExaminateur[]" type="text" class="form-control"  >
+                                    </div>
+                                                                
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <input name="prenomExaminateur[]" type="text" class="form-control" >
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <select name="gradeExaminateur[]" class="form-control">
+                                    <option  value="Maître assistant A" >Maître assistant A</option>
+                                    <option  value="Maître assistant B">Maître assistant B</option>
+                                    <option value="Maître de conférence A">Maître de conférence A</option>
+                                    <option  value="Maître de conférence B">Maître de conférence B</option>
+                                    <option  value="Professeur" >Professeur</option>
+
+                                    </select>     
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    Examinateur *
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <input name="organismeExaminateur[]" type="text" class="form-control" >
+                                    </div>
+                                    </td>
+
+                                </tr>
+            
+                                <tr id="examinateur1">
+                                <td>
+                                    <div class="input-group mb-3">
+                                    <input name="nomExaminateur[]" type="text" class="form-control" >
+                                    </div>
+                                                                
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <input name="prenomExaminateur[]" type="text" class="form-control">
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <select name="gradeExaminateur[]" class="form-control">
+                                    <option  value="Maître assistant A" >Maître assistant A</option>
+                                    <option  value="Maître assistant B">Maître assistant B</option>
+                                    <option value="Maître de conférence A">Maître de conférence A</option>
+                                    <option  value="Maître de conférence B">Maître de conférence B</option>
+                                    <option  value="Professeur" >Professeur</option>
+
+                                    </select>     
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    Examinateur *
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <input name="organismeExaminateur[]" type="text" class="form-control" >
+                                    </div>
+                                    </td>
+
+                                </tr>
+
+            
+
+                                <tr id="examinateur2"></tr>
+
+                            </tbody>
+
+                        </table>
+                                                    
+            <div class="row">
+                <div class="col-md-12">
+                    <button  style="margin:10px;"  id="add_row" class="btn btn-primary pull-left">+ Ajouter un examinateur </button>
+                    <button   style="margin:10px;"  id='delete_row' class="pull-right btn btn-danger">- Supprimer un examinateur </button>
+                </div>
+            </div>
+            </div>
+
+            </table>
+                        <div class="card">
+            <h5 class="card-header">Invités</h5>
+            <table class="table" id="invites_table">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Grade</th>
+                                    <th>Qualité</th>
+                                    <th>Organisme</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="invite0">
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <input name="nomInvite[]" type="text" class="form-control"  >
+                                    </div>
+                                                                
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <input name="prenomInvite[]" type="text" class="form-control" >
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <select  name="gradeInvite[]" class="form-control">
+                                    <option  value="Maître assistant A" >Maître assistant A</option>
+                                    <option  value="Maître assistant B">Maître assistant B</option>
+                                    <option value="Maître de conférence A">Maître de conférence A</option>
+                                    <option  value="Maître de conférence B">Maître de conférence B</option>
+                                    <option  value="Professeur" >Professeur</option>
+
+                                    </select>     
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    Invité
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="input-group mb-3">
+                                    <input name="organismeInvite[]" type="text" class="form-control" >
+                                    </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr id="invite1"></tr>
+
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <button style="margin:10px;"  id="add_com" class="btn btn-primary pull-left">+ Ajouter un invite </button>
+                    <button style="margin:10px;"  id='delete_com' class="pull-right btn btn-danger">- Supprimer un invite </button>
+                </div>
+            </div>
+      
+            </div>
+
+            </div>
+
+            </div>
+
           </div>
         </div>   
         @endif

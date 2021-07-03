@@ -10,8 +10,7 @@ use App\Models\Decision;
 use Illuminate\Support\Facades\DB;
 use App\Models\Detail;
 use App\Models\User;
-
-
+use App\Models\Jury;
 
 
 
@@ -39,9 +38,8 @@ class TraitementController extends Controller
         $requetes = DB::table('requetes')
                     ->join('users','requetes.idUser','=','users.id')
                     ->join('departements','users.idDept','=','departements.idDept')
+                    ->join('juries','requetes.idRequete','=','juries.idRequete')
                     ->paginate(1);
-
-
         $details = Detail::all();
         $items = Item::all();
         $types = Point::all();
@@ -60,10 +58,11 @@ class TraitementController extends Controller
                     ->paginate(1);
 
         $details = Detail::all();
+        $juries = Jury::all();
         $users = User::all();
         $items = Item::all();
         $types = Point::all();
-        return view('/DSession.sessionCFD',compact('requetes','types','items','details'));
+        return view('/DSession.sessionCFD',compact('requetes','types','items','details','juries'));
     }
 
 

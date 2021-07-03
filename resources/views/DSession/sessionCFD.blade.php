@@ -1,5 +1,4 @@
 @extends('DSession.accueilCFD')
-
   @section('titre')
         Traitement des requêtes
     @endsection

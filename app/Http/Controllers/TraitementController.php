@@ -9,6 +9,8 @@ use App\Models\Item;
 use App\Models\Decision;
 use Illuminate\Support\Facades\DB;
 use App\Models\Detail;
+use App\Models\User;
+
 
 
 
@@ -41,10 +43,19 @@ class TraitementController extends Controller
 
     public function traiter3()
     {
-        $requetes = Requete::where('observation','LIKE',"%LMD%")
-                        ->where('type',4)
-                        ->paginate(1);
+
+        $requetes = DB::table('requetes')
+                    ->join('details','requetes.idRequete','=','details.idRequete')
+                    ->join('users','requetes.idUser','=','users.id')
+                    ->join('departements','users.idDept','=','departements.idDept')
+                    ->where('requetes.type','=','4')
+                    ->where('details.typeDoctorat','=','LMD')
+                    ->paginate(1);
+
+        // $requetes = Requete::where('type',4)
+        //                 ->paginate(1);
         $details = Detail::all();
+        $users = User::all();
         $items = Item::all();
         $types = Point::all();
         return view('/DSession.sessionCFD',compact('requetes','types','items','details'));

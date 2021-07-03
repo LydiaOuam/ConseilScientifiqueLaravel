@@ -23,7 +23,7 @@
                   @foreach($details as $detail)
                         @if($detail->idRequete == $requete->idRequete)
                           Requête : {{$type->nom}}<br>
-                          Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                          Nom et Prénom :  <br>
                           Département :  {{$detail->departement}}<br>
                           Nom et Prénom de directeur :  {{$detail->nomPrenomDirecteur}}<br>
                         @endif
@@ -71,10 +71,10 @@
                                 @if($detail->idRequete == $requete->idRequete)
                                   Requête : {{$type->nom}}<br>
                                   Type du Doctorat : {{$detail->typeDoctorat}} <br>
-                                  Nom et Prénom : {{$detail->nomPrenomCandidat}} <br>
+                                  Nom et Prénom : {{$requete->name}} {{$requete->fname}}<br>
                                   Directeur de thèse :  {{$detail->nomPrenomDirecteur}}  <br>
                                   Année de la première inscription:   {{$detail->annee}}<br>
-                                  Département:  {{$detail->	departement}}<br>
+                                  Département:  {{$requete->dname}}<br>
                                   Intitulé de la thèse:  {{$detail->intituleDesign}}<br>
                                 @endif
                             @endforeach
@@ -265,6 +265,21 @@
           </div>
         </div>
       </div>
+
+        @if($requete->type == 4)
+          <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              Accordion Item #3
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+            <div class="accordion-body">
+              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>   
+        @endif
       <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingThree">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">

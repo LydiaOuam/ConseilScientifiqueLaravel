@@ -1,5 +1,4 @@
-
-  @section('titre')
+@section('titre')
         Traitement des requêtes
     @endsection
 
@@ -11,7 +10,7 @@
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
 
-          Voir les détails d'une requête
+          Voir les détails d'une requête
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show " aria-labelledby="panelsStayOpen-headingOne">
@@ -630,7 +629,7 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-          Donner une décision
+          Donner une décision
           </button>
         </h2>
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
@@ -661,7 +660,6 @@
 </form>
 {{$requetes->links()}}
 </div>
-<!-- ------------------------ -->
 
   
 
@@ -680,7 +678,6 @@ $(document).ready(function(){
      
     });
    
-
     $("#delete_row").click(function(e){
       e.preventDefault();
       if(row_number > 2){
@@ -703,11 +700,8 @@ $(document).ready(function(){
         $('#invite' + row_number).html($('#invite' + new_row_number).html()).find('td:first-child');
         $('#invites_table').append('<tr id="invite' + (row_number + 1) + '"></tr>');
         row_number++;
-
       }
-
     });
-
     $("#delete_com").click(function(e){
       e.preventDefault();
       if(row_number > 1){
@@ -719,4 +713,3 @@ $(document).ready(function(){
 </script>
 @endsection
 </body>
-

@@ -36,11 +36,11 @@
                                     <label class="form-check-label" for="flexRadioDefault1">
                                     Présent
                                     </label>
-                                    <input style="margin:10px;" class="form-check-input" type="radio" name="etat{{$i}}" value="[Absence justifiée,{{$user->id}}]">
+                                    <input style="margin:10px;" class="form-check-input" type="radio" name="etat{{$i}}" value="Absence justifiée,{{$user->id}}">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Absence justifiée
                                     </label>
-                                    <input style="margin:10px;" class="form-check-input"  type="radio" name="etat{{$i}}"  value="[Absent,{{$user->id}}]">
+                                    <input style="margin:10px;" class="form-check-input"  type="radio" name="etat{{$i}}"  value="Absent,{{$user->id}}">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Absent
                                     </label>

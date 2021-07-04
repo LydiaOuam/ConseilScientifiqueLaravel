@@ -28,16 +28,18 @@ class AbsenceController extends Controller
     public function save(Request $request)
     {
         $nbr = count($request->all());
-        for($i = 0; $i < $nbr;$i++)
+        for($i = 0; $i < $nbr - 1;$i++)
         {
             $etat = "etat"."$i";
             $string = $request->$etat;
             $arr = explode(",",$string);
-            foreach($arr as $ar)
-            {
-                
-            }
 
+            echo "$arr[0]";
+            echo "$arr[1]";
+
+            
         }
+
+
     }
 }

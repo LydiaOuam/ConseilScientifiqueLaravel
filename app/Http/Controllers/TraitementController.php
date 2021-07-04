@@ -47,12 +47,15 @@ class TraitementController extends Controller
         $details = Detail::all();
         $items = Item::all();
         $types = Point::all();
+        $communications = Communication::all();
+        $publications = Publication::all();
         $decisions = DB::table('decisions')
                         ->join('users','decisions.idPresident','=','users.id')
                         ->get();
+                     
 
         
-        return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries','decisions'));
+        return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries','decisions','communications','publications'));
     }
 
     public function traiter3()

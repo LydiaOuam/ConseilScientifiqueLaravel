@@ -15,6 +15,7 @@ use App\HTTP\Controllers\AccueilController;
 use App\HTTP\Controllers\PvController;
 use App\HTTP\Controllers\PaysController;
 use App\HTTP\Controllers\TheseController;
+use App\HTTP\Controllers\AbsenceController;
 use App\Models\Compte;
 
 
@@ -363,10 +364,7 @@ Route::get('/accueilCSF',function()
     return view('DSession.accueilCSF');
 })->name('CSF');
 
-Route::get('/accueilCSD',function()
-{
-    return view('DSession.accueilCSD');
-})->name('CSD');
+
 
 Route::get('/accueilCFD',function()
 {
@@ -393,6 +391,9 @@ Route::get('/selection/{id}',[TheseController::class,"postDossier"])->name('sele
 Route::post('/selection/{id}',[TheseController::class,"postDossier"])->name('selectDossier');
 
 Route::post('/save/{idRequete}',[TheseController::class,"saveJury"])->name('saveJury');
+
+Route::get('/accueilCSD',[AbsenceController::class,"membres"])->name('absence');
+
 
 
 

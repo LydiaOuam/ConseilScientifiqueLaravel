@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Detail;
 use App\Models\User;
 use App\Models\Jury;
+use App\Models\Communication;
+use App\Models\Publication;
+
 
 
 
@@ -44,7 +47,11 @@ class TraitementController extends Controller
         $details = Detail::all();
         $items = Item::all();
         $types = Point::all();
-        $decisions = Decision::all();
+        $decisions = DB::table('decisions')
+                        ->join('users','decisions.idPresident','=','users.id')
+                        ->get();
+
+        
         return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries','decisions'));
     }
 
@@ -59,11 +66,15 @@ class TraitementController extends Controller
                     ->where('details.typeDoctorat','=','LMD')
                     ->paginate(1);
 
+                    // dd($requetes);
+
         $details = Detail::all();
+        $communications = Communication::all();
+        $publications = Publication::all();
         $juries = Jury::all();
         $items = Item::all();
         $types = Point::all();
-        return view('/DSession.sessionCFD',compact('requetes','types','items','details','juries'));
+        return view('/DSession.sessionCFD',compact('requetes','types','items','details','juries','communications','publications'));
     }
 
 

@@ -1,7 +1,9 @@
 @section('titre')
         Traitement des requêtes
     @endsection
+    @php $i = 0 @endphp
 
+    @php $invit = 0 @endphp
 
 @section('scontent')
 <div style=" margin-left:30px;margin-right:30px;margin-top:50px;">
@@ -22,7 +24,7 @@
                   @foreach($details as $detail)
                         @if($detail->idRequete == $requete->idRequete)
                           Requête : {{$type->nom}}<br>
-                          Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
+                          Nom et Prénom : {{$requete->name}} {{$requete->fname}}   <br>
                           Département : {{$requete->dname}} <br>
                           Nom et Prénom de directeur :  {{$detail->nomPrenomDirecteur}}<br>
                         @endif
@@ -447,7 +449,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                           @php $i = 0 @endphp
                             @foreach($juries as $jurie)
                                 @if($jurie->idRequete == $requete->idRequete && $jurie->qualite == 'Examinateur')
                                 <tr id="examinateur{{$i}}">
@@ -520,7 +521,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @php $invit = 0 @endphp
                             @foreach($juries as $jurie)
                                 @if($jurie->idRequete == $requete->idRequete && $jurie->qualite == 'Invité')
                                

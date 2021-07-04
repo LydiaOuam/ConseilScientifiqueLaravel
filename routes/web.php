@@ -394,6 +394,9 @@ Route::post('/save/{idRequete}',[TheseController::class,"saveJury"])->name('save
 
 Route::get('/accueilCSD',[AbsenceController::class,"membres"])->name('absence');
 
+Route::post('/enregitrerEtat',[AbsenceController::class,"save"])->name('enregistrerEtat');
+
+
 
 
 

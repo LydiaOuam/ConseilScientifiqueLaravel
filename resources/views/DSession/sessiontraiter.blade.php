@@ -265,6 +265,61 @@
           </div>
         </div>
       </div>
+      @if($requete->type == 4 || $requete->type == 13)
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+          Publications et Communications
+          </button>
+        </h2>
+        @foreach($publications as $publication)
+              @if($publication->idRequete == $requete->idRequete)
+        <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+        <div>
+        <h5 style="color:blue;margin:20px;">Publications:</h5>
+        <div class="card text-dark bg-light mb-3" style="max-width: 1000px; margin-left:30px;">
+            <div class="card-header"> <h6>Titre de la publication : {{$publication->titrePub}}</h6></div>
+            <div class="card-body">
+            <h6  style="margin-left:30px;"> Liste des auteurs : {{$publication->listeAuteurs}} </br></h6>
+                   <h6 style="margin-left:30px;"> Nom de la Revue : {{$publication->nomRevue}} </br></h6>
+                   <h6 style="margin-left:30px;"> Score Impact : {{$publication->impact}} </br></h6>
+                   <h6 style="margin-left:30px;"> Score SJR : {{$publication->sjr}} </br></h6>
+                   <h6 style="margin-left:30px;"> Date soumission : {{$publication->datesOum}} </br></h6>
+                   <h6 style="margin-left:30px;"> Date acceptation : {{$publication->dateAcc}} </br></h6>
+                   <h6 style="margin-left:30px;"> Date Parution : {{$publication->dateParu}} </br></h6>
+                   <h6 style="margin-left:30px;"> URL Revue  : <a href=" {{$publication->urlrevue}} "> {{$publication->urlrevue}} </a></br></h6>
+                   <h6 style="margin-left:30px;"> URL Papier  : <a href=" {{$publication->urlpapier}}"> {{$publication->urlpapier}}</a> </br></h6>
+            </div>
+          </div>
+
+ 
+                @endif
+              @endforeach
+        </div>
+        <div>
+        <h5 style="color:blue;margin:20px;">Communications:</h5>
+        @foreach($communications as $communication)
+              @if($communication->idRequete == $requete->idRequete)
+              <div class="card text-dark bg-light mb-3" style="max-width: 1000px;margin-left:30px;">
+                <div class="card-header">   <h6> Liste des auteurs : {{$communication->listeAuteurs}}</h6></div>
+                <div class="card-body">
+                <h6  style="margin-left:30px;"> Titre communication : {{$communication->titreCom}} </br></h6>
+                   <h6 style="margin-left:30px;"> Intitule communication : {{$communication->	intitCom}} </br></h6>
+                   <h6 style="margin-left:30px;"> De : {{$communication->	dateDebCom}} a {{$communication->dateFinCom}}  </br></h6>
+                   <h6 style="margin-left:30px;"> Lieu : {{$communication->lieuCom}} </br></h6>
+                   <h6 style="margin-left:30px;"> URL Communication : <a href="{{$communication->urlCom}}  ">{{$communication->urlCom}} </a></br></h6>
+                
+                </div>
+              </div>
+
+                
+               
+                @endif
+              @endforeach
+        </div>
+        </div>
+        @endif
+      </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingThree">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">

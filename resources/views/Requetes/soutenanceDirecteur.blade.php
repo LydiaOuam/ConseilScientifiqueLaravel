@@ -301,8 +301,8 @@
             </table>
             <div class="row">
                 <div class="col-md-12">
-                    <button style="margin:10px;"  id="add_com" class="btn btn-primary pull-left">+ Ajouter un invite </button>
-                    <button style="margin:10px;"  id='delete_com' class="pull-right btn btn-danger">- Supprimer un invite </button>
+                    <button style="margin:10px;"  id="add_com" class="btn btn-primary pull-left">+ Ajouter un invité </button>
+                    <button style="margin:10px;"  id='delete_com' class="pull-right btn btn-danger">- Supprimer un invité </button>
                 </div>
             </div>
             </div>
@@ -340,8 +340,8 @@ $(document).ready(function(){
         if(row_number < 4)
         {
             let new_row_number = row_number - 1;
-            $('#examinateur' + row_number).html($('#examinateur' + new_row_number).html()).find('td:first-child');
-            $('#examinateurs_table').append('<tr id="examinateur' + (row_number + 1) + '"></tr>');
+            $('#examinateur' + row_number).rest().html($('#examinateur' + new_row_number).html()).find('td:first-child');
+            $('#examinateurs_table').append('<tr id="examinateur' + (row_number + 1) + '"></tr>').reset();
             row_number++;
         }
      

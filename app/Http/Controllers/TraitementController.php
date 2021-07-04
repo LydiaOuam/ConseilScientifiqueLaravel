@@ -76,6 +76,85 @@ class TraitementController extends Controller
     
     public function decision(Request $request,$id)
     {
+        // dd($id);
+
+        $jury = DB::table('juries')->where('idRequete','=',$id)->delete();
+        // dd($request->all());
+
+
+        $jury = new Jury();
+
+        $jury->nom = $request->nompresident;
+        $jury->idRequete = $id;
+        $jury->prenom = $request->prenomPresident;            
+        $jury->qualite = "Président";            
+        $jury->grade = $request->GradePresident;            
+        $jury->organisme = $request->organismePresident;    
+        
+        $jury->save();
+    
+        
+        $jury = new Jury();
+    
+        $jury->nom = $request->nomDirecteur;
+        $jury->idRequete = $id;
+        $jury->prenom = $request->prenomDirecteur;            
+        $jury->qualite = "Directeur de thèse";            
+        $jury->grade = $request->GradeDirecteur;            
+        $jury->organisme = $request->organismeDirecteur;    
+        
+        $jury->save();
+    
+  
+
+    $jury = new Jury();
+
+    $jury->nom = $request->nomCoDirecteur;
+    $jury->idRequete = $id;
+    $jury->prenom = $request->prenomCoDirecteur;            
+    $jury->qualite = "Co-directeur de thèse";            
+    $jury->grade = $request->GradeCoDirecteur;            
+    $jury->organisme = $request->organismeCoDirecteur;    
+    
+    $jury->save();
+
+    $nombreExaminateur = count($request->nomExaminateur);
+            
+    // dd($nombreExaminateur);
+    for($i = 0; $i<$nombreExaminateur;$i++)
+    {
+            $examinateur = new Jury();
+      
+        $examinateur->nom = $request->nomExaminateur[$i];
+        $examinateur->idRequete = $id;
+        $examinateur->prenom = $request->prenomExaminateur[$i];            
+        $examinateur->qualite = "Examinateur";            
+        $examinateur->grade = $request->gradeExaminateur[$i];            
+        $examinateur->organisme = $request->organismeExaminateur[$i];    
+        $examinateur->save();
+    }
+
+    
+    $nombreInvites = count($request->nomInvite);
+            
+    // dd($nombreExaminateur);
+    for($i = 0; $i < $nombreInvites;$i++)
+    {
+        if($request->nomInvite[$i] != null)
+        {
+            $invite = new Jury();
+      
+            $invite->nom = $request->nomInvite[$i];
+            $invite->idRequete = $id;
+            $invite->prenom = $request->prenomInvite[$i];            
+            $invite->qualite = "Invité";            
+            $invite->grade = $request->gradeInvite[$i];            
+            $invite->organisme = $request->organismeInvite[$i];    
+            $invite->save();
+        }
+            
+    }
+
         $decision = new Decision();
         $decision->idRequete = $id;
         $user = session('user');

@@ -98,9 +98,9 @@
 </header>
 <body>
 @include('messages')
+@yield('avis')
 
 @yield('scontent')
-
 
 
 </body>

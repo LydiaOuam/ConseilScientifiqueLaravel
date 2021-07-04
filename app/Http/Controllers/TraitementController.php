@@ -44,7 +44,8 @@ class TraitementController extends Controller
         $details = Detail::all();
         $items = Item::all();
         $types = Point::all();
-        return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries'));
+        $decisions = Decision::all();
+        return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries','decisions'));
     }
 
     public function traiter3()

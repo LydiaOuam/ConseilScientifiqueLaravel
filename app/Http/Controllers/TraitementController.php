@@ -30,6 +30,7 @@ class TraitementController extends Controller
         $details = Detail::all();
         $items = Item::all();
         $types = Point::all();
+
         return view('/DSession.session',compact('requetes','types','items','details','juries'));
     }
 
@@ -52,10 +53,18 @@ class TraitementController extends Controller
         $decisions = DB::table('decisions')
                         ->join('users','decisions.idPresident','=','users.id')
                         ->get();
-                     
+
+                        $current_user = session('user')->idDept;
+
+        $users = DB::table('users')
+                    ->where('idDept','=',$current_user)
+                    ->where('fonction','!=','Etudiant-doctorant')
+                    ->get();
+                
+               
 
         
-        return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries','decisions','communications','publications'));
+        return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries','decisions','communications','publications','users','current_user'));
     }
 
     public function traiter3()

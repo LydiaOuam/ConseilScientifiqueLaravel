@@ -19,6 +19,14 @@ class CreateDecisionsTable extends Migration
             $table->foreign('idRequete')
                   ->references('idRequete')->on('requetes')
                   ->onDelete('cascade');
+            $table->unsignedBigInteger('idSessionCSD'); 
+            $table->foreign('idSessionCSD')
+                    ->references('idSessionCSD')->on('session_c_s_d_s')
+                    ->onDelete('cascade');
+            $table->unsignedBigInteger('idSessionCSF'); 
+            $table->foreign('idSessionCSF')
+                    ->references('idSessionCSF')->on('session_c_s_f_s')
+                    ->onDelete('cascade');
             $table->unsignedBigInteger('idPresident'); 
             $table->foreign('idPresident')
                   ->references('id')->on('users')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Presence;
 
 
 class AbsenceController extends Controller
@@ -34,11 +35,14 @@ class AbsenceController extends Controller
             $string = $request->$etat;
             $arr = explode(",",$string);
 
-            echo "$arr[0]";
-            echo "$arr[1]";
-
+            $presence = new Presence();
+            $presence->etat = $arr[0];
+            $presence->idUser = $arr[1];
+            $presence->idSessionCSD = 10;
+            $presence->save();
             
         }
+        return redirect(route('sessionCSD'));
 
 
     }

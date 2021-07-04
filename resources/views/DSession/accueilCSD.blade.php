@@ -23,6 +23,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @php $i = 0 @endphp
                             @foreach($users as $user)
 
                             <tr>
@@ -31,21 +32,22 @@
                                 <td>{{$user->fname}}</td>
                                 <td>
                                 <div>
-                                    <input style="margin:10px;" class="form-check-input" type="radio" name="etat{{$user->id}}" id="present" value="Présent">
+                                    <input style="margin:10px;" class="form-check-input" type="radio" name="etat{{$i}}" value="Présent,{{$user->id}}">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                     Présent
                                     </label>
-                                    <input style="margin:10px;" class="form-check-input" type="radio" name="etat{{$user->id}}" id="absentJustifie" value="Absent justifié">
+                                    <input style="margin:10px;" class="form-check-input" type="radio" name="etat{{$i}}" value="[Absence justifiée,{{$user->id}}]">
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        Absent justifié
+                                        Absence justifiée
                                     </label>
-                                    <input style="margin:10px;" class="form-check-input"  type="radio" name="etat{{$user->id}}" id="absent" value="Absent">
+                                    <input style="margin:10px;" class="form-check-input"  type="radio" name="etat{{$i}}"  value="[Absent,{{$user->id}}]">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Absent
                                     </label>
                                 </div>
                                 </td>
                                 </tr>
+                                @php $i++ @endphp
                             @endforeach
 
                             </tbody>

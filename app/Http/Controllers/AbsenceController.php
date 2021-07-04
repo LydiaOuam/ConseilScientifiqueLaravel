@@ -16,6 +16,7 @@ class AbsenceController extends Controller
             
         $users = DB::table('users')
                          ->where('idDept','=',$current_user)
+                         ->where('fonction','!=','Etudiant-doctorant')
                          ->get();
 
    
@@ -26,6 +27,17 @@ class AbsenceController extends Controller
 
     public function save(Request $request)
     {
-        dd($request->all());
+        $nbr = count($request->all());
+        for($i = 0; $i < $nbr;$i++)
+        {
+            $etat = "etat"."$i";
+            $string = $request->$etat;
+            $arr = explode(",",$string);
+            foreach($arr as $ar)
+            {
+                
+            }
+
+        }
     }
 }

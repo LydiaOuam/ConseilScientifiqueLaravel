@@ -39,11 +39,11 @@ class TraitementController extends Controller
     {
         //$currentDate = la date du systene;
 
-        $session_csd = DB::table('session_c_s_d_s')
-                            ->where('etat_CSD','=','en attente')
-                            ->where('dateSession','=',$currentDate);
-        if(count($session_csd)==0)
-            return('DSession.AccueilCSD')->with('error',"Aucune session n'a ete planifier pour ce jour");
+        // $session_csd = DB::table('session_c_s_d_s')
+        //                     ->where('etat_CSD','=','en attente')
+        //                     ->where('dateSession','=',$currentDate);
+        // if(count($session_csd)==0)
+        //     return('DSession.AccueilCSD')->with('error',"Aucune session n'a ete planifier pour ce jour");
 
         $requetes = DB::table('requetes')
                     ->join('details','requetes.idRequete','=','details.idRequete')
@@ -69,11 +69,11 @@ class TraitementController extends Controller
                 
         //faut mettre a jour l'etat de la session
         
-    $session = SessionCSD :: find($session_csd->idSessionCSD);
+    // $session = SessionCSD :: find($session_csd->idSessionCSD);
 
 
-    DB::update('update session_c_s_d_s set etatCSD = ? where id = ?',
-    ["en cours",$session_csd->idSessionCSD]);
+    // DB::update('update session_c_s_d_s set etatCSD = ? where id = ?',
+    // ["en cours",$session_csd->idSessionCSD]);
     
 
         
@@ -191,6 +191,17 @@ class TraitementController extends Controller
         }
             
     }
+
+        //Mettre a jour la decesion
+        // $current_user = session('user')->id;
+        // $decision = table('decisions')
+                    // ->where('idPresident','=',$current_user);
+
+        // if(count($decision)!=0)
+        // {
+        //     DB:update('update decisions set avis = ?, observation = ? where idDecision = ?',
+        //     [$request->decision,$request->observation,$decision->idDecision]);
+        // }
 
         $decision = new Decision();
         $decision->idRequete = $id;

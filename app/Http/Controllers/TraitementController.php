@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Jury;
 use App\Models\Communication;
 use App\Models\Publication;
+use App\Models\SessionCSD;
 
 
 
@@ -36,8 +37,13 @@ class TraitementController extends Controller
 
     public function traiter2()
     {
+        //$currentDate = la date du systene;
 
-    
+        $session_csd = DB::table('session_c_s_d_s')
+                            ->where('etat_CSD','=','en attente')
+                            ->where('dateSession','=',$currentDate);
+        if(count($session_csd)==0)
+            return('DSession.AccueilCSD')->with('error',"Aucune session n'a ete planifier pour ce jour");
 
         $requetes = DB::table('requetes')
                     ->join('details','requetes.idRequete','=','details.idRequete')
@@ -61,7 +67,14 @@ class TraitementController extends Controller
                     ->where('fonction','!=','Etudiant-doctorant')
                     ->get();
                 
-               
+        //faut mettre a jour l'etat de la session
+        
+    $session = SessionCSD :: find($session_csd->idSessionCSD);
+
+
+    DB::update('update session_c_s_d_s set etatCSD = ? where id = ?',
+    ["en cours",$session_csd->idSessionCSD]);
+    
 
         
         return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries','decisions','communications','publications','users','current_user'));

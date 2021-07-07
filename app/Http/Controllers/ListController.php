@@ -90,8 +90,8 @@ public function updatee(Request $request,$id)
      $request->TeNumber1,$request->TeNumber2,$request->login,$request->email2,$request->TeachGrade,
      $request->searchGrade,$request->fonction,$request->genre,$compte->photo,$id]);
 
-//        //FAUT ESSYER DE VERIFIER D'ABORD SI LE TABLEAU CHOIX N'EST PAS VIDE !!!!!!!!!!
-//      //on supprime d'abbord les tuples existant pour mettre a jour les roles
+//        //FAUT ESSAYER DE VERIFIER D'ABORD SI LE TABLEAU CHOIX N'EST PAS VIDE !!!!!!!!!!
+//      //on supprime d'abord les tuples existant pour mettre a jour les roles
     
 
     if(isset( $_POST['choix']))

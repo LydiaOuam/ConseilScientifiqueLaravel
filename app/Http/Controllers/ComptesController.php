@@ -33,6 +33,7 @@ class ComptesController extends Controller
             $compte = new User();
             $compte->login = $req->input('login'); 
             $compte->password = $req->input('password');
+            $compte->membre=$req->membre;
             $compte->fonction=$req->fonction;
             $compte->idDept =$req->departement;
 

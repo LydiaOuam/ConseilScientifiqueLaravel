@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->boolean('etat')->default(1);
             $table->boolean('supprim')->default(1); // 1 : n'est pas supprime
             $table->string('photo')->nullable();
+            $table->enum('membre',['Membre du CSF','Membre du CSD','Membre du CFD','NULL'])->nullable();
             $table->unsignedBigInteger('idDept'); 
             $table->foreign('idDept')
                   ->references('idDept')->on('departements')

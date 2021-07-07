@@ -714,10 +714,12 @@
   
 </form>
 {{$requetes->links()}}
-
+<button class="btb btn-danger" type="button">
+          Fermer la session
+          </button>
 </div>
 
-  
+
 
 <script>
 $(document).ready(function(){

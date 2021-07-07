@@ -13,11 +13,12 @@ class AbsenceController extends Controller
     {
 
         $current_user = session('user')->idDept;
+        $current_user_membre = session('user')->membre;
 
             
         $users = DB::table('users')
                          ->where('idDept','=',$current_user)
-                         ->where('fonction','!=','Etudiant-doctorant')
+                         ->where('membre','=',$current_user_membre)
                          ->get();
 
    

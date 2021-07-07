@@ -25,6 +25,7 @@ class CreateSessionCSDSTable extends Migration
                   ->onDelete('cascade');
             $table->date('dateSession');
             $table->date('dateLimite');
+            $table->enum('etat_CSD',['en attente','en cours','terminée']);
             $table->timestamps();
         });
     }

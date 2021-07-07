@@ -45,7 +45,7 @@
     <label for="departement">Departement:</label>
                 <select name="departement" class="form-select form-select-sm" >
                 @foreach($dep as $departe)
-                    <option value="{{$departe->idDept}}">{{$departe->name}}</option>
+                    <option value="{{$departe->idDept}}">{{$departe->dname}}</option>
                 @endforeach
                 </select>
     </fieldset>
@@ -60,6 +60,14 @@
             <label for="divers" id="role">{{$role->display_name}}</label>
             <br>
         @endforeach
+        <label for="membre"><h6> Membre de:</h6></label>
+                        <select  name="membre" class="form-control">
+                            <option  value="Membre du CSF">Membre du CSF</option>
+                            <option  value="Membre du CSD">Membre du CSD</option>
+                            <option  value="Membre du CFD">Membre du CFD </option>
+                            <option  value="NULL">Aucun</option>
+
+                        </select>      
     </fieldset>
     <button type="submit" class="btn btn-success " style="margin-left:30px;width:200px">Ajouter</button>
 

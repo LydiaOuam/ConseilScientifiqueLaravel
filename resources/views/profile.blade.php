@@ -146,6 +146,14 @@
                                 <br>
                             @endif
                     @endforeach
+                    <label for="membre">Membre de:</label>
+                        <select  name="membre" class="form-control" value="{{$compte->membre}}">
+                            <option {{($compte->membre)=="Membre du CSF" ? 'selected':''}}  value="Membre du CSF">Membre du CSF</option>
+                            <option {{($compte->membre)=="Membre du CSD" ? 'selected':''}} value="Membre du CSD">Membre du CSD</option>
+                            <option {{($compte->membre)=="Membre du CFD" ? 'selected':''}} value="Membre du CFD">Membre du CFD </option>
+                            <option {{($compte->membre)=="Aucun" ? 'selected':''}} value="Aucun">Aucun</option>
+
+                        </select>      
                 @endif
 
 

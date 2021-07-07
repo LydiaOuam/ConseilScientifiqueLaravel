@@ -21,6 +21,7 @@ class CreateSessionCSFSTable extends Migration
                   ->references('idMandat')->on('mandats')
                   ->onDelete('cascade');
             $table->date('dateSesCSF');
+            $table->enum('etat_CSF',['en attente','en cours','terminée']);
             $table->timestamps();
         });
     }

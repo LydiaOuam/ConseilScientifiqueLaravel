@@ -15,7 +15,9 @@
       @foreach($decisions as $decision)
       @if($requete->idRequete == $decision->idRequete)
         @if($decision->avis == 'Favorable')
-       
+         @if($decision->membre ==  "Membre du CFD")
+        <h6>Avis du  CFD</h6>
+        @endif
           <h6>  {{$decision->name}}  {{$decision->fname}} </h6>
           <h6 style="color:green">{{$decision->avis}}</h6> 
         @elseif($decision->avis == 'Défavorable')

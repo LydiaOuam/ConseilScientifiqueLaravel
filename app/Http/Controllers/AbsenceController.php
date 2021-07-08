@@ -47,7 +47,8 @@ class AbsenceController extends Controller
         //                 return view('/DSession.accueilCSD',compact('current_user','users'))->with('error','Y a pas de session pour cette date');
                 
 
-   
+               
+ 
         return view('/DSession.accueilCSD',compact('current_user','users','session_csd'));
 
 
@@ -69,6 +70,20 @@ class AbsenceController extends Controller
             $presence->save();
             
         }
+        $currentDate = Carbon::now()->format('Y-m-d');
+        
+        $session_csd = DB::table('session_c_s_d_s')
+                            ->where('etat_CSD','=','en attente')
+                            ->where('dateSession','=',$currentDate)
+                            ->get();
+                            foreach($session_csd as $session)
+                            $idSess = $session->idSessionCSD;
+                    
+                    
+                            DB::update('update session_c_s_d_s set etat_CSD = ? where idSessionCSD = ?',
+                            ["en cours",$idSess]);
+                    
+
         return redirect(route('sessionCSD'));
 
 

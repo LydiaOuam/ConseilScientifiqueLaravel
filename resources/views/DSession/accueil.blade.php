@@ -28,7 +28,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               </li>
-              <li><a class="dropdown-item" href="{{route('Comptes')}}">
+              <li><a class="dropdown-item" href="#">
               <span>Gérer session</span>
               <span><i class="fa fa-caret-right" aria-hidden="true"></i></span>
               </a>

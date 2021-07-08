@@ -46,7 +46,7 @@ class TheseController extends Controller
 
         $requete = DB::table('requetes')
         ->where('idUser','=',$id)
-        ->where('type','=','7')
+        ->where('type','=','4')
         ->select('idRequete')
         ->get();
         if(count($requete)>0){
@@ -65,7 +65,9 @@ class TheseController extends Controller
 
    public function saveJury(Request $request,$id)
    {
-    // dd($request->all());
+ 
+
+    // dd($id);
 
 
     $request->validate([

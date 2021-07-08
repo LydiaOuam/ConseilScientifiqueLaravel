@@ -714,9 +714,9 @@
   
 </form>
 {{$requetes->links()}}
-<button class="btb btn-danger" type="button">
-          Fermer la session
-          </button>
+<div class="d-grid gap-2">
+  <button class="btn btn-outline-danger" style="margin-bottom:20px;" type="button">Terminer la session</button>
+</div>
 </div>
 
 

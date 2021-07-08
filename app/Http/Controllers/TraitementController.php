@@ -14,6 +14,8 @@ use App\Models\Jury;
 use App\Models\Communication;
 use App\Models\Publication;
 use App\Models\SessionCSD;
+use Carbon\Carbon;
+
 
 
 
@@ -51,6 +53,21 @@ class TraitementController extends Controller
                          ->where('membre','=',$current_user_membre)
                          ->get();
 
+
+            // $currentDate = Carbon::now()->format('Y-m-d');
+        
+            // $session_csd = DB::table('session_c_s_d_s')
+            //                     ->where('etat_CSD','=','en attente')
+            //                     ->where('dateSession','=',$currentDate)
+            //                     ->get();
+            // foreach($session_csd as $session)
+            //         $idSess = $session->idSessionCSD;
+
+                    
+
+            // DB::update('update session_c_s_d_s set etat_CSD = ? where idSessionCSD = ?',
+            // ["en cours",$idSess]);
+
    
 
 
@@ -71,18 +88,23 @@ class TraitementController extends Controller
                             ->join('users','decisions.idPresident','=','users.id')
                             ->get();
 
+                            
+                    
 
-//faut mettre a jour l'etat de la session
+                            $currentDate = Carbon::now()->format('Y-m-d');
+        
+                            $session_csd = DB::table('session_c_s_d_s')
+                                                ->where('etat_CSD','=','en attente')
+                                                ->where('dateSession','=',$currentDate)
+                                                ->get();
+                                                foreach($session_csd as $session)
+                                                {
+                                                    $idSess = $session->idSessionCSD;
+                                                    $idSessCSF = $session->idSessionCSF;
+                                                }
 
-// $session = SessionCSD :: find($session_csd->idSessionCSD);
 
-
-// DB::update('update session_c_s_d_s set etatCSD = ? where id = ?',
-// ["en cours",$session_csd->idSessionCSD]);
-
-
-
-        return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries','decisions','communications','publications','users','current_user'));
+        return view('/DSession.sessionCSD',compact('session_csd','requetes','types','items','details','juries','decisions','communications','publications','users','current_user'));
 
 
                 
@@ -124,82 +146,93 @@ class TraitementController extends Controller
     {
         // dd($id);
 
-        $jury = DB::table('juries')->where('idRequete','=',$id)->delete();
-        // dd($request->all());
 
-
-        $jury = new Jury();
-
-        $jury->nom = $request->nompresident;
-        $jury->idRequete = $id;
-        $jury->prenom = $request->prenomPresident;            
-        $jury->qualite = "Président";            
-        $jury->grade = $request->GradePresident;            
-        $jury->organisme = $request->organismePresident;    
-        
-        $jury->save();
-    
-        
-        $jury = new Jury();
-    
-        $jury->nom = $request->nomDirecteur;
-        $jury->idRequete = $id;
-        $jury->prenom = $request->prenomDirecteur;            
-        $jury->qualite = "Directeur de thèse";            
-        $jury->grade = $request->GradeDirecteur;            
-        $jury->organisme = $request->organismeDirecteur;    
-        
-        $jury->save();
-    
-  
-
-    $jury = new Jury();
-
-    $jury->nom = $request->nomCoDirecteur;
-    $jury->idRequete = $id;
-    $jury->prenom = $request->prenomCoDirecteur;            
-    $jury->qualite = "Co-directeur de thèse";            
-    $jury->grade = $request->GradeCoDirecteur;            
-    $jury->organisme = $request->organismeCoDirecteur;    
-    
-    $jury->save();
-
-    $nombreExaminateur = count($request->nomExaminateur);
-            
-    // dd($nombreExaminateur);
-    for($i = 0; $i<$nombreExaminateur;$i++)
-    {
-            $examinateur = new Jury();
-      
-        $examinateur->nom = $request->nomExaminateur[$i];
-        $examinateur->idRequete = $id;
-        $examinateur->prenom = $request->prenomExaminateur[$i];            
-        $examinateur->qualite = "Examinateur";            
-        $examinateur->grade = $request->gradeExaminateur[$i];            
-        $examinateur->organisme = $request->organismeExaminateur[$i];    
-        $examinateur->save();
-    }
-
-    
-    $nombreInvites = count($request->nomInvite);
-            
-    // dd($nombreExaminateur);
-    for($i = 0; $i < $nombreInvites;$i++)
-    {
-        if($request->nomInvite[$i] != null)
+        $requete = DB::table('requetes')->where('idRequete','=',$id)->get();
+        foreach($requete as $req)
         {
-            $invite = new Jury();
-      
-            $invite->nom = $request->nomInvite[$i];
-            $invite->idRequete = $id;
-            $invite->prenom = $request->prenomInvite[$i];            
-            $invite->qualite = "Invité";            
-            $invite->grade = $request->gradeInvite[$i];            
-            $invite->organisme = $request->organismeInvite[$i];    
-            $invite->save();
+            $type = $req->type;
         }
+        if($type == 4 || $type == 13)
+        {
+        $jury = DB::table('juries')->where('idRequete','=',$id)->delete();
+
+            $jury = new Jury();
+
+            $jury->nom = $request->nompresident;
+            $jury->idRequete = $id;
+            $jury->prenom = $request->prenomPresident;            
+            $jury->qualite = "Président";            
+            $jury->grade = $request->GradePresident;            
+            $jury->organisme = $request->organismePresident;    
             
-    }
+            $jury->save();
+        
+            
+            $jury = new Jury();
+        
+            $jury->nom = $request->nomDirecteur;
+            $jury->idRequete = $id;
+            $jury->prenom = $request->prenomDirecteur;            
+            $jury->qualite = "Directeur de thèse";            
+            $jury->grade = $request->GradeDirecteur;            
+            $jury->organisme = $request->organismeDirecteur;    
+            
+            $jury->save();
+        
+      
+    
+        $jury = new Jury();
+    
+        $jury->nom = $request->nomCoDirecteur;
+        $jury->idRequete = $id;
+        $jury->prenom = $request->prenomCoDirecteur;            
+        $jury->qualite = "Co-directeur de thèse";            
+        $jury->grade = $request->GradeCoDirecteur;            
+        $jury->organisme = $request->organismeCoDirecteur;    
+        
+        $jury->save();
+    
+        $nombreExaminateur = count($request->nomExaminateur);
+                
+        // dd($nombreExaminateur);
+        for($i = 0; $i<$nombreExaminateur;$i++)
+        {
+                $examinateur = new Jury();
+          
+            $examinateur->nom = $request->nomExaminateur[$i];
+            $examinateur->idRequete = $id;
+            $examinateur->prenom = $request->prenomExaminateur[$i];            
+            $examinateur->qualite = "Examinateur";            
+            $examinateur->grade = $request->gradeExaminateur[$i];            
+            $examinateur->organisme = $request->organismeExaminateur[$i];    
+            $examinateur->save();
+        }
+    
+        
+        $nombreInvites = count($request->nomInvite);
+                
+        // dd($nombreExaminateur);
+        for($i = 0; $i < $nombreInvites;$i++)
+        {
+            if($request->nomInvite[$i] != null)
+            {
+                $invite = new Jury();
+          
+                $invite->nom = $request->nomInvite[$i];
+                $invite->idRequete = $id;
+                $invite->prenom = $request->prenomInvite[$i];            
+                $invite->qualite = "Invité";            
+                $invite->grade = $request->gradeInvite[$i];            
+                $invite->organisme = $request->organismeInvite[$i];    
+                $invite->save();
+            }
+                
+        }
+        }
+        // dd($requete->all());
+
+
+     
 
         //Mettre a jour la decesion
         // $current_user = session('user')->id;
@@ -211,12 +244,28 @@ class TraitementController extends Controller
         //     DB:update('update decisions set avis = ?, observation = ? where idDecision = ?',
         //     [$request->decision,$request->observation,$decision->idDecision]);
         // }
+        
+        $currentDate = Carbon::now()->format('Y-m-d');
+        
+        $session_csd = DB::table('session_c_s_d_s')
+                            ->where('etat_CSD','=','en cours')
+                            ->where('dateSession','=',$currentDate)
+                            ->get();
+        foreach($session_csd as $session)
+        {
+            $idSess = $session->idSessionCSD;
+            $idSessCSF = $session->idSessionCSF;
+        }
+
+    
 
         $decision = new Decision();
         $decision->idRequete = $id;
         $user = session('user');
         $decision->idPresident = $user->id;//session('user')->id;
         $decision->avis = $request->decision;
+        $decision->idSessionCSF = $idSessCSF;
+        $decision->idSessionCSD = $idSess;
         $decision->observation = $request->observation;
         $decision->save();
         return redirect()->back()->with('success','La décision a été bien enregistrée');

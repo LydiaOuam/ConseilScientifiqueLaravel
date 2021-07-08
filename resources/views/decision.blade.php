@@ -7,8 +7,10 @@
     <title>PV</title>
    
 </head>
+
 <body>
-    <img src="imageLogo/telech.png" alt="Logo usthb">
+
+   <a href="{{route('downdecision')}}"><img src="imageLogo/telech.png" alt="Logo usthb"></a> 
     <div class="tete">
     République Algérienne Démocratique et Populaire <br>
     Ministère de l’Enseignement Supérieur et de la Recherche Scientifique <br>
@@ -53,9 +55,8 @@
         <p> 3-	L’arrêté n°230 en date du 10 Mars 2020 portant la liste nominative des membres du comité scientifique du département informatique</p> 
         <p> 4-	Instruction du secrétaire général n°1500 du 25 décembre 2019</p> 
 </p>
-<br>
-<h6>
-I.Liste des membres présents à la session du comité scientifique du département (1)</h6>
+
+<div class="principale">I.Liste des membres présents à la session du comité scientifique du département (1)</div> 
 <h6>
 1- Membres du comité scientifique du département
 </h6>
@@ -84,7 +85,6 @@ I.Liste des membres présents à la session du comité scientifique du départem
         </tbody>
     </table>
     <p>(1)Suivant l’arrêté n°230 en date du 10 Mars 2020 portant la liste nominative des membres du comité scientifique du département Informatique</p> 
-    <br>
    <h6>2- Membres du comité scientifique du département absents :</h6> 
     <table class="table table-bordered">
         <thead>
@@ -108,10 +108,10 @@ I.Liste des membres présents à la session du comité scientifique du départem
         </tbody>
     </table>
 
-   <div class="departement"><h6>II.Ordre du jour de la session du comité scientifique du département </h6> </div> 
+   <div class="principale">II.Ordre du jour de la session du comité scientifique du département </div> 
 
    <ul>
-   Pédagogie
+   <h2 class="titre"> Pédagogie </h2>
 
 
     @foreach($array_unique_points as $point)
@@ -119,8 +119,7 @@ I.Liste des membres présents à la session du comité scientifique du départem
         <li>{{$point}}</li>
         @endif
     @endforeach
-    <br>
-    Formation Doctorale
+    <h2  class="titre">Formation Doctorale</h2> 
 
     @foreach($array_unique_points as $point)
 
@@ -131,8 +130,7 @@ I.Liste des membres présents à la session du comité scientifique du départem
         <li>{{$point}}</li>
         @endif
         @endforeach
-    <br>
-    Recherche
+    <h2  class="titre">Recherche</h2> 
     
     @foreach($array_unique_points as $point)
 
@@ -141,7 +139,7 @@ I.Liste des membres présents à la session du comité scientifique du départem
         @endif
         @endforeach
 
-        Académie
+        <h2  class="titre">Académie</h2> 
     
     @foreach($array_unique_points as $point)
 
@@ -152,8 +150,7 @@ I.Liste des membres présents à la session du comité scientifique du départem
         @endif
         @endforeach
 
-    <br>
-    Formation à l’étranger
+    <h2  class="titre">Formation à l’étranger</h2> 
     @foreach($array_unique_points as $point)
 
         @if($point == 'Demander un séjour scientifique' || $point == "Demander une année sabbatique")
@@ -161,8 +158,7 @@ I.Liste des membres présents à la session du comité scientifique du départem
         @endif
         @endforeach
 
-        <br>
-        Divers 
+        <h2 class="titre"> Divers </h2>
         @foreach($array_unique_points as $point)
 
         @if($point != 'Demander un séjour scientifique' && $point != "Demander une année sabbatique" && $point != 'Soumettre dossier habilitation' && $point != "Demande d'une promotion pédagogique"
@@ -179,9 +175,316 @@ I.Liste des membres présents à la session du comité scientifique du départem
         @endforeach
 
    </ul>
+  <div class="principale">III.Déroulement des travaux du comité scientifique du département</div> 
+@foreach($requetes as $requete)
+            @if($requete->type == 1)
+              @foreach($types as $type)
+                @if($type->id == $requete->type)
+                  @foreach($details as $detail)
+                        @if($detail->idRequete == $requete->idRequete)
+                        <div class="information">
+                           <h2 class="titre">{{$type->nom}}</h2> 
+                          Nom et Prénom : {{$requete->name}} {{$requete->fname}}   <br>
+                          Département : {{$requete->dname}} <br>
+                          Nom et Prénom de directeur :  {{$detail->nomPrenomDirecteur}}<br>
 
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                          </div>
+                        @endif
+                    @endforeach
+                @endif
+              @endforeach
+              
 
+                
+              @elseif($requete->type == 2)
+              @foreach($types as $type)
+                @if($type->id == $requete->type)
+                    @foreach($details as $detail)
+                            @if($detail->idRequete == $requete->idRequete)
+                            <div class="information">
+                            <h2 class="titre">{{$type->nom}}</h2> 
+                              Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
+                              Pays de destination :  {{$detail->paysDestination}}<br>
+                              Etablissement d'accueil :{{$detail->etablissementaAccueil}}  <br>
+                              Date début  de séjour : {{$detail->dateDeb}} <br>
+                              Date fin de séjour : {{$detail->dateFin}} <br>
+                              Responasable de stage : {{$detail->nomPrenomDirecteur}} <br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                              </div>
+                            <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                            @endif
+                        @endforeach
+                  @endif
+                @endforeach
 
+                @elseif($requete->type == 3)
+                  @foreach($types as $type)
+                    @if($type->id == $requete->type)
+                      @foreach($details as $detail)
+                              @if($detail->idRequete == $requete->idRequete)
+                              <div  class="information">
+                              <h2 class="titre">{{$type->nom}}</h2> 
+                                Nom et Prénom :{{$requete->name}} {{$requete->fname}}  <br>
+                                Intitulé du sujet de thèse initiale :  {{$detail->intituleDesign}}<br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation :@if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                </div>
+                              @endif
+                          @endforeach
+                    @endif
+                  @endforeach
+                     
+
+                  @elseif($requete->type == 4)
+                  @foreach($types as $type)
+                    @if($type->id == $requete->type)
+                      @foreach($details as $detail)
+                                @if($detail->idRequete == $requete->idRequete)
+                                <div  class="information">
+                                <h2 class="titre">{{$type->nom}}</h2> 
+                                  Type du Doctorat : {{$detail->typeDoctorat}} <br>
+                                  Nom et Prénom : {{$requete->name}} {{$requete->fname}}<br>
+                                  Directeur de thèse :  {{$detail->nomPrenomDirecteur}}  <br>
+                                  Année de la première inscription:   {{$detail->annee}}<br>
+                                  Département:  {{$requete->dname}}<br>
+                                  Intitulé de la thèse:  {{$detail->intituleDesign}}<br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                  </div>
+                                @endif
+                            @endforeach
+                      @endif
+                    @endforeach
+
+                    @elseif($requete->type == 5)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                            @foreach($details as $detail)
+                                    @if($detail->idRequete == $requete->idRequete)
+                                    <div  class="information">
+                                    <h2 class="titre">{{$type->nom}}</h2> 
+                                      Nom et Prénom :  {{$requete->name}} {{$requete->fname}} <br>
+                                      Nom et Prénom de directeur de thèse actuel :  {{$detail->	nomPrenomDirecteur}}  <br>
+                                      Nom et Prénom de directeur : {{$detail->nomPrenomResSecondaire}}<br>
+                                      Motif : {{$detail->observation}}<br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                      </div>
+                                    @endif
+                                @endforeach
+                          @endif
+                        @endforeach
+                        
+
+                    @elseif($requete->type == 7 || $requete->type == 10 )
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+                        
+                            @foreach($details as $detail)
+                                        @if($detail->idRequete == $requete->idRequete)
+                                        <div  class="information">
+                                        <h2 class="titre">{{$type->nom}}</h2> 
+                                          Type du Doctorat : {{$detail->typeDoctorat}} <br>
+                                          Département:   {{$requete->dname}}<br>
+                                          Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
+                                          Nom et Prénom du directeur :  {{$detail->nomPrenomDirecteur}} <br>
+                                          Nom et Prénom du co-directeur :   {{$detail->	nomPrenomResSecondaire}}<br>
+                                          Intitulé de la thèse : {{$detail->intituleDesign}}<br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                        </div>
+                                        @endif
+                                    @endforeach
+                              @endif
+                            @endforeach
+                     
+
+                    @elseif($requete->type == 8)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+
+                        @foreach($details as $detail)
+                                        @if($detail->idRequete == $requete->idRequete)
+                                        <div  class="information">
+                                        <h2 class="titre">{{$type->nom}}</h2> 
+                                          Nom et Prénom :  {{$requete->name}} {{$requete->fname}}<br>
+                                          Motif : {{$detail->observation}} <br>
+                        <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif/h4>
+                                          </div>
+                                        @endif
+                                    @endforeach
+                              @endif
+                            @endforeach
+                          
+
+                    @elseif($requete->type == 9)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+
+                          @foreach($details as $detail)
+                                          @if($detail->idRequete == $requete->idRequete)
+                                          <div  class="information">
+                                          <h2 class="titre">{{$type->nom}}</h2> 
+                                            Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
+                                            Nom et Prénom du co-directeur : {{$detail->nomPrenomResSecondaire}}<br>
+                                            Motif : {{$detail->observation}} <br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                            </div>
+                                          @endif
+                                      @endforeach
+                                @endif
+                              @endforeach
+                        
+                       
+
+                    @elseif($requete->type == 11 || $requete->type == 12 )
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+
+                        
+                            @foreach($details as $detail)
+                                              @if($detail->idRequete == $requete->idRequete)
+                                              <div  class="information">
+                                              <h2 class="titre">{{$type->nom}}</h2> 
+                                                Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
+                                                Grade actuel : {{$detail->gradeActuel}} <br>
+                                                Promotion : {{$detail->promotion}}<br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                                </div>
+                                              @endif
+                                          @endforeach
+                                    @endif
+                                  @endforeach
+                          
+                    @elseif($requete->type == 13)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+
+                            @foreach($details as $detail)
+                                                  @if($detail->idRequete == $requete->idRequete)
+                                                  <div  class="information">
+                                                  <h2 class="titre">{{$type->nom}}</h2> 
+                                                    Nom et Prénom :  {{$requete->name}} {{$requete->fname}} <br>
+                                                    Département:  {{$requete->dname}} <br>
+                                                    Observations : {{$detail->	observation}}<br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                                    </div>
+                                                  @endif
+                                              @endforeach
+                                        @endif
+                                      @endforeach
+                      
+
+                    @elseif($requete->type == 14||$requete->type == 20||$requete->type == 23||$requete->type == 18||$requete->type == 21||$requete->type == 24||$requete->type == 22)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+
+                            @foreach($details as $detail)
+                                                      @if($detail->idRequete == $requete->idRequete)
+                                                      <div  class="information">
+                                                      <h2 class="titre">{{$type->nom}}</h2> 
+                                                        Nom et Prénom : {{$requete->name}} {{$requete->fname}} <br>
+                                                        Observations : {{$detail->	observation}}<br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                                        </div>
+                                                      @endif
+                                                  @endforeach
+                                            @endif
+                                          @endforeach
+                       
+                    @elseif($requete->type == 15)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+
+                        @foreach($details as $detail)
+                                                      @if($detail->idRequete == $requete->idRequete)
+                                                      <div  class="information">
+                                                      <h2 class="titre">{{$type->nom}}</h2> 
+                                                        Nom et Prénom :  {{$requete->name}} {{$requete->fname}} <br>
+                                                        Pays de detisnation :  {{$detail->paysDestination}}  <br>
+                                                        Date début de séjour: {{$detail->dateDeb}}  <br>
+                                                        Date fin de séjour: {{$detail->dateFin}}  <br>
+                                                        Etablissement d'accueil : {{$detail->etablissementaAccueil}} <br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation :@if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                                        </div>
+                                                      @endif
+                                                  @endforeach
+                                            @endif
+                                          @endforeach
+                  
+                    @elseif($requete->type == 16)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+
+                        @foreach($details as $detail)
+                                                      @if($detail->idRequete == $requete->idRequete)
+                                                      <div  class="information">
+                                                      <h2 class="titre">{{$type->nom}}</h2> 
+                                                        Chef du projet :  {{$requete->name}} {{$requete->fname}} <br>
+                                                        Intitulé du projet : {{$detail->intituleDesign}}  <br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                                        </div>
+                                                      @endif
+                                                  @endforeach
+                                            @endif
+                                          @endforeach
+                          
+                    @elseif($requete->type == 17)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+
+                        @foreach($details as $detail)
+                                                        @if($detail->idRequete == $requete->idRequete)
+                                                        <div  class="information">
+                                                          <h2 class="titre">{{$type->nom}}</h2> 
+                                                          Nom et Prénom :   {{$requete->name}} {{$requete->fname}} <br>
+                                                          Niveau :  {{$detail->diplomeAcc}}<br>
+                                                          Désignation :{{$detail->intituleDesign}} <br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                                          </div>
+                                                        @endif
+                                                    @endforeach
+                                              @endif
+                                            @endforeach  
+                    
+
+                    @elseif($requete->type == 19)
+                      @foreach($types as $type)
+                        @if($type->id == $requete->type)
+
+                        @foreach($details as $detail)
+                                                        @if($detail->idRequete == $requete->idRequete)
+                                                        <div  class="information">
+                                                        <h2 class="titre">{{$type->nom}}</h2> 
+                                                          Nom et Prénom :   {{$requete->name}} {{$requete->fname}} <br>
+                                                          Etablissement d’accueil : {{$detail->etablissementaAccueil}}  <br>
+                          <h4 class="decision">Décision : <span> {{$requete->avis}}</span></h4>
+                          <h4>Observation : @if($requete->observation == '') / @else {{$requete->observation}} @endif</h4>
+                                                          </div>
+                                                        @endif
+                                                    @endforeach
+                                              @endif
+                                            @endforeach  
+                        
+            @endif
+           
+        @endforeach
+
+<div class="sec"> Le secrétaire de la  session    <br>                                      
+Nom, Prénom  et signature   </div>
+<br>
+<div class="pre">Président du CSD <br>
+Nom, Prénom et Signature</div>
 </body>
 </html>
 
@@ -192,6 +495,7 @@ body{
     margin:15px;
     border: 2px solid black;
     padding:15px;
+    padding-bottom:100px;
 }
 img{
     float:left;
@@ -202,6 +506,8 @@ img{
     margin:50px;
     text-align: center;
     font-size:17px;
+    font-weight: bold;
+
 }
 table {
  border-collapse:collapse;
@@ -213,12 +519,64 @@ th, td {
  }
 td {
  text-align:center;
+ height:40px;
  }
 
 .departement{
-
     text-align:center;
-    font-size:14px;
+    font-size:18px;
+    font-weight: bold;
+
 }
+.titre{
+    background-color: #ef813a;
+    color: black;
+    width:500px;
+    font-size:18px;
+    border-radius:3px;
+   
+}
+li{
+    margin-left:40px;
+    font-size:15px;
+}
+
+.principale{
+    font-size:20px;
+    font-weight:bold;
+    
+}
+.information{
+    font-size:15px;
+    font-weight:bold;
+    margin-left:20px;
+}
+.decision{
+    color:blue;
+    font-size:15px;
+
+}
+span{
+    color:black;
+
+}
+h4{
+    margin-left:30px;
+}
+.sec{
+    font-size:14px;
+    font-weight:bold;
+    float:left;
+    padding-bottom:40px;
+}
+.pre{
+    font-size:14px;
+    font-weight:bold;
+    float:right;
+    padding-bottom:40px;
+
+}
+
+
 
 </style>

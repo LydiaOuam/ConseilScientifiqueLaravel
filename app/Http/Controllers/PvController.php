@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Decision;
-use PDF;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Models\Point;
+use App\Models\Detail;
+use App\Models\Jury;
+use Illuminate\Support\Facades\Stroage;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PvController extends Controller
 {
@@ -38,7 +42,20 @@ class PvController extends Controller
                         ->where('idSessionCSD','=',$idSess)
                         ->join('requetes','requetes.idRequete','=','decisions.idRequete')
                         ->join('points','requetes.type','=','points.id')
+                        ->join('details','requetes.idRequete','=','details.idRequete')
+                        ->join('users','requetes.idUser','=','users.id')
+                        ->join('departements','users.idDept','=','departements.idDept')
                         ->get();
+    
+        // $requetes = DB::table('requetes')
+        //                 ->join('details','requetes.idRequete','=','details.idRequete')
+        //                 ->join('users','requetes.idUser','=','users.id')
+        //                 ->join('departements','users.idDept','=','departements.idDept')
+        //                 ->paginate(1);
+            
+        $juries = Jury::all();
+        $details = Detail::all();
+        $types = Point::all();
         
         foreach($requetes as $requete)
         {
@@ -49,7 +66,8 @@ class PvController extends Controller
         }    
 
         $dec = Decision::all();
-        return view('decision',compact('dec','session_csd','chef_departement','presence','requetes','array_unique_points'));
+        return view('decision',compact('dec','session_csd','chef_departement','presence','requetes'
+        ,'array_unique_points','juries','details','types'));
     }
 
 /**--------------------------------------------------------------------------------------------
@@ -88,10 +106,17 @@ class PvController extends Controller
 
                         
         $requetes = DB::table('decisions')
-                    ->where('idSessionCSD','=',$idSess)
-                    ->join('requetes','requetes.idRequete','=','decisions.idRequete')
-                    ->join('points','requetes.type','=','points.id')
-                    ->get();
+                        ->where('idSessionCSD','=',$idSess)
+                        ->join('requetes','requetes.idRequete','=','decisions.idRequete')
+                        ->join('points','requetes.type','=','points.id')
+                        ->join('details','requetes.idRequete','=','details.idRequete')
+                        ->join('users','requetes.idUser','=','users.id')
+                        ->join('departements','users.idDept','=','departements.idDept')
+                        ->get();
+
+        $juries = Jury::all();
+        $details = Detail::all();
+        $types = Point::all();
 
                     foreach($requetes as $requete)
                     {
@@ -102,7 +127,12 @@ class PvController extends Controller
                     }    
             
 
-        $pdf = PDF::loadView('decision',compact('dec','session_csd','chef_departement','presence','requetes','array_unique_points'));
+        $pdf = PDF::loadView('decision',compact('dec','session_csd','chef_departement','presence','requetes','array_unique_points'
+        ,'juries','details','types'));
+        // $location = public_path('PVs/pv.pdf');
+        // $filename = 'decision.pdf';
+        // return response()->download($location,$filename);
         return $pdf->download('decision.pdf');
+        
     }
 }

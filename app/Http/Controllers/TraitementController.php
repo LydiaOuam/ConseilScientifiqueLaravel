@@ -91,17 +91,17 @@ class TraitementController extends Controller
                             
                     
 
-                            $currentDate = Carbon::now()->format('Y-m-d');
+            $currentDate = Carbon::now()->format('Y-m-d');
         
-                            $session_csd = DB::table('session_c_s_d_s')
-                                                ->where('etat_CSD','=','en attente')
-                                                ->where('dateSession','=',$currentDate)
-                                                ->get();
-                                                foreach($session_csd as $session)
-                                                {
-                                                    $idSess = $session->idSessionCSD;
-                                                    $idSessCSF = $session->idSessionCSF;
-                                                }
+            $session_csd = DB::table('session_c_s_d_s')
+                                ->where('etat_CSD','=','en attente')
+                                ->where('dateSession','=',$currentDate)
+                                ->get();
+            foreach($session_csd as $session)
+                    {
+                        $idSess = $session->idSessionCSD;
+                        $idSessCSF = $session->idSessionCSF;
+                    }
 
 
         return view('/DSession.sessionCSD',compact('session_csd','requetes','types','items','details','juries','decisions','communications','publications','users','current_user'));

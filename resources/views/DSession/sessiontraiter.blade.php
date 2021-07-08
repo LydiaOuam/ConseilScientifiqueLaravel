@@ -716,7 +716,7 @@
 <!-- Button trigger modal -->
 <div class="d-grid gap-2">
 
-<button class="btn btn-outline-danger" style="margin-bottom:20px;" type="button"data-bs-toggle="modal" data-bs-target="#exampleModal">Terminer la session</button>
+<a href="{{route('downdecision')}}"style="margin-bottom:20px;" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Terminer la session</a>
 </div>
 
 

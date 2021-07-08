@@ -695,7 +695,6 @@
                 <option value="Défavorable">Défavorable</option>
                 <option value="Différé">Différé</option>
                 <option value="Réserves">Réserves</option>
-
             </select>
         </div >
           <h6   style="margin-top:20px;margin-left:20px;"> Donner une observation</h6>
@@ -714,8 +713,30 @@
   
 </form>
 {{$requetes->links()}}
+<!-- Button trigger modal -->
 <div class="d-grid gap-2">
-  <button class="btn btn-outline-danger" style="margin-bottom:20px;" type="button">Terminer la session</button>
+
+<button class="btn btn-outline-danger" style="margin-bottom:20px;" type="button"data-bs-toggle="modal" data-bs-target="#exampleModal">Terminer la session</button>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Terminer la session</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Voulez vous vraiment terminer cette session ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+        <button type="button" class="btn btn-primary">Oui</button>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 

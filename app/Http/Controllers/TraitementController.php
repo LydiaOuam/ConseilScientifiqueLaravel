@@ -234,16 +234,22 @@ class TraitementController extends Controller
 
      
 
-        //Mettre a jour la decesion
-        // $current_user = session('user')->id;
-        // $decision = table('decisions')
-                    // ->where('idPresident','=',$current_user);
+        // Mettre a jour la decesion
+        $current_user = session('user')->id;
+        $decision = DB::table('decisions')
+                    ->where('idPresident','=',$current_user)
+                    ->where('idRequete','=',$id)
+                    ->get();
+        foreach($decision as $dec)
+                $idDecision = $dec->idDecision;
 
-        // if(count($decision)!=0)
-        // {
-        //     DB:update('update decisions set avis = ?, observation = ? where idDecision = ?',
-        //     [$request->decision,$request->observation,$decision->idDecision]);
-        // }
+        if(count($decision)!=0)
+        {
+            DB::update('update decisions set avis = ?, observation = ? where idDecision = ?',
+            [$request->decision,$request->observation,$idDecision]);
+        return redirect()->back()->with('success','La décision a été bien modifiée');
+
+        }
         
         $currentDate = Carbon::now()->format('Y-m-d');
         

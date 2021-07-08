@@ -56,6 +56,15 @@ class AbsenceController extends Controller
 
     public function save(Request $request)
     {
+        $currentDate = Carbon::now()->format('Y-m-d');
+        
+        $session_csd = DB::table('session_c_s_d_s')
+                            ->where('etat_CSD','=','en attente')
+                            ->where('dateSession','=',$currentDate)
+                            ->get();
+                            foreach($session_csd as $session)
+                            $idSess = $session->idSessionCSD;
+                    
         $nbr = count($request->all());
         for($i = 0; $i < $nbr - 1;$i++)
         {
@@ -66,19 +75,11 @@ class AbsenceController extends Controller
             $presence = new Presence();
             $presence->etat = $arr[0];
             $presence->idUser = $arr[1];
-            $presence->idSessionCSD = 10;
+            $presence->idSessionCSD = $idSess;
             $presence->save();
             
         }
-        $currentDate = Carbon::now()->format('Y-m-d');
-        
-        $session_csd = DB::table('session_c_s_d_s')
-                            ->where('etat_CSD','=','en attente')
-                            ->where('dateSession','=',$currentDate)
-                            ->get();
-                            foreach($session_csd as $session)
-                            $idSess = $session->idSessionCSD;
-                    
+ 
                     
                             DB::update('update session_c_s_d_s set etat_CSD = ? where idSessionCSD = ?',
                             ["en cours",$idSess]);

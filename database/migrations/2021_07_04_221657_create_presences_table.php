@@ -23,7 +23,7 @@ class CreatePresencesTable extends Migration
             $table->foreign('idSessionCSD')
                   ->references('idSessionCSD')->on('session_c_s_d_s')
                   ->onDelete('cascade');
-            $table->enum('etat',['Présent','Absence justifiée','Absent']);
+            $table->enum('etatp',['Présent','Absence justifiée','Absent']);
             $table->timestamps();
         });
     }

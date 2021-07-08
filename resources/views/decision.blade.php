@@ -10,47 +10,56 @@
 <body>
     <img src="imageLogo/telech.png" alt="Logo usthb">
     <div class="tete">
-    République Algérienne Démocratique et Populaire
-    Ministère de l’Enseignement Supérieur et de la Recherche Scientifique
-    Université des Sciences et Technologie-Houari Boumediene
+    République Algérienne Démocratique et Populaire <br>
+    Ministère de l’Enseignement Supérieur et de la Recherche Scientifique <br>
+    Université des Sciences et Technologie-Houari Boumediene <br>
     Faculté d’Electronique et Informatique
     <hr>
     Procès-Verbal du 
     Comité Scientifique de Département
     </div>
-    Département 
-    ici j insere le departement concerne
-
-    Données de la session
+    <div class="departement">
+            Département 
+            @foreach($chef_departement as $chef)
+            {{  $chef->dname}}
+            @endforeach
+    </div>
+    <h6>Données de la session</h6>
     <table class="table table-bordered">
         <thead>
             <tr>
             <th scope="col">Numéro de la session</th>
             <th scope="col">Date de la session</th>
-            <th colspan="2" >Nature de la session</th>
+            <th scope="col" >Nature de la session</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
-                <th>Normale</th>
-                <th>Extraordinaire</th>
+            @foreach($session_csd as $session)
+                <td>{{$session->idSessionCSD}}</td>
+                <td>{{$session->dateSession}}</td>
+                <td>{{$session->typeSession}}</td>
+            @endforeach
+
 
             </tr>
         </tbody>
     </table>
-    Référence aux textes réglementaires
+    <p>
+            <h6> Référence aux textes réglementaires</h6>
 
-1-	Décret exécutif n°3-279 du 23 août 2003 fixant les missions et les règles particulières d’organisation et de fonctionnement de l’université.
-2-	L’arrêté du 05 Mai 2004 fixant les modalités de fonctionnement du comité scientifique du département.
-3-	L’arrêté n°230 en date du 10 Mars 2020 portant la liste nominative des membres du comité scientifique du département informatique
-4-	Instruction du secrétaire général n°1500 du 25 décembre 2019
+       <p>1- Décret exécutif n°3-279 du 23 août 2003 fixant les missions et les règles particulières d’organisation et de fonctionnement de l’université.</p> 
+        <p> 2-	L’arrêté du 05 Mai 2004 fixant les modalités de fonctionnement du comité scientifique du département.</p> 
+        <p> 3-	L’arrêté n°230 en date du 10 Mars 2020 portant la liste nominative des membres du comité scientifique du département informatique</p> 
+        <p> 4-	Instruction du secrétaire général n°1500 du 25 décembre 2019</p> 
+</p>
 <br>
-I.Liste des membres présents à la session du comité scientifique du département (1)
-<br>
+<h6>
+I.Liste des membres présents à la session du comité scientifique du département (1)</h6>
+<h6>
 1- Membres du comité scientifique du département
-<br>
+</h6>
+
 <table class="table table-bordered">
         <thead>
             <tr>
@@ -61,18 +70,22 @@ I.Liste des membres présents à la session du comité scientifique du départem
             </tr>
         </thead>
         <tbody>
+        @php $i = 1 @endphp
+        @foreach($presence as $pre)
+            @if($pre->etatp == "Présent")
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{$i++}}</td>
+                <td>{{$pre->name}}  {{$pre->fname}} </td>
+                <td>{{$pre->TeachGrade}} </td>
                 <td></td>
             </tr>
+            @endif
+        @endforeach
         </tbody>
     </table>
-    (1)Suivant l’arrêté n°230 en date du 10 Mars 2020 portant la liste nominative des membres du comité scientifique du département Informatique
+    <p>(1)Suivant l’arrêté n°230 en date du 10 Mars 2020 portant la liste nominative des membres du comité scientifique du département Informatique</p> 
     <br>
-    2- Membres du comité scientifique du département absents :
-    <br>
+   <h6>2- Membres du comité scientifique du département absents :</h6> 
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -82,70 +95,93 @@ I.Liste des membres présents à la session du comité scientifique du départem
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @php $i = 1 @endphp
+            @foreach($presence as $pre)
+                @if($pre->etatp == "Absent" || $pre->etatp == "Absence justifiée")
+                <tr>
+                    <td>{{$i++}}</td>
+                    <td>{{$pre->name}}  {{$pre->fname}} </td>
+                    <td>{{$pre->TeachGrade}} </td>
+                </tr>
+                @endif
+            @endforeach
         </tbody>
     </table>
 
-    II.Ordre du jour de la session du comité scientifique du département
+   <div class="departement"><h6>II.Ordre du jour de la session du comité scientifique du département </h6> </div> 
+
+   <ul>
+   Pédagogie
 
 
-Thème principal
-
-
-Pédagogie
-Habilitation d’une formation cycle Licence
-Habilitation d’une formation cycle Master
-
-Formation Doctorale
-Habilitation des PG., PGS, Ecole Doctorale et Doctorat 3ème cycle (LMD)
-Première inscription en mémoire de Magister
-Proposition de sujet de mémoire de Magister ou thèse de Doctorat
-Réinscription en mémoire de Magister et thèse de Doctorat
-Changement de Directeur de mémoire de Magister ou thèse de Doctorat
-Changement de sujet de mémoire de Magister ou de thèse de Doctorat
-Réintégration en mémoire de Magister ou de thèse de Doctorat
-Soutenance de mémoire de Magister ou de thèse de Doctorat
-Requête particulière
-
-Recherche
-Projet de convention et de collaboration
-Examen des rapports de recherche
-Projet de recherche CNEPRU (Nouveau, Reconduction, Clôture)
-Demande d’intégration dans un projet de recherche
-Promotion scientifique
-Proposition de création de laboratoire de recherche
-Proposition de manifestations scientifiques
-
-Académie
-Promotion académique
-Habilitation universitaire
-Titularisation
-Détachement
-Mutation intra ou inter-université
-Mise en disponibilité
-
-Formation à l’étranger
-Rencontre internationale
-Séjour scientifique
-
-Divers 
-
-
-
-    <h1>Ordre du Jour</h1>
-    une list
-
-    <hr>
-    Une liste de toute les requetes
-    <ul>
-    @foreach($dec as $de)
-    <li>{{$de->idDecision}}</li>
+    @foreach($array_unique_points as $point)
+        @if($point == 'Soumettre une nouvelle offre de formation')
+        <li>{{$point}}</li>
+        @endif
     @endforeach
-    </ul>
+    <br>
+    Formation Doctorale
+
+    @foreach($array_unique_points as $point)
+
+        @if($point == 'Abandonner thèse' || $point == 'Changer thème de la thèse' || $point == 'Soumettre dossier soutenance' 
+                            || $point == 'Changer directeur de thèse' || $point == 'Changer directeur de thèse'
+                            || $point == "S'inscrire en première année" || $point == "Geler l'inscription"
+                            || $point == 'Rajouter un co-directeur' || $point == 'Se réinscrire' )
+        <li>{{$point}}</li>
+        @endif
+        @endforeach
+    <br>
+    Recherche
+    
+    @foreach($array_unique_points as $point)
+
+        @if($point == 'Soumettre un nouveau projet de recherche' || $point == 'Soumettre un rapport de recherche individuel')
+        <li>{{$point}}</li>
+        @endif
+        @endforeach
+
+        Académie
+    
+    @foreach($array_unique_points as $point)
+
+        @if($point == 'Soumettre dossier habilitation' || $point == "Demande d'une promotion pédagogique"
+                    || $point == 'Demander une titularisation' || $point == 'Demander une mutation inter universitaire'
+                    || $point == 'Demander une suspension de la relation de travail ' || $point == "Demande d'une promotion pédagogique")
+        <li>{{$point}}</li>
+        @endif
+        @endforeach
+
+    <br>
+    Formation à l’étranger
+    @foreach($array_unique_points as $point)
+
+        @if($point == 'Demander un séjour scientifique' || $point == "Demander une année sabbatique")
+        <li>{{$point}}</li>
+        @endif
+        @endforeach
+
+        <br>
+        Divers 
+        @foreach($array_unique_points as $point)
+
+        @if($point != 'Demander un séjour scientifique' && $point != "Demander une année sabbatique" && $point != 'Soumettre dossier habilitation' && $point != "Demande d'une promotion pédagogique"
+                    && $point != 'Demander une titularisation' && $point != 'Demander une mutation inter universitaire'
+                    && $point != 'Demander une suspension de la relation de travail ' && $point != "Demande d'une promotion pédagogique"
+                    && $point != 'Soumettre un nouveau projet de recherche' && $point != 'Soumettre un rapport de recherche individuel'
+                    && $point != 'Abandonner thèse' && $point != 'Changer thème de la thèse' && $point != 'Soumettre dossier soutenance' 
+                    && $point != 'Changer directeur de thèse' && $point != 'Changer directeur de thèse'
+                    && $point != "S'inscrire en première année" && $point != "Geler l'inscription"
+                    && $point != 'Rajouter un co-directeur' && $point != 'Se réinscrire'
+                    && $point != 'Soumettre une nouvelle offre de formation')
+        <li>{{$point}}</li>
+        @endif
+        @endforeach
+
+   </ul>
+
+
+
 </body>
 </html>
 
@@ -164,7 +200,8 @@ img{
 .tete{
     width:80%;
     margin:50px;
-    text-align: center 
+    text-align: center;
+    font-size:17px;
 }
 table {
  border-collapse:collapse;
@@ -177,5 +214,11 @@ th, td {
 td {
  text-align:center;
  }
+
+.departement{
+
+    text-align:center;
+    font-size:14px;
+}
 
 </style>

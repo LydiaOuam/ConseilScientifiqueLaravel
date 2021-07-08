@@ -37,47 +37,56 @@ class TraitementController extends Controller
 
     public function traiter2()
     {
-        //$currentDate = la date du systene;
 
-        // $session_csd = DB::table('session_c_s_d_s')
-        //                     ->where('etat_CSD','=','en attente')
-        //                     ->where('dateSession','=',$currentDate);
-        // if(count($session_csd)==0)
-        //     return('DSession.AccueilCSD')->with('error',"Aucune session n'a ete planifier pour ce jour");
 
-        $requetes = DB::table('requetes')
-                    ->join('details','requetes.idRequete','=','details.idRequete')
-                    ->join('users','requetes.idUser','=','users.id')
-                    ->join('departements','users.idDept','=','departements.idDept')
-                    ->paginate(1);
-        $juries = Jury::all();
-        $details = Detail::all();
-        $items = Item::all();
-        $types = Point::all();
-        $communications = Communication::all();
-        $publications = Publication::all();
-        $decisions = DB::table('decisions')
-                        ->join('users','decisions.idPresident','=','users.id')
-                        ->get();
 
-                        $current_user = session('user')->idDept;
 
+
+        $current_user = session('user')->idDept;
+        $current_user_membre = session('user')->membre;
+
+            
         $users = DB::table('users')
-                    ->where('idDept','=',$current_user)
-                    ->where('fonction','!=','Etudiant-doctorant')
-                    ->get();
-                
-        //faut mettre a jour l'etat de la session
-        
-    // $session = SessionCSD :: find($session_csd->idSessionCSD);
+                         ->where('idDept','=',$current_user)
+                         ->where('membre','=',$current_user_membre)
+                         ->get();
+
+   
 
 
-    // DB::update('update session_c_s_d_s set etatCSD = ? where id = ?',
-    // ["en cours",$session_csd->idSessionCSD]);
-    
 
-        
+            $requetes = DB::table('requetes')
+            ->join('details','requetes.idRequete','=','details.idRequete')
+            ->join('users','requetes.idUser','=','users.id')
+            ->join('departements','users.idDept','=','departements.idDept')
+            ->paginate(1);
+
+            $juries = Jury::all();
+            $details = Detail::all();
+            $items = Item::all();
+            $types = Point::all();
+            $communications = Communication::all();
+            $publications = Publication::all();
+            $decisions = DB::table('decisions')
+                            ->join('users','decisions.idPresident','=','users.id')
+                            ->get();
+
+
+//faut mettre a jour l'etat de la session
+
+// $session = SessionCSD :: find($session_csd->idSessionCSD);
+
+
+// DB::update('update session_c_s_d_s set etatCSD = ? where id = ?',
+// ["en cours",$session_csd->idSessionCSD]);
+
+
+
         return view('/DSession.sessionCSD',compact('requetes','types','items','details','juries','decisions','communications','publications','users','current_user'));
+
+
+                
+  
     }
 
     public function traiter3()

@@ -6,21 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Presence;
 use App\Models\SessionCSD;
+use Carbon\Carbon;
+
 
 
 class AbsenceController extends Controller
 {
     public function membres()
     {
-
-        $current_session = DB::table('session_c_s_d_s')
-                            ->where('etatCSD','=','en cours');
-        if(count($current_session) == 1)
-            return redirect(route('sessionCSD'));
-
-
+                
 
         $current_user = session('user')->idDept;
+
         $current_user_membre = session('user')->membre;
 
             
@@ -29,8 +26,29 @@ class AbsenceController extends Controller
                          ->where('membre','=',$current_user_membre)
                          ->get();
 
+        $current_session = DB::table('session_c_s_d_s')
+                            ->where('etat_CSD','=','en cours')
+                            ->get();
+        if(count($current_session) == 1)
+            return redirect(route('sessionCSD'));
+
+            $currentDate = Carbon::now()->format('Y-m-d');
+        
+        $session_csd = DB::table('session_c_s_d_s')
+                            ->where('etat_CSD','=','en attente')
+                            ->where('dateSession','=',$currentDate)
+                            ->get();
+
+        // // dd($session_csd);
+        // if(count($session_csd)==0)
+        // {
+
+        // }
+        //                 return view('/DSession.accueilCSD',compact('current_user','users'))->with('error','Y a pas de session pour cette date');
+                
+
    
-        return view('/DSession.accueilCSD',compact('current_user','users'));
+        return view('/DSession.accueilCSD',compact('current_user','users','session_csd'));
 
 
     }

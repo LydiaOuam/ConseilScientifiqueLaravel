@@ -310,7 +310,6 @@ Route::post('/modifierCahier',[RequeteController::class,"saveModif"])->name('sav
 
 Route::get('/session',[TraitementController::class,"traiter"])->name('traiterRequete');
 
-Route::get('/traiter',[TraitementController::class,"traiter2"])->name('sessionCSD');
 
 Route::get('/traiterCFD',[TraitementController::class,"traiter3"])->name('sessionCFD');
 
@@ -393,6 +392,9 @@ Route::post('/selection/{id}',[TheseController::class,"postDossier"])->name('sel
 Route::post('/save/{idRequete}',[TheseController::class,"saveJury"])->name('saveJury');
 
 Route::get('/accueilCSD',[AbsenceController::class,"membres"])->name('absence');
+
+Route::get('/traiter',[TraitementController::class,"traiter2"])->name('sessionCSD');
+
 
 Route::post('/enregitrerEtat',[AbsenceController::class,"save"])->name('enregistrerEtat');
 

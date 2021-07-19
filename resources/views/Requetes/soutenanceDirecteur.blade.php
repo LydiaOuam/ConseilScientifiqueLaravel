@@ -340,8 +340,8 @@ $(document).ready(function(){
         if(row_number < 4)
         {
             let new_row_number = row_number - 1;
-            $('#examinateur' + row_number).rest().html($('#examinateur' + new_row_number).html()).find('td:first-child');
-            $('#examinateurs_table').append('<tr id="examinateur' + (row_number + 1) + '"></tr>').reset();
+            $('#examinateur' + row_number).html($('#examinateur' + new_row_number).html()).find('td:first-child');
+            $('#examinateurs_table').append('<tr id="examinateur' + (row_number + 1) + '"></tr>');
             row_number++;
         }
      

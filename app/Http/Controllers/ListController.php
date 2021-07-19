@@ -32,7 +32,7 @@ class ListController extends Controller
         else{
             $listCpt =  User::where('login','!=',session('user')->login)
                                 ->where('supprim','!=',0)
-                                ->orderBy('id')->paginate(5);
+                                ->orderBy('id','desc')->paginate(5);
                                 // dd($listCpt);
             return view('/listCompte',['comptes'=>$listCpt]);
         }
@@ -56,7 +56,7 @@ class ListController extends Controller
 
 public function updatee(Request $request,$id)
    {
-
+  
     
     $compte = User :: find($id);
 

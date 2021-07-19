@@ -19,7 +19,7 @@
   <a href="{{route('AfficherMember',[$departe->idDept])}}" class="list-group-item list-group-item-action" aria-current="true" >
     <div class="d-flex w-100 justify-content-between">
    
-      <h5 class="mb-1">{{$departe->name}}</h5>
+      <h5 class="mb-1">{{$departe->dname}}</h5>
 
     </div>
 
@@ -42,13 +42,12 @@
  <div class="mb-3">
                 <label for="placeBirth" class="form-label">Ajouter un membre:</label>
                
-                 <input list="mem" name="mem" class="form-control">
                
-                <datalist id="mem">
+                <select class="form-select" name="mem">
                 @foreach($comptes as $compte)
                     <option value="{{$compte->id}}">{{$compte->name}} {{$compte->fname}}</option>
                     @endforeach
-                  </datalist>
+                  </select>
 
           </div>
   

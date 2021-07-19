@@ -42,7 +42,7 @@
                     <option value="Chercheur">Chercheur</option>
                 </select>
 
-    <label for="departement">Departement:</label>
+    <label for="departement">Département :</label>
                 <select name="departement" class="form-select form-select-sm" >
                 @foreach($dep as $departe)
                     <option value="{{$departe->idDept}}">{{$departe->dname}}</option>

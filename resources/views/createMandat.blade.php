@@ -35,17 +35,13 @@
     margin-top: 10px;">
 
 <legend>Ajouter le président:</legend>
-                     <div class="mb-3" style="margin-top:20px;">
                 
-                        <input list="membre" name="membre" class="form-control" style="width:500px;margin-left:20px;">
-                        <datalist id="membre">
-                        @foreach($comptes as $compte) 
-                            <option value="{{$compte->id}}">{{$compte->name}} {{$compte->fname}}</option>
-                            @endforeach 
-                        </datalist>
-                        
-                    </div>
-        
+                <select class="form-select" name="membre">
+                @foreach($comptes as $compte) 
+                    <option value="{{$compte->id}}">{{$compte->name}} {{$compte->fname}}</option>
+                    @endforeach 
+                </select>
+                
     </fieldset>
     <button type="submit" class="btn btn-success" style="width:800px;margin-left:30px;" >Suivant</button>
 
